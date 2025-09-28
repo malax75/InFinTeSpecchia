@@ -52,20 +52,20 @@ class UIManager {
     }
 
     startAdventure() {
-        if (!this.gameInstance) {
-            alert('Errore: Game non inizializzato!');
-            return;
-        }
-
-        if (!this.gameInstance.player || !this.gameInstance.player.stats) {
-            this.showCharacterCreation();
-            return;
-        }
-
-        document.getElementById('main-menu').style.display = 'none';
-        document.getElementById('game-interface').style.display = 'block';
-        this.gameInstance.startGame();
+    if (!this.gameInstance) {
+        alert('Errore: Game non inizializzato!');
+        return;
     }
+
+    if (!this.gameInstance.player || !this.gameInstance.player.stats) {
+        this.showCharacterCreation();
+        return;
+    }
+
+    // Non cambiare display di elementi che non esistono
+    console.log('🎮 Avventura iniziata con:', this.gameInstance.player.name);
+    this.gameInstance.showParagraph(1);
+}
 
     showCharacterCreation() {
         // Generate random stats
