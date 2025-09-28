@@ -462,3 +462,15 @@ function doAccept() {
         console.error("UI Manager non trovato!");
     }
 }
+
+// Esporta la classe globalmente
+window.UIManager = UIManager;
+
+// ===== INIZIALIZZAZIONE UI =====
+let ui;
+
+document.addEventListener('DOMContentLoaded', function() {
+    ui = new UIManager();
+    window.ui = ui;
+    console.log('🎨 UI Manager caricato');
+});
