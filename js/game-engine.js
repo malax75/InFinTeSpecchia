@@ -16,8 +16,7 @@ class TrejanoGame {
         
         console.log('🌙 TrejanoGame inizializzato');
     }
-    window.TrejanoGame = TrejanoGame;
-
+    
     // ===== INIZIALIZZAZIONE GIOCO =====
     startNewGame() {
         this.player = new Character();
@@ -263,6 +262,8 @@ class TrejanoGame {
         }
     }
 }
+
+window.TrejanoGame = TrejanoGame;
 
 // ===== INIZIALIZZAZIONE GLOBALE =====
 let game;
