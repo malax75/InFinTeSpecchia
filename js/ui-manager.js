@@ -506,9 +506,19 @@ class UIManager {
 }
 
 // ===== INIZIALIZZAZIONE GLOBALE =====
-let ui;
+let game;
 
 document.addEventListener('DOMContentLoaded', function() {
-    ui = new UIManager();
-    console.log('🎨 UI Manager caricato');
+    game = new TrejanoGame();
+    
+    // Riferimenti globali per i pulsanti
+    window.ui = ui;
+    window.game = game;
+    
+    // Override delle funzioni placeholder nell'HTML
+    window.startGame = () => game.startNewGame();
+    window.loadGame = () => game.loadGame();
+    window.showCharacterCreation = () => game.ui.showCharacterCreation();
+    
+    console.log('🚀 Game engine caricato e pronto');
 });
