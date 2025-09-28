@@ -268,9 +268,6 @@ window.TrejanoGame = TrejanoGame;
 // ===== INIZIALIZZAZIONE GLOBALE =====
 let game;
 
-// ===== INIZIALIZZAZIONE GLOBALE =====
-let game;
-
 document.addEventListener('DOMContentLoaded', function() {
     game = new TrejanoGame();
     ui.setGameInstance(game);
