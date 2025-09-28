@@ -27,7 +27,7 @@ class Character {
             armi: [],
             speciali: []
         };
-        window.Character = Character;
+        
         
         // Determina appellativo automatico dalla stat dominante
         this.determinaAppellativo();
@@ -331,3 +331,4 @@ class Character {
         };
     }
 }
+window.Character = Character;
