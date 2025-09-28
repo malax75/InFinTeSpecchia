@@ -52,20 +52,20 @@ class UIManager {
     }
 
     startAdventure() {
-    if (!this.gameInstance) {
-        alert('Errore: Game non inizializzato!');
-        return;
-    }
+        if (!this.gameInstance) {
+            alert('Errore: Game non inizializzato!');
+            return;
+        }
 
-    if (!this.gameInstance.player || !this.gameInstance.player.stats) {
-        this.showCharacterCreation();
-        return;
-    }
+        if (!this.gameInstance.player || !this.gameInstance.player.stats) {
+            this.showCharacterCreation();
+            return;
+        }
 
-    // Non cambiare display di elementi che non esistono
-    console.log('🎮 Avventura iniziata con:', this.gameInstance.player.name);
-    this.gameInstance.showParagraph(1);
-}
+        // Non cambiare display di elementi che non esistono
+        console.log('🎮 Avventura iniziata con:', this.gameInstance.player.name);
+        this.gameInstance.showParagraph(1);
+    }
 
     showCharacterCreation() {
         // Generate random stats
@@ -253,7 +253,7 @@ class UIManager {
                 <div class="vital-stats">
                     <div class="vital-item">
                         <span class="vital-name">❤️ Punti Vita:</span>
-                        <span class="vital-value">${player.vita}/${player.vitaMax}</span>
+                        <span class="vital-value">${player.vita}/${player.maxVita}</span>
                     </div>
                     <div class="vital-item">
                         <span class="vital-name">⭐ Maturità Emotiva:</span>
@@ -280,50 +280,50 @@ class UIManager {
                 <h2>💎 Raccolta Gemme</h2>
                 
                 <div class="gems-grid">
-                    <div class="gem-item ${player.gems.perla ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Perla di Akoia') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">⚪</span>
                         <span class="gem-name">Perla di Akoia</span>
-                        <span class="gem-status">${player.gems.perla ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Perla di Akoia') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.ametista ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Ametista di Mechrios') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🟣</span>
                         <span class="gem-name">Ametista di Mechrios</span>
-                        <span class="gem-status">${player.gems.ametista ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Ametista di Mechrios') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.rubino ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Rubino del Fuoco') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🔴</span>
                         <span class="gem-name">Rubino del Fuoco</span>
-                        <span class="gem-status">${player.gems.rubino ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Rubino del Fuoco') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.zaffiro ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Zaffiro dell\'Acqua') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🔵</span>
                         <span class="gem-name">Zaffiro dell'Acqua</span>
-                        <span class="gem-status">${player.gems.zaffiro ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Zaffiro dell\'Acqua') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.smeraldo ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Smeraldo della Terra') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🟢</span>
                         <span class="gem-name">Smeraldo della Terra</span>
-                        <span class="gem-status">${player.gems.smeraldo ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Smeraldo della Terra') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.topazio ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Topazio dell\'Aria') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🟡</span>
                         <span class="gem-name">Topazio dell'Aria</span>
-                        <span class="gem-status">${player.gems.topazio ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Topazio dell\'Aria') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.acquamarina ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Acquamarina') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">🔷</span>
                         <span class="gem-name">Acquamarina</span>
-                        <span class="gem-status">${player.gems.acquamarina ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Acquamarina') ? '✓' : '?'}</span>
                     </div>
-                    <div class="gem-item ${player.gems.lapislazzulo ? 'obtained' : 'missing'}">
+                    <div class="gem-item ${player.inventario.gemme.includes('Lapislazzulo') ? 'obtained' : 'missing'}">
                         <span class="gem-icon">💙</span>
                         <span class="gem-name">Lapislazzulo</span>
-                        <span class="gem-status">${player.gems.lapislazzulo ? '✓' : '?'}</span>
+                        <span class="gem-status">${player.inventario.gemme.includes('Lapislazzulo') ? '✓' : '?'}</span>
                     </div>
                 </div>
 
                 <div class="gems-progress">
-                    <p>Gemme raccolte: ${Object.values(player.gems).filter(Boolean).length}/8</p>
+                    <p>Gemme raccolte: ${player.inventario.gemme.length}/8</p>
                 </div>
 
                 <button id="close-modal" class="btn btn-primary">Chiudi</button>
@@ -339,13 +339,17 @@ class UIManager {
             return;
         }
 
-        const player = this.gameInstance.player;
+        const gameState = this.gameInstance.gameState;
+        if (!gameState.relationships) {
+            gameState.relationships = {};
+        }
+
         const modalContent = `
             <div class="relationships-display">
                 <h2>🤝 Relazioni</h2>
                 
                 <div class="relationships-grid">
-                    ${Object.entries(player.relationships).map(([name, value]) => `
+                    ${Object.entries(gameState.relationships).map(([name, value]) => `
                         <div class="relationship-item">
                             <span class="char-name">${this.getCharacterIcon(name)} ${name}</span>
                             <div class="relationship-bar">
@@ -374,15 +378,15 @@ class UIManager {
 
     getCharacterIcon(name) {
         const icons = {
-            'Neiano': '👨‍🦳',
-            'Crise': '🧙‍♂️',
-            'Mesis': '🤝',
-            'Erhon': '🌙',
-            'Ago': '👦',
-            'Ouch': '🐉',
-            'Quilian': '🦅'
+            'neiano': '👨‍🦳',
+            'crise': '🧙‍♂️',
+            'mesis': '🤝',
+            'erhon': '🌙',
+            'ago': '👦',
+            'ouch': '🐉',
+            'quilian': '🦅'
         };
-        return icons[name] || '👤';
+        return icons[name.toLowerCase()] || '👤';
     }
 
     getRelationshipClass(value) {
@@ -400,9 +404,9 @@ class UIManager {
         const vitaBar = document.querySelector('.vita-fill');
         const vitaText = document.querySelector('.vita-text');
         if (vitaBar && vitaText) {
-            const vitaPercent = (player.vita / player.vitaMax) * 100;
+            const vitaPercent = (player.vita / player.maxVita) * 100;
             vitaBar.style.width = vitaPercent + '%';
-            vitaText.textContent = `${player.vita}/${player.vitaMax}`;
+            vitaText.textContent = `${player.vita}/${player.maxVita}`;
         }
 
         // Update maturità
@@ -451,6 +455,47 @@ class UIManager {
         setTimeout(() => {
             document.body.removeChild(tempDiv);
         }, 3000);
+    }
+
+    // METODI MANCANTI AGGIUNTI:
+    showParagraph(content, gameState) {
+        const storyContent = document.getElementById('story-content');
+        if (storyContent) {
+            storyContent.innerHTML = `
+                <h2>${content.title || 'Continua la tua avventura'}</h2>
+                <div class="story-text">${content.content}</div>
+            `;
+        }
+        
+        // Mostra le scelte se ci sono
+        this.showChoices(content.choices || []);
+    }
+
+    showChoices(choices) {
+        const choicesContainer = document.getElementById('choices');
+        if (choicesContainer && choices.length > 0) {
+            choicesContainer.innerHTML = choices.map((choice, index) => 
+                `<button class="choice-button" onclick="makeChoice(${index})">
+                    ${choice.text}
+                </button>`
+            ).join('');
+        }
+    }
+
+    updateAllDisplays(player, gameState) {
+        if (player) {
+            // Aggiorna vita
+            const vitaText = document.getElementById('vita-text');
+            if (vitaText) {
+                vitaText.textContent = `❤️ Vita: ${player.vita}/${player.maxVita}`;
+            }
+            
+            // Aggiorna maturità
+            const maturitaText = document.getElementById('maturita-text');
+            if (maturitaText) {
+                maturitaText.innerHTML = `⭐ Maturità: ${player.getMaturitaStars()}`;
+            }
+        }
     }
 }
 
