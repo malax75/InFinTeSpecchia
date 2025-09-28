@@ -5,7 +5,7 @@ class TrejanoGame {
     constructor() {
         this.player = null;
         this.currentParagraph = 1;
-        this.ui = new UIManager();
+        this.ui = null;
         this.storyData = new StoryData();
         this.gameState = {
             volume: 1,
@@ -269,12 +269,15 @@ window.TrejanoGame = TrejanoGame;
 let game;
 
 document.addEventListener('DOMContentLoaded', function() {
-    game = new TrejanoGame();
-    ui.setGameInstance(game);
-    
-    // Riferimenti globali
-    window.game = game;
-    window.ui = ui;
-    
-    console.log('🚀 Game engine caricato');
+    // Aspetta che ui sia già creato
+    if (window.ui) {
+        game = new TrejanoGame();
+        ui.setGameInstance(game);
+        game.ui = ui; // Collega UI al game
+        
+        // Riferimenti globali
+        window.game = game;
+        
+        console.log('🚀 Game engine caricato');
+    }
 });
