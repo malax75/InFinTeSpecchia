@@ -1,5 +1,5 @@
-// UI MANAGER - IN FIN TE SPECCHIA
-// Gestione completa interfaccia utente con sistema rigenerazioni
+ // UI MANAGER - IN FIN TE SPECCHIA  
+// Versione corretta con collegamenti funzionanti
 
 class UIManager {
     constructor() {
@@ -22,7 +22,6 @@ class UIManager {
     showParagraph(paragraph, gameState) {
         this.hideTestResult();
         
-        // Effetto fade out/in
         this.fadeOut(this.elements.storyContent, () => {
             this.elements.storyContent.innerHTML = `
                 <h2>${paragraph.title || 'Capitolo'}</h2>
@@ -35,7 +34,6 @@ class UIManager {
     }
     
     showChoicesOnly(paragraphId, gameState) {
-        // Mostra solo le scelte per paragrafi già visti
         const paragraph = window.game.storyData.getParagraph(paragraphId);
         if (paragraph) {
             this.generateChoices(paragraph, gameState);
@@ -54,7 +52,6 @@ class UIManager {
 
         let choicesHTML = '';
         paragraph.choices.forEach((choice, index) => {
-            // Controlla se la scelta è disponibile
             if (this.isChoiceAvailable(choice, gameState)) {
                 const requirementText = this.getChoiceRequirementText(choice);
                 choicesHTML += `
@@ -74,7 +71,6 @@ class UIManager {
         
         const req = choice.requirements;
         
-        // Controlla requisiti statistiche
         if (req.stats) {
             for (const [stat, minValue] of Object.entries(req.stats)) {
                 if (window.game.player.stats[stat] < minValue) {
@@ -83,12 +79,10 @@ class UIManager {
             }
         }
         
-        // Controlla requisiti maturità
         if (req.maturita && window.game.player.maturita < req.maturita) {
             return false;
         }
         
-        // Controlla flags richiesti
         if (req.flags) {
             for (const [flag, value] of Object.entries(req.flags)) {
                 if (gameState.flags[flag] !== value) {
@@ -142,7 +136,6 @@ class UIManager {
         this.elements.testResult.className = `test-result ${result.success ? 'success' : 'failure'}`;
         this.elements.testResult.style.display = 'block';
         
-        // Auto-hide dopo 5 secondi
         setTimeout(() => this.hideTestResult(), 5000);
     }
     
@@ -171,7 +164,7 @@ class UIManager {
         this.elements.maturitaText.innerHTML = `⭐ Maturità: ${stars}`;
     }
 
-    // ===== MODALI E SCHERMATE =====
+    // ===== MODALI =====
     showStats() {
         if (!window.game.player) return;
         
@@ -278,19 +271,16 @@ class UIManager {
         return 'Nemico mortale';
     }
 
-    // ===== CREAZIONE PERSONAGGIO CON RIGENERAZIONI =====
+    // ===== CREAZIONE PERSONAGGIO =====
     showCharacterCreation() {
-        // Crea un nuovo personaggio con stats random
         const tempCharacter = new Character();
-        window.tempCharacter = tempCharacter; // Salva temporaneamente
-        
+        window.tempCharacter = tempCharacter;
         this.displayCharacterCreationModal(tempCharacter);
     }
 
     displayCharacterCreationModal(character) {
         const desc = character.getFullDescription();
         
-        // Mostra statistiche con indicatori visivi
         const statsHTML = desc.stats.map(stat => `
             <div style="display: flex; justify-content: space-between; margin: 5px 0; padding: 5px; background: rgba(0,0,0,0.3); border-radius: 4px;">
                 <span><strong>${stat.name}:</strong></span>
@@ -298,9 +288,8 @@ class UIManager {
             </div>
         `).join('');
         
-        // Pulsanti condizionali per rigenerazione
         const rerollButtonHTML = character.canRegenerate() 
-            ? `<button class="choice-button" onclick="ui.regenerateCharacter()" style="background: linear-gradient(135deg, var(--accent-sapphire) 0%, var(--primary-gold) 100%);">
+            ? `<button class="choice-button" onclick="doRegenerate()" style="background: linear-gradient(135deg, var(--accent-sapphire) 0%, var(--primary-gold) 100%);">
                 🎲 Rigenera Statistiche<br>
                 <small>${character.getRerollMessage()}</small>
                </button>`
@@ -327,12 +316,12 @@ class UIManager {
             
             ${rerollButtonHTML}
             
-            <button class="choice-button" onclick="ui.acceptCharacter()" style="background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--primary-gold) 100%);">
+            <button class="choice-button" onclick="doAccept()" style="background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--primary-gold) 100%);">
                 ✅ Accetta questo Personaggio<br>
                 <small>Inizia l'avventura</small>
             </button>
             
-            <button class="choice-button" onclick="ui.hideModal()" style="background: linear-gradient(135deg, var(--accent-ruby) 0%, var(--secondary-bronze) 100%);">
+            <button class="choice-button" onclick="doClose()" style="background: linear-gradient(135deg, var(--accent-ruby) 0%, var(--secondary-bronze) 100%);">
                 ❌ Torna al Menu<br>
                 <small>Annulla creazione</small>
             </button>
@@ -347,10 +336,7 @@ class UIManager {
             return;
         }
         
-        // Aggiorna la modale con le nuove statistiche
         this.displayCharacterCreationModal(character);
-        
-        // Effetto visivo di rigenerazione
         this.showMessage('🎲 Statistiche rigenerate!', 'success');
     }
 
@@ -362,10 +348,8 @@ class UIManager {
             return;
         }
         
-        // Assegna il personaggio al gioco
         window.game.player = character;
         
-        // Inizializza lo stato di gioco
         window.game.gameState.flags = {
             'game_started': true,
             'neiano_partito': false,
@@ -380,10 +364,8 @@ class UIManager {
             'crise': 0
         };
         
-        // Pulisci riferimento temporaneo
         delete window.tempCharacter;
         
-        // Chiudi modale e inizia gioco
         this.hideModal();
         window.game.ui.updateAllDisplays(window.game.player, window.game.gameState);
         window.game.showParagraph(1);
@@ -393,7 +375,7 @@ class UIManager {
 
     // ===== SISTEMA MODALI =====
     showModal(title, content) {
-        this.hideModal(); // Chiudi eventuali modali aperti
+        this.hideModal();
         
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
@@ -401,7 +383,7 @@ class UIManager {
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>${title}</h2>
-                    <button class="modal-close" onclick="ui.hideModal()">✕</button>
+                    <button class="modal-close" onclick="doClose()">✕</button>
                 </div>
                 <div class="modal-body">
                     ${content}
@@ -409,7 +391,6 @@ class UIManager {
             </div>
         `;
         
-        // Aggiungi stili se non esistono
         if (!document.querySelector('#modal-styles')) {
             const styles = document.createElement('style');
             styles.id = 'modal-styles';
@@ -447,7 +428,7 @@ class UIManager {
         }
     }
 
-    // ===== MESSAGGI E FEEDBACK =====
+    // ===== MESSAGGI =====
     showMessage(message, type = 'info') {
         const messageEl = document.createElement('div');
         messageEl.className = `game-message ${type}`;
@@ -467,10 +448,7 @@ class UIManager {
         
         document.body.appendChild(messageEl);
         
-        // Animazione apparizione
         setTimeout(() => messageEl.style.opacity = '1', 10);
-        
-        // Auto-rimozione
         setTimeout(() => {
             messageEl.style.opacity = '0';
             setTimeout(() => messageEl.remove(), 300);
@@ -505,20 +483,23 @@ class UIManager {
     }
 }
 
-// ===== INIZIALIZZAZIONE GLOBALE =====
-let game;
+// ===== INIZIALIZZAZIONE E FUNZIONI GLOBALI =====
+let ui;
 
 document.addEventListener('DOMContentLoaded', function() {
-    game = new TrejanoGame();
-    
-    // Riferimenti globali per i pulsanti
-    window.ui = ui;
-    window.game = game;
-    
-    // Override delle funzioni placeholder nell'HTML
-    window.startGame = () => game.startNewGame();
-    window.loadGame = () => game.loadGame();
-    window.showCharacterCreation = () => game.ui.showCharacterCreation();
-    
-    console.log('🚀 Game engine caricato e pronto');
+    ui = new UIManager();
+    console.log('🎨 UI Manager caricato');
 });
+
+// Funzioni globali per i pulsanti (collegamenti corretti)
+function doRegenerate() {
+    ui.regenerateCharacter();
+}
+
+function doAccept() {
+    ui.acceptCharacter();
+}
+
+function doClose() {
+    ui.hideModal();
+            }
