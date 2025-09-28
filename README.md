@@ -1,2 +1,2 @@
 # InFinTeSpecchia
-Progetto libri gane
+Progetto libri game
