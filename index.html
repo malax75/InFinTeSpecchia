@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Fin Te Specchia - Libro-Gioco Interattivo</title>
+    <style>
+        /* CSS Base Mobile-First */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-bronze: #CD7F32;
+            --background-dark: #1a1a1a;
+            --background-parchment: #2a2520;
+            --text-warm: #e8e6e3;
+            --accent-ruby: #8B0000;
+            --accent-emerald: #50C878;
+            --accent-sapphire: #0F52BA;
+            --border-medieval: #8B4513;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-parchment) 100%);
+            color: var(--text-warm);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .vita-display, .maturita-display {
+            flex: 1;
+        }
+
+        .content-area {
+            background: rgba(42, 37, 32, 0.8);
+            border: 2px solid var(--border-medieval);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 300px;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .choices-container {
+            margin-top: 20px;
+        }
+
+        .choice-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary-bronze) 0%, var(--primary-gold) 100%);
+            color: var(--background-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .choice-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .choice-button:active {
+            transform: translateY(0);
+        }
+
+        .quick-access {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(139, 69, 19, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .quick-btn {
+            background: var(--accent-emerald);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .test-result {
+            background: rgba(50, 50, 50, 0.9);
+            border: 2px solid var(--primary-gold);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .success { border-color: var(--accent-emerald); }
+        .failure { border-color: var(--accent-ruby); }
+
+        .loading-message {
+            text-align: center;
+            color: var(--primary-gold);
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        /* Media Queries */
+        @media (min-width: 768px) {
+            .game-container { padding: 20px; }
+            .header h1 { font-size: 2rem; }
+            .status-bar { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <header class="header">
+            <h1>🌙 IN FIN TE SPECCHIA 🌙</h1>
+            <p>Libro-Gioco Interattivo Fantasy</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="vita-display">
+                <span id="vita-text">❤️ Vita: --/--</span>
+            </div>
+            <div class="maturita-display">
+                <span id="maturita-text">⭐ Maturità: ☆☆☆☆☆☆☆☆☆☆</span>
+            </div>
+        </div>
+
+        <main class="content-area">
+            <div id="story-content" class="story-text">
+                <div class="loading-message">
+                    <p>🌟 Caricamento del mondo di Limb...</p>
+                    <p><em>Le gemme si stanno risvegliando...</em></p>
+                </div>
+            </div>
+            
+            <div id="test-result" class="test-result" style="display: none;">
+                <h3>🎲 Test di Abilità</h3>
+                <p id="test-description"></p>
+                <p id="test-details"></p>
+                <p id="test-outcome"></p>
+            </div>
+
+            <div id="choices" class="choices-container">
+                <button class="choice-button" onclick="startGame()">
+                    🎮 Inizia l'Avventura
+                </button>
+                <button class="choice-button" onclick="showCharacterCreation()">
+                    ⚔️ Crea Personaggio
+                </button>
+                <button class="choice-button" onclick="loadGame()">
+                    💾 Carica Partita
+                </button>
+            </div>
+        </main>
+
+        <nav class="quick-access">
+            <button class="quick-btn" onclick="showStats()">📊 Stats</button>
+            <button class="quick-btn" onclick="showGems()">💎 Gemme</button>
+            <button class="quick-btn" onclick="showRelationships()">🤝 Relazioni</button>
+        </nav>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="js/game-engine.js"></script>
+    <script src="js/character.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/story-data.js"></script>
+
+    <script>
+        // Inizializzazione e funzioni globali
+        let gameReady = false;
+
+        // Funzioni chiamate dai pulsanti
+        function startGame() {
+            if (window.game && gameReady) {
+                game.startNewGame();
+            } else {
+                showMessage('🔄 Caricamento in corso, riprova fra un momento...', 'info');
+            }
+        }
+
+        function showCharacterCreation() {
+            if (window.ui && gameReady) {
+                ui.showCharacterCreation();
+            } else {
+                showMessage('🔄 Caricamento in corso...', 'info');
+            }
+        }
+
+        function loadGame() {
+            if (window.game && gameReady) {
+                if (!game.loadGame()) {
+                    showMessage('❌ Nessun salvataggio trovato. Inizia una nuova partita!', 'error');
+                }
+            } else {
+                showMessage('🔄 Caricamento in corso...', 'info');
+            }
+        }
+
+        function showStats() {
+            if (window.ui && gameReady) {
+                ui.showStats();
+            }
+        }
+
+        function showGems() {
+            if (window.ui && gameReady) {
+                ui.showGems();
+            }
+        }
+
+        function showRelationships() {
+            if (window.ui && gameReady) {
+                ui.showRelationships();
+            }
+        }
+
+        // Funzione per mostrare messaggi temporanei
+        function showMessage(message, type = 'info') {
+            const messageEl = document.createElement('div');
+            messageEl.className = `temp-message ${type}`;
+            messageEl.textContent = message;
+            messageEl.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 999;
+                background: var(--background-dark); color: var(--text-warm);
+                border: 2px solid var(--primary-gold); border-radius: 8px;
+                padding: 15px; max-width: 300px; opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            if (type === 'error') messageEl.style.borderColor = 'var(--accent-ruby)';
+            if (type === 'success') messageEl.style.borderColor = 'var(--accent-emerald)';
+            
+            document.body.appendChild(messageEl);
+            
+            setTimeout(() => messageEl.style.opacity = '1', 10);
+            setTimeout(() => {
+                messageEl.style.opacity = '0';
+                setTimeout(() => messageEl.remove(), 300);
+            }, 3000);
+        }
+
+        // Inizializzazione quando tutto è caricato
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 In Fin Te Specchia - Inizializzazione...');
+            
+            // Attendi che tutti i moduli siano caricati
+            let checkInterval = setInterval(() => {
+                if (window.game && window.ui && window.TrejanoGame && window.Character) {
+                    clearInterval(checkInterval);
+                    gameReady = true;
+                    
+                    // Aggiorna interfaccia iniziale
+                    document.getElementById('vita-text').textContent = '❤️ Vita: --/--';
+                    document.getElementById('maturita-text').innerHTML = '⭐ Maturità: ☆☆☆☆☆☆☆☆☆☆';
+                    
+                    document.getElementById('story-content').innerHTML = `
+                        <h2>🌅 Benvenuto nel Mondo di Limb</h2>
+                        <p>Ti chiami Trejano e vivi nel piccolo villaggio di pescatori di Treja, nelle terre di Saar. 
+                        Oggi è un giorno come tanti altri, ma qualcosa nell'aria ti dice che il tuo destino 
+                        sta per cambiare per sempre...</p>
+                        <p><em>Benvenuto nel mondo di Limb, giovane pescatore. 
+                        Le tue scelte forgeranno il futuro di questi regni divisi.</em></p>
+                        <div style="text-align: center; margin-top: 20px; color: var(--primary-gold);">
+                            ✨ Scegli come iniziare la tua avventura ✨
+                        </div>
+                    `;
+                    
+                    console.log('✅ Gioco completamente caricato e pronto!');
+                    showMessage('🌟 Benvenuto in In Fin Te Specchia!', 'success');
+                }
+            }, 100);
+            
+            // Timeout di sicurezza
+            setTimeout(() => {
+                if (!gameReady) {
+                    clearInterval(checkInterval);
+                    console.error('⚠️ Timeout caricamento - controlla i file JS');
+                    showMessage('⚠️ Errore di caricamento. Controlla la console.', 'error');
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
