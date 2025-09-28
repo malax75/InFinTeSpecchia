@@ -16,6 +16,7 @@ class TrejanoGame {
         
         console.log('🌙 TrejanoGame inizializzato');
     }
+    window.TrejanoGame = TrejanoGame;
 
     // ===== INIZIALIZZAZIONE GIOCO =====
     startNewGame() {
