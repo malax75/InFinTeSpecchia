@@ -266,13 +266,16 @@ class TrejanoGame {
 // ===== INIZIALIZZAZIONE GLOBALE =====
 let game;
 
+// ===== INIZIALIZZAZIONE GLOBALE =====
+let game;
+
 document.addEventListener('DOMContentLoaded', function() {
     game = new TrejanoGame();
+    ui.setGameInstance(game);
     
-    // Override delle funzioni placeholder nell'HTML
-    window.startGame = () => game.startNewGame();
-    window.loadGame = () => game.loadGame();
-    window.showCharacterCreation = () => game.ui.showCharacterCreation();
+    // Riferimenti globali
+    window.game = game;
+    window.ui = ui;
     
-    console.log('🚀 Game engine caricato e pronto');
+    console.log('🚀 Game engine caricato');
 });
