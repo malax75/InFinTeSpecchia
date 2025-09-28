@@ -1,505 +1,464 @@
- // UI MANAGER - IN FIN TE SPECCHIA  
-// Versione corretta con collegamenti funzionanti
-
 class UIManager {
     constructor() {
-        this.elements = {
-            storyContent: document.getElementById('story-content'),
-            choices: document.getElementById('choices'),
-            vitaText: document.getElementById('vita-text'),
-            maturitaText: document.getElementById('maturita-text'),
-            testResult: document.getElementById('test-result'),
-            testDescription: document.getElementById('test-description'),
-            testDetails: document.getElementById('test-details'),
-            testOutcome: document.getElementById('test-outcome')
-        };
-        
+        this.gameInstance = null; // Riferimento al game
         this.currentModal = null;
-        console.log('🎨 UI Manager inizializzato');
+        this.characterCreated = false;
+        this.rerollsRemaining = 3;
+        this.initializeEventListeners();
     }
 
-    // ===== DISPLAY PARAGRAFI =====
-    showParagraph(paragraph, gameState) {
-        this.hideTestResult();
-        
-        this.fadeOut(this.elements.storyContent, () => {
-            this.elements.storyContent.innerHTML = `
-                <h2>${paragraph.title || 'Capitolo'}</h2>
-                <div class="story-text">${paragraph.content}</div>
-            `;
-            
-            this.generateChoices(paragraph, gameState);
-            this.fadeIn(this.elements.storyContent);
+    // Metodo per collegare il game instance
+    setGameInstance(gameInstance) {
+        this.gameInstance = gameInstance;
+    }
+
+    initializeEventListeners() {
+        // Event listeners per i pulsanti principali
+        document.addEventListener('DOMContentLoaded', () => {
+            this.setupMainMenuButtons();
+            this.setupModalButtons();
         });
     }
-    
-    showChoicesOnly(paragraphId, gameState) {
-        const paragraph = window.game.storyData.getParagraph(paragraphId);
-        if (paragraph) {
-            this.generateChoices(paragraph, gameState);
-        }
+
+    setupMainMenuButtons() {
+        const startBtn = document.getElementById('start-adventure');
+        const createBtn = document.getElementById('create-character');
+        const loadBtn = document.getElementById('load-game');
+        const statsBtn = document.getElementById('view-stats');
+        const gemsBtn = document.getElementById('view-gems');
+        const relBtn = document.getElementById('view-relationships');
+
+        if (startBtn) startBtn.onclick = () => this.startAdventure();
+        if (createBtn) createBtn.onclick = () => this.showCharacterCreation();
+        if (loadBtn) loadBtn.onclick = () => this.loadGame();
+        if (statsBtn) statsBtn.onclick = () => this.showStats();
+        if (gemsBtn) gemsBtn.onclick = () => this.showGems();
+        if (relBtn) relBtn.onclick = () => this.showRelationships();
     }
 
-    generateChoices(paragraph, gameState) {
-        if (!paragraph.choices || paragraph.choices.length === 0) {
-            this.elements.choices.innerHTML = `
-                <button class="choice-button" onclick="game.showParagraph(${paragraph.nextParagraph || 1})">
-                    ▶️ Continua
-                </button>
-            `;
+    setupModalButtons() {
+        // Setup dinamico dei pulsanti modal
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'close-modal') {
+                this.hideModal();
+            }
+        });
+    }
+
+    showMainMenu() {
+        document.getElementById('main-menu').style.display = 'block';
+        document.getElementById('game-interface').style.display = 'none';
+        this.hideModal();
+    }
+
+    startAdventure() {
+        if (!this.gameInstance) {
+            alert('Errore: Game non inizializzato!');
             return;
         }
 
-        let choicesHTML = '';
-        paragraph.choices.forEach((choice, index) => {
-            if (this.isChoiceAvailable(choice, gameState)) {
-                const requirementText = this.getChoiceRequirementText(choice);
-                choicesHTML += `
-                    <button class="choice-button" onclick="game.makeChoice(${index}, ${paragraph.id})">
-                        ${choice.text}
-                        ${requirementText}
-                    </button>
-                `;
-            }
-        });
+        if (!this.gameInstance.player || !this.gameInstance.player.stats) {
+            this.showCharacterCreation();
+            return;
+        }
 
-        this.elements.choices.innerHTML = choicesHTML;
-    }
-    
-    isChoiceAvailable(choice, gameState) {
-        if (!choice.requirements) return true;
-        
-        const req = choice.requirements;
-        
-        if (req.stats) {
-            for (const [stat, minValue] of Object.entries(req.stats)) {
-                if (window.game.player.stats[stat] < minValue) {
-                    return false;
-                }
-            }
-        }
-        
-        if (req.maturita && window.game.player.maturita < req.maturita) {
-            return false;
-        }
-        
-        if (req.flags) {
-            for (const [flag, value] of Object.entries(req.flags)) {
-                if (gameState.flags[flag] !== value) {
-                    return false;
-                }
-            }
-        }
-        
-        return true;
-    }
-    
-    getChoiceRequirementText(choice) {
-        if (!choice.requirements) return '';
-        
-        const req = choice.requirements;
-        let reqText = '';
-        
-        if (req.stats) {
-            const statReqs = Object.entries(req.stats)
-                .map(([stat, min]) => `${stat.charAt(0).toUpperCase() + stat.slice(1)} ${min}+`)
-                .join(', ');
-            reqText += ` <small style="color: var(--accent-sapphire);">[${statReqs}]</small>`;
-        }
-        
-        if (req.maturita) {
-            reqText += ` <small style="color: var(--primary-gold);">[Maturità ${req.maturita}+]</small>`;
-        }
-        
-        return reqText;
+        document.getElementById('main-menu').style.display = 'none';
+        document.getElementById('game-interface').style.display = 'block';
+        this.gameInstance.startGame();
     }
 
-    // ===== DISPLAY TEST ABILITÀ =====
-    showTestResult(result) {
-        this.elements.testDescription.textContent = result.description;
+    showCharacterCreation() {
+        // Generate random stats
+        const stats = this.generateRandomStats();
+        const epithet = this.getEpithet(stats);
         
-        this.elements.testDetails.innerHTML = `
-            <div style="display: flex; justify-content: space-around; margin: 10px 0;">
-                <span>📊 ${result.stat.charAt(0).toUpperCase() + result.stat.slice(1)}: ${result.statValue}</span>
-                <span>🎲 Dado: ${result.roll}</span>
-                <span>⭐ Bonus: +${result.maturitaBonus}</span>
-            </div>
-            <div style="font-size: 1.2rem; font-weight: bold;">
-                Totale: ${result.total} vs Difficoltà: ${result.difficulty}
-            </div>
-        `;
-        
-        this.elements.testOutcome.innerHTML = result.success 
-            ? '<span style="color: var(--accent-emerald);">🎉 SUCCESSO!</span>'
-            : '<span style="color: var(--accent-ruby);">💥 FALLIMENTO!</span>';
-        
-        this.elements.testResult.className = `test-result ${result.success ? 'success' : 'failure'}`;
-        this.elements.testResult.style.display = 'block';
-        
-        setTimeout(() => this.hideTestResult(), 5000);
-    }
-    
-    hideTestResult() {
-        this.elements.testResult.style.display = 'none';
-    }
-
-    // ===== AGGIORNAMENTI STATUS =====
-    updateAllDisplays(player, gameState) {
-        this.updateVitaDisplay(player);
-        this.updateMaturitaDisplay(player);
-    }
-    
-    updateVitaDisplay(player) {
-        const percentage = (player.vita / player.maxVita) * 100;
-        let colorEmoji = '❤️';
-        
-        if (percentage <= 30) colorEmoji = '💔';
-        else if (percentage <= 60) colorEmoji = '🧡';
-        
-        this.elements.vitaText.textContent = `${colorEmoji} Vita: ${player.vita}/${player.maxVita}`;
-    }
-    
-    updateMaturitaDisplay(player) {
-        const stars = player.getMaturitaStars();
-        this.elements.maturitaText.innerHTML = `⭐ Maturità: ${stars}`;
-    }
-
-    // ===== MODALI =====
-    showStats() {
-        if (!window.game.player) return;
-        
-        const player = window.game.player;
-        const desc = player.getFullDescription();
-        
-        const statsHTML = desc.stats.map(stat => `
-            <div style="display: flex; justify-content: space-between; margin: 5px 0;">
-                <span>${stat.name}:</span>
-                <span>${stat.value} <small>(${stat.level})</small></span>
-            </div>
-        `).join('');
-        
-        this.showModal('📊 Statistiche Personaggio', `
-            <div style="text-align: center; margin-bottom: 15px;">
-                <h3>${desc.name}</h3>
-                <p>Vita: ${desc.vita} | Maturità: ${player.maturita}/10</p>
-            </div>
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
-                ${statsHTML}
-            </div>
-        `);
-    }
-    
-    showGems() {
-        if (!window.game.player) return;
-        
-        const gemme = window.game.player.inventario.gemme;
-        const gemmeConosciute = [
-            { nome: 'Perla di Akoia', emoji: '⚪🤍', posseduta: gemme.includes('Perla di Akoia') },
-            { nome: 'Ametista di Mechrios', emoji: '♦️🟣', posseduta: gemme.includes('Ametista di Mechrios') },
-            { nome: 'Rubino di Reudhos', emoji: '♦️🔴', posseduta: gemme.includes('Rubino di Reudhos') },
-            { nome: 'Smeraldo di Saar', emoji: '♦️🟢', posseduta: gemme.includes('Smeraldo di Saar') },
-            { nome: 'Zaffiro dei Cieli', emoji: '♦️🔵', posseduta: gemme.includes('Zaffiro dei Cieli') },
-            { nome: 'Topazio del Sole', emoji: '♦️🟡', posseduta: gemme.includes('Topazio del Sole') },
-            { nome: 'Acquamarina', emoji: '♦️🔷', posseduta: gemme.includes('Acquamarina') },
-            { nome: 'Misteriosa', emoji: '❓⚪', posseduta: gemme.includes('Pietra bianca misteriosa') }
-        ];
-        
-        const gemHTML = gemmeConosciute.map(gem => `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin: 8px 0;">
-                <span>${gem.emoji} ${gem.nome}</span>
-                <span>${gem.posseduta ? '✅' : '❓'}</span>
-            </div>
-        `).join('');
-        
-        this.showModal('💎 Raccolta Gemme', `
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
-                ${gemHTML}
-            </div>
-            <p style="text-align: center; margin-top: 15px;">
-                <strong>Raccolte: ${gemme.length}/8</strong>
-            </p>
-        `);
-    }
-    
-    showRelationships() {
-        if (!window.game.gameState) return;
-        
-        const relationships = window.game.gameState.relationships;
-        const relHTML = Object.entries(relationships).map(([npc, value]) => {
-            const emoji = this.getRelationshipEmoji(value);
-            const description = this.getRelationshipDescription(value);
-            const barFill = Math.round(((value + 5) / 10) * 10);
-            const bar = '━'.repeat(Math.max(0, barFill)) + '●' + '━'.repeat(Math.max(0, 10 - barFill));
-            
-            return `
-                <div style="margin: 10px 0;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>${emoji} ${npc.charAt(0).toUpperCase() + npc.slice(1)}</span>
-                        <span>${description}</span>
-                    </div>
-                    <div style="font-family: monospace; color: var(--primary-gold);">
-                        ${bar} (${value})
+        const modalContent = `
+            <div class="character-creation">
+                <h2>🎭 Crea il tuo Trejano</h2>
+                
+                <div class="stats-container">
+                    <h3>📊 Statistiche Generate:</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-name">💝 Empatia:</span>
+                            <span class="stat-value">${stats.empatia}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-name">💪 Forza:</span>
+                            <span class="stat-value">${stats.forza}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-name">🏃 Agilità:</span>
+                            <span class="stat-value">${stats.agilita}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-name">🧠 Saggezza:</span>
+                            <span class="stat-value">${stats.saggezza}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-name">🎯 Astuzia:</span>
+                            <span class="stat-value">${stats.astuzia}</span>
+                        </div>
                     </div>
                 </div>
-            `;
-        }).join('');
-        
-        this.showModal('🤝 Relazioni', `
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
-                ${relHTML}
+
+                <div class="epithet-container">
+                    <h3>👑 Il tuo Appellativo:</h3>
+                    <div class="epithet-display">
+                        <strong>"Trejano ${epithet}"</strong>
+                    </div>
+                </div>
+
+                <div class="reroll-info">
+                    <p class="reroll-counter">
+                        ${this.rerollsRemaining > 1 ? 
+                            `🎲 ${this.rerollsRemaining} rigenerazioni rimanenti` : 
+                            this.rerollsRemaining === 1 ? 
+                                `⚠️ ULTIMA rigenerazione disponibile!` : 
+                                `❌ Nessuna rigenerazione rimanente`
+                        }
+                    </p>
+                </div>
+
+                <div class="character-actions">
+                    <button id="reroll-stats" class="btn btn-secondary" 
+                            ${this.rerollsRemaining <= 0 ? 'disabled' : ''}>
+                        🎲 Rigenera Statistiche
+                    </button>
+                    <button id="accept-character" class="btn btn-primary">
+                        ✅ Accetta Personaggio
+                    </button>
+                    <button id="back-menu" class="btn btn-secondary">
+                        ↩️ Torna al Menu
+                    </button>
+                </div>
             </div>
-        `);
-    }
-    
-    getRelationshipEmoji(value) {
-        if (value >= 4) return '💖';
-        if (value >= 2) return '😊';
-        if (value >= 1) return '🙂';
-        if (value === 0) return '😐';
-        if (value >= -2) return '😒';
-        if (value >= -4) return '😠';
-        return '💀';
-    }
-    
-    getRelationshipDescription(value) {
-        if (value >= 4) return 'Amore/Amicizia';
-        if (value >= 2) return 'Fiducia';
-        if (value >= 1) return 'Simpatia';
-        if (value === 0) return 'Neutrale';
-        if (value >= -2) return 'Diffidenza';
-        if (value >= -4) return 'Ostilità';
-        return 'Nemico mortale';
+        `;
+
+        this.showModal(modalContent);
+        
+        // Store current stats temporarily
+        this.tempStats = stats;
+        
+        // Setup button events
+        document.getElementById('reroll-stats').onclick = () => this.rerollStats();
+        document.getElementById('accept-character').onclick = () => this.acceptCharacter();
+        document.getElementById('back-menu').onclick = () => this.hideModal();
     }
 
-    // ===== CREAZIONE PERSONAGGIO =====
-    showCharacterCreation() {
-        const tempCharacter = new Character();
-        window.tempCharacter = tempCharacter;
-        this.displayCharacterCreationModal(tempCharacter);
+    generateRandomStats() {
+        return {
+            empatia: Math.floor(Math.random() * 9) + 6,    // 6-14
+            forza: Math.floor(Math.random() * 9) + 6,      // 6-14
+            agilita: Math.floor(Math.random() * 9) + 6,    // 6-14
+            saggezza: Math.floor(Math.random() * 9) + 6,   // 6-14
+            astuzia: Math.floor(Math.random() * 9) + 6     // 6-14
+        };
     }
 
-    displayCharacterCreationModal(character) {
-        const desc = character.getFullDescription();
+    getEpithet(stats) {
+        // Find highest stat for epithet
+        const maxStat = Math.max(stats.empatia, stats.forza, stats.agilita, stats.saggezza, stats.astuzia);
         
-        const statsHTML = desc.stats.map(stat => `
-            <div style="display: flex; justify-content: space-between; margin: 5px 0; padding: 5px; background: rgba(0,0,0,0.3); border-radius: 4px;">
-                <span><strong>${stat.name}:</strong></span>
-                <span>${stat.value} <small style="color: var(--primary-gold);">(${stat.level})</small></span>
-            </div>
-        `).join('');
+        if (stats.empatia === maxStat) return "il Compassionevole";
+        if (stats.forza === maxStat) return "il Forte";
+        if (stats.agilita === maxStat) return "il Veloce";
+        if (stats.saggezza === maxStat) return "il Saggio";
+        if (stats.astuzia === maxStat) return "l'Astuto";
         
-        const rerollButtonHTML = character.canRegenerate() 
-            ? `<button class="choice-button" onclick="doRegenerate()" style="background: linear-gradient(135deg, var(--accent-sapphire) 0%, var(--primary-gold) 100%);">
-                🎲 Rigenera Statistiche<br>
-                <small>${character.getRerollMessage()}</small>
-               </button>`
-            : `<button class="choice-button" style="background: #666; cursor: not-allowed;" disabled>
-                ❌ Rigenerazioni Esaurite<br>
-                <small>Usa questo personaggio</small>
-               </button>`;
-        
-        this.showModal('⚔️ Creazione Personaggio', `
-            <div style="text-align: center; margin-bottom: 15px;">
-                <h3>${desc.name}</h3>
-                <p><strong>Vita:</strong> ${desc.vita} | <strong>Maturità:</strong> ${character.maturita}/10</p>
-            </div>
-            
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                <h4 style="color: var(--primary-gold); margin-bottom: 10px;">📊 Statistiche Generate:</h4>
-                ${statsHTML}
-            </div>
-            
-            <div style="margin-bottom: 15px; text-align: center; color: var(--text-warm);">
-                <p><em>Il tuo appellativo è determinato dalla statistica più alta.</em></p>
-                <p style="color: var(--primary-gold); margin-top: 10px;">${character.getRerollMessage()}</p>
-            </div>
-            
-            ${rerollButtonHTML}
-            
-            <button class="choice-button" onclick="doAccept()" style="background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--primary-gold) 100%);">
-                ✅ Accetta questo Personaggio<br>
-                <small>Inizia l'avventura</small>
-            </button>
-            
-            <button class="choice-button" onclick="doClose()" style="background: linear-gradient(135deg, var(--accent-ruby) 0%, var(--secondary-bronze) 100%);">
-                ❌ Torna al Menu<br>
-                <small>Annulla creazione</small>
-            </button>
-        `);
+        return "il Bilanciato"; // fallback
     }
 
-    regenerateCharacter() {
-        const character = window.tempCharacter;
+    rerollStats() {
+        if (this.rerollsRemaining <= 0) return;
         
-        if (!character || !character.regenerateStats()) {
-            this.showMessage('❌ Impossibile rigenerare!', 'error');
-            return;
-        }
-        
-        this.displayCharacterCreationModal(character);
-        this.showMessage('🎲 Statistiche rigenerate!', 'success');
+        this.rerollsRemaining--;
+        this.showCharacterCreation(); // Regenerate with new stats
     }
 
     acceptCharacter() {
-        const character = window.tempCharacter;
+        console.log("acceptCharacter chiamato");
+        console.log("gameInstance:", this.gameInstance);
         
-        if (!character) {
-            this.showMessage('❌ Errore nella creazione del personaggio', 'error');
+        if (!this.gameInstance) {
+            console.error("Game instance non trovato!");
+            alert('Errore: Game non inizializzato! Ricarica la pagina.');
             return;
         }
+
+        console.log("tempStats:", this.tempStats);
         
-        window.game.player = character;
+        // Create character with the temporary stats
+        this.gameInstance.player = new Character(this.tempStats);
+        this.characterCreated = true;
         
-        window.game.gameState.flags = {
-            'game_started': true,
-            'neiano_partito': false,
-            'perla_riconosciuta': false,
-            'village_destroyed': false,
-            'crise_trust': 0
-        };
+        console.log("Personaggio creato:", this.gameInstance.player);
         
-        window.game.gameState.relationships = {
-            'neiano': 4,
-            'mesis': 0,
-            'crise': 0
-        };
-        
-        delete window.tempCharacter;
-        
+        // Hide modal and start game
         this.hideModal();
-        window.game.ui.updateAllDisplays(window.game.player, window.game.gameState);
-        window.game.showParagraph(1);
-        
-        this.showMessage(`🌟 Benvenuto, ${character.name} ${character.appellativo}!`, 'success');
+        this.startAdventure();
     }
 
-    // ===== SISTEMA MODALI =====
-    showModal(title, content) {
-        this.hideModal();
+    showModal(content) {
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
         
-        const modal = document.createElement('div');
-        modal.className = 'modal-overlay';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>${title}</h2>
-                    <button class="modal-close" onclick="doClose()">✕</button>
-                </div>
-                <div class="modal-body">
-                    ${content}
-                </div>
-            </div>
-        `;
-        
-        if (!document.querySelector('#modal-styles')) {
-            const styles = document.createElement('style');
-            styles.id = 'modal-styles';
-            styles.textContent = `
-                .modal-overlay {
-                    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-                    background: rgba(0,0,0,0.8); display: flex;
-                    align-items: center; justify-content: center; z-index: 1000;
-                }
-                .modal-content {
-                    background: var(--background-parchment); border: 2px solid var(--primary-gold);
-                    border-radius: 12px; max-width: 90vw; max-height: 90vh; overflow-y: auto;
-                }
-                .modal-header {
-                    background: var(--primary-gold); color: var(--background-dark);
-                    padding: 15px; display: flex; justify-content: space-between; align-items: center;
-                }
-                .modal-body { padding: 20px; }
-                .modal-close {
-                    background: none; border: none; font-size: 1.5rem; cursor: pointer;
-                    color: var(--background-dark);
-                }
-            `;
-            document.head.appendChild(styles);
-        }
-        
-        document.body.appendChild(modal);
+        modalContent.innerHTML = content;
+        modal.style.display = 'flex';
         this.currentModal = modal;
     }
-    
+
     hideModal() {
-        if (this.currentModal) {
-            this.currentModal.remove();
-            this.currentModal = null;
+        const modal = document.getElementById('modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+        this.currentModal = null;
+    }
+
+    showStats() {
+        if (!this.gameInstance || !this.gameInstance.player) {
+            this.showCharacterCreation();
+            return;
+        }
+
+        const player = this.gameInstance.player;
+        const modalContent = `
+            <div class="stats-display">
+                <h2>📊 Statistiche di Trejano</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-name">💝 Empatia:</span>
+                        <span class="stat-value">${player.stats.empatia}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-name">💪 Forza:</span>
+                        <span class="stat-value">${player.stats.forza}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-name">🏃 Agilità:</span>
+                        <span class="stat-value">${player.stats.agilita}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-name">🧠 Saggezza:</span>
+                        <span class="stat-value">${player.stats.saggezza}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-name">🎯 Astuzia:</span>
+                        <span class="stat-value">${player.stats.astuzia}</span>
+                    </div>
+                </div>
+
+                <div class="vital-stats">
+                    <div class="vital-item">
+                        <span class="vital-name">❤️ Punti Vita:</span>
+                        <span class="vital-value">${player.vita}/${player.vitaMax}</span>
+                    </div>
+                    <div class="vital-item">
+                        <span class="vital-name">⭐ Maturità Emotiva:</span>
+                        <span class="vital-value">${player.maturita}/10</span>
+                    </div>
+                </div>
+
+                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+            </div>
+        `;
+
+        this.showModal(modalContent);
+    }
+
+    showGems() {
+        if (!this.gameInstance || !this.gameInstance.player) {
+            alert('Crea prima un personaggio!');
+            return;
+        }
+
+        const player = this.gameInstance.player;
+        const modalContent = `
+            <div class="gems-display">
+                <h2>💎 Raccolta Gemme</h2>
+                
+                <div class="gems-grid">
+                    <div class="gem-item ${player.gems.perla ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">⚪</span>
+                        <span class="gem-name">Perla di Akoia</span>
+                        <span class="gem-status">${player.gems.perla ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.ametista ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🟣</span>
+                        <span class="gem-name">Ametista di Mechrios</span>
+                        <span class="gem-status">${player.gems.ametista ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.rubino ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🔴</span>
+                        <span class="gem-name">Rubino del Fuoco</span>
+                        <span class="gem-status">${player.gems.rubino ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.zaffiro ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🔵</span>
+                        <span class="gem-name">Zaffiro dell'Acqua</span>
+                        <span class="gem-status">${player.gems.zaffiro ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.smeraldo ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🟢</span>
+                        <span class="gem-name">Smeraldo della Terra</span>
+                        <span class="gem-status">${player.gems.smeraldo ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.topazio ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🟡</span>
+                        <span class="gem-name">Topazio dell'Aria</span>
+                        <span class="gem-status">${player.gems.topazio ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.acquamarina ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">🔷</span>
+                        <span class="gem-name">Acquamarina</span>
+                        <span class="gem-status">${player.gems.acquamarina ? '✓' : '?'}</span>
+                    </div>
+                    <div class="gem-item ${player.gems.lapislazzulo ? 'obtained' : 'missing'}">
+                        <span class="gem-icon">💙</span>
+                        <span class="gem-name">Lapislazzulo</span>
+                        <span class="gem-status">${player.gems.lapislazzulo ? '✓' : '?'}</span>
+                    </div>
+                </div>
+
+                <div class="gems-progress">
+                    <p>Gemme raccolte: ${Object.values(player.gems).filter(Boolean).length}/8</p>
+                </div>
+
+                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+            </div>
+        `;
+
+        this.showModal(modalContent);
+    }
+
+    showRelationships() {
+        if (!this.gameInstance || !this.gameInstance.player) {
+            alert('Crea prima un personaggio!');
+            return;
+        }
+
+        const player = this.gameInstance.player;
+        const modalContent = `
+            <div class="relationships-display">
+                <h2>🤝 Relazioni</h2>
+                
+                <div class="relationships-grid">
+                    ${Object.entries(player.relationships).map(([name, value]) => `
+                        <div class="relationship-item">
+                            <span class="char-name">${this.getCharacterIcon(name)} ${name}</span>
+                            <div class="relationship-bar">
+                                <div class="bar-background">
+                                    <div class="bar-fill ${this.getRelationshipClass(value)}" 
+                                         style="width: ${((value + 5) / 10) * 100}%"></div>
+                                </div>
+                                <span class="relationship-value">${value > 0 ? '+' : ''}${value}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="relationship-legend">
+                    <p><span class="enemy">━━</span> Nemico (-5 a -3) | 
+                       <span class="neutral">━━</span> Neutrale (-2 a +2) | 
+                       <span class="friend">━━</span> Alleato (+3 a +5)</p>
+                </div>
+
+                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+            </div>
+        `;
+
+        this.showModal(modalContent);
+    }
+
+    getCharacterIcon(name) {
+        const icons = {
+            'Neiano': '👨‍🦳',
+            'Crise': '🧙‍♂️',
+            'Mesis': '🤝',
+            'Erhon': '🌙',
+            'Ago': '👦',
+            'Ouch': '🐉',
+            'Quilian': '🦅'
+        };
+        return icons[name] || '👤';
+    }
+
+    getRelationshipClass(value) {
+        if (value <= -3) return 'enemy';
+        if (value >= 3) return 'friend';
+        return 'neutral';
+    }
+
+    updateUI() {
+        if (!this.gameInstance || !this.gameInstance.player) return;
+
+        const player = this.gameInstance.player;
+        
+        // Update vita bar
+        const vitaBar = document.querySelector('.vita-fill');
+        const vitaText = document.querySelector('.vita-text');
+        if (vitaBar && vitaText) {
+            const vitaPercent = (player.vita / player.vitaMax) * 100;
+            vitaBar.style.width = vitaPercent + '%';
+            vitaText.textContent = `${player.vita}/${player.vitaMax}`;
+        }
+
+        // Update maturità
+        const maturitaStars = document.querySelector('.maturita-stars');
+        if (maturitaStars) {
+            let starsHTML = '';
+            for (let i = 0; i < 10; i++) {
+                starsHTML += i < player.maturita ? '⭐' : '☆';
+            }
+            maturitaStars.innerHTML = starsHTML;
         }
     }
 
-    // ===== MESSAGGI =====
-    showMessage(message, type = 'info') {
-        const messageEl = document.createElement('div');
-        messageEl.className = `game-message ${type}`;
-        messageEl.textContent = message;
-        messageEl.style.cssText = `
-            position: fixed; top: 20px; right: 20px; z-index: 999;
-            background: var(--background-dark); color: var(--text-warm);
-            border: 2px solid var(--primary-gold); border-radius: 8px;
-            padding: 15px; max-width: 300px; opacity: 0;
-            transition: opacity 0.3s ease;
+    loadGame() {
+        alert('Funzione di caricamento non ancora implementata!');
+    }
+
+    // Utility per i test di abilità
+    showRollResult(result) {
+        const resultClass = result.success ? 'success' : 'failure';
+        const resultText = result.success ? 'SUCCESSO!' : 'FALLIMENTO!';
+        
+        const resultHTML = `
+            <div class="roll-result ${resultClass}">
+                <h3>${resultText}</h3>
+                <p>Lancio: ${result.roll} + Abilità: ${result.total - result.roll} = <strong>${result.total}</strong></p>
+                <p>${result.description}</p>
+            </div>
         `;
         
-        if (type === 'error') messageEl.style.borderColor = 'var(--accent-ruby)';
-        if (type === 'success') messageEl.style.borderColor = 'var(--accent-emerald)';
-        if (type === 'milestone') messageEl.style.borderColor = 'var(--primary-gold)';
-        if (type === 'warning') messageEl.style.borderColor = 'var(--secondary-bronze)';
+        // Mostra temporaneamente il risultato
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = resultHTML;
+        tempDiv.style.position = 'fixed';
+        tempDiv.style.top = '50%';
+        tempDiv.style.left = '50%';
+        tempDiv.style.transform = 'translate(-50%, -50%)';
+        tempDiv.style.zIndex = '9999';
+        tempDiv.style.backgroundColor = 'rgba(0,0,0,0.9)';
+        tempDiv.style.color = 'white';
+        tempDiv.style.padding = '20px';
+        tempDiv.style.borderRadius = '10px';
         
-        document.body.appendChild(messageEl);
+        document.body.appendChild(tempDiv);
         
-        setTimeout(() => messageEl.style.opacity = '1', 10);
         setTimeout(() => {
-            messageEl.style.opacity = '0';
-            setTimeout(() => messageEl.remove(), 300);
+            document.body.removeChild(tempDiv);
         }, 3000);
     }
-    
-    showGameOver() {
-        this.showModal('💀 Game Over', `
-            <div style="text-align: center;">
-                <h3>Il viaggio di Trejano si conclude qui...</h3>
-                <p>Ma ogni fine è un nuovo inizio.</p>
-                <button class="choice-button" onclick="location.reload()">
-                    🔄 Ricomincia l'Avventura
-                </button>
-            </div>
-        `);
-    }
-
-    // ===== EFFETTI VISIVI =====
-    fadeOut(element, callback) {
-        element.style.transition = 'opacity 0.3s ease';
-        element.style.opacity = '0';
-        setTimeout(() => {
-            if (callback) callback();
-        }, 300);
-    }
-    
-    fadeIn(element) {
-        setTimeout(() => {
-            element.style.opacity = '1';
-        }, 50);
-    }
 }
 
-// ===== INIZIALIZZAZIONE E FUNZIONI GLOBALI =====
-let ui;
-
-document.addEventListener('DOMContentLoaded', function() {
-    ui = new UIManager();
-    console.log('🎨 UI Manager caricato');
-});
-
-// Funzioni globali per i pulsanti (collegamenti corretti)
-function doRegenerate() {
-    ui.regenerateCharacter();
-}
-
+// Global function per facilitare i test
 function doAccept() {
-    ui.acceptCharacter();
+    if (window.ui) {
+        window.ui.acceptCharacter();
+    } else {
+        console.error("UI Manager non trovato!");
+    }
 }
-
-function doClose() {
-    ui.hideModal();
-            }
