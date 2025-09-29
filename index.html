@@ -428,6 +428,15 @@
 
         // Inizializzazione quando tutto è caricato
         document.addEventListener('DOMContentLoaded', function() {
+            // Gestione chiusura modal
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'close-modal') {
+        const modal = document.getElementById('modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+});
             console.log('🚀 In Fin Te Specchia - Inizializzazione...');
             
             // Attendi che tutti i moduli siano caricati
