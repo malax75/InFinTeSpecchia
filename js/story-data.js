@@ -1,242 +1,259 @@
-// ===== STORY DATA - VOLUME I: L'INNOCENZA SPEZZATA =====
-// Paragrafi 1-15: Apertura e Dialogo con Neiano
+// ========================================
+// STORY DATA - IN FIN TE SPECCHIA
+// Volume I: L'Innocenza Spezzata
+// Paragrafi 1-15
+// ========================================
 
-const storyData = {
+const StoryData = {
+    
     // ===== PARAGRAFO 1: INIZIO =====
     1: {
         id: 1,
-        title: "L'Inizio",
-        text: `<p><em>Tanti anni or sono, nella terra di Limb, viveva un fanciullo.</em></p>
+        title: "Il Dialogo",
+        text: `<p>«Padre, io voglio diventare un cavaliere.»</p>
         
-        <p>Gli occhi di Trejano vagavano nel cielo notturno, frugando tra i cirri bizzosi alla ricerca di Entaris, la stella più luminosa di Limb. Quella che indicava la città di Reudhos, quella che guidava i naviganti e i viandanti nelle notti senza luna.</p>
+        <p>Le parole uscirono dalla bocca di Trejano come un fiume in piena, incontenibili dopo giorni passati a rimuginare in silenzio. Neiano smise di sistemare le reti e alzò lo sguardo, i suoi occhi grigi come il cielo prima della tempesta.</p>
         
-        <p>Ma quella notte Trejano non cercava la via. Cercava solo di non pensare.</p>
+        <p>«Un cavaliere» ripeté, come se stesse assaporando il peso di quella parola. «Figlio mio, tu sai che la vita di un cavaliere...»</p>
         
-        <p>Bianchi i suoi capelli come la neve che riflette il sole. Neri i suoi occhi come la notte profonda e senza lume. E ora quegli occhi neri erano arrossati dal pianto.</p>
+        <p>«Lo so!» lo interruppe Trejano, le guance arrossate dall'emozione. «So che è pericolosa, so che è difficile. Ma io non voglio passare tutta la vita qui a pescare anguille! Voglio vedere il mondo, padre. Voglio visitare le sette penisole, vedere le aquile volare sui massicci Aeternali, combattere per qualcosa di più grande di me!»</p>
         
-        <p>Era in fuga attraverso le misteriose terre di Saar. Correva da ore, o forse da giorni — aveva perso il conto del tempo. Il dolore alla tempia pulsava a ogni passo, dove la ferita ancora sanguinava sotto l'impiastro che il vecchio gli aveva applicato.</p>
+        <p>Il vento portava con sé l'odore del fiume Ondrasco e il canto lontano delle rane. Neiano guardava suo figlio con un'espressione che Trejano non sapeva decifrare. Non era rabbia, non era disapprovazione. Era qualcosa di più profondo, qualcosa che somigliava alla tristezza.</p>
         
-        <p>Il vecchio. Quel viandante dai poteri terribili che si era trasformato in belva per salvarlo. O forse per rapirlo. Trejano ancora non sapeva.</p>
-        
-        <p>Chiuse gli occhi e nella mente gli tornò nitida l'ultima conversazione con Neiano, suo padre. L'ultima volta che l'aveva visto, prima che tutto cambiasse per sempre...</p>`,
+        <p>«Trejano...» iniziò Neiano, ma poi si fermò. Le sue mani, forti e callose dal lavoro, si posarono sulle spalle del ragazzo. «Dimmi una cosa. Perché vuoi diventare un cavaliere?»</p>`,
         choices: [
             {
-                text: "📖 Ricorda il dialogo con Neiano",
+                text: "«Per la gloria e l'avventura! Per vivere una vita degna di essere raccontata!»",
                 next: 2,
-                stats: null
+                requirement: null
+            },
+            {
+                text: "«Per proteggere chi non può difendersi. Per fare del bene nel mondo.»",
+                next: 3,
+                requirement: null
+            },
+            {
+                text: "«Perché sento che è il mio destino, padre. Non so spiegarlo altrimenti.»",
+                next: 4,
+                requirement: null
             }
         ],
         flags: {
-            set: ['flashback_iniziato']
+            set: { 'dialogo_neiano_avvenuto': true }
         }
     },
 
-    // ===== PARAGRAFO 2: RICORDO DEL DIALOGO =====
+    // ===== PARAGRAFO 2: SCELTA A1 - GLORIA =====
     2: {
         id: 2,
-        title: "Il Sogno di un Pescatore",
-        text: `<p><em>«Papà, come si fa a diventare cavaliere?»</em></p>
+        title: "Sogni di Gloria",
+        text: `<p>«Per la gloria e l'avventura!» esclamò Trejano, gli occhi che brillavano. «Per vivere una vita degna di essere raccontata! Padre, tu non capisci... qui a Treja non succede mai nulla. Sempre le stesse giornate, sempre le stesse anguille, sempre lo stesso fiume. Io voglio di più! Voglio che un giorno si raccontino storie su di me, che i bambini giochino a fare il mio nome!»</p>
         
-        <p>Il ricordo era così vivido che Trejano poteva ancora vedere il sorriso di Neiano. Quel sorriso paziente, un po' triste, che suo padre aveva ogni volta che lui parlava di avventure e viaggi.</p>
+        <p>Neiano sospirò. Non era un sospiro di disappunto, ma di comprensione melanconica.</p>
         
-        <p>Erano seduti fuori dalla palafitta, all'ombra del grande salice che dominava il piccolo spiazzo. Il sole del pomeriggio tingeva d'oro le acque dell'Ondrasco. Ago, il suo migliore amico, se n'era appena andato dopo una mattinata di pesca.</p>
+        <p>«La gloria...» mormorò. «Sai, Trejano, io ero come te alla tua età. Anch'io sognavo cose grandi. Ma la gloria è una cosa pericolosa da cercare. È come un fuoco: può illuminarti la strada o consumarti completamente.»</p>
         
-        <p>«Non pensarci Trejano» aveva risposto Neiano, accarezzandogli i capelli bianchi. «Noi siamo pescatori, non cavalieri.»</p>
+        <p>«Ma tu hai rinunciato!» protestò Trejano. «Hai scelto di restare qui, di fare il pescatore. Io non voglio rinunciare prima ancora di provare!»</p>
         
-        <p>Ma Trejano aveva tredici anni e i sogni a quell'età sono più veri della realtà. Aveva trascorso troppi inverni ad ascoltare le storie che Neiano gli raccontava davanti al focolare. Storie di eroi e cavalieri, di terre lontane e creature magnifiche.</p>
+        <p>Per un lungo momento, Neiano non disse nulla. Guardava il fiume, come se nelle sue acque scure potesse leggere il futuro.</p>
         
-        <p>Come vuoi che Trejano risponda al padre?</p>`,
+        <p>Poi si voltò verso Trejano con un'espressione seria.</p>
+        
+        <p>«Figlio mio, devo dirti una cosa importante. Devo... andare via per un po'.»</p>`,
         choices: [
             {
-                text: "⚔️ Con determinazione solenne (come un vero cavaliere)",
-                next: 3,
-                stats: { forza: 1 }
-            },
-            {
-                text: "🤔 Con curiosità sincera (cerca di capire il padre)",
-                next: 4,
-                stats: { saggezza: 1 }
-            },
-            {
-                text: "😔 Con silenzio triste (accetta ma soffre)",
+                text: "➡️ Continua",
                 next: 5,
-                stats: { empatia: 1 }
+                stats: null
             }
-        ]
+        ],
+        flags: {
+            set: { 'motivazione_cavaliere': 'gloria' },
+            modify: { 'maturita_emotiva': 1 }
+        }
     },
 
-    // ===== PARAGRAFO 3: SCELTA A1 - DETERMINATO =====
+    // ===== PARAGRAFO 3: SCELTA A2 - PROTEZIONE =====
     3: {
         id: 3,
-        title: "La Determinazione del Giovane",
-        text: `<p>Trejano raddrizzò le spalle, cercando di rendersi più alto, più adulto. Voleva che il padre lo prendesse sul serio.</p>
+        title: "Il Cuore del Cavaliere",
+        text: `<p>«Per proteggere chi non può difendersi» rispose Trejano con voce ferma. «Per fare del bene nel mondo, padre. Tu mi hai sempre insegnato che la forza va usata per aiutare i deboli, che chi può deve prendersi cura di chi non può. Ma qui a Treja... cosa posso proteggere? Le anguille? I pesci-gatto?»</p>
         
-        <p>«Padre» disse con tutta la solennità che un ragazzo di tredici anni può raccogliere, sforzandosi di ricordare le formule che il padre usava nelle storie. «Vorrei diventare cavaliere ed attraversare l'Ondrasco ed i massicci Aeternali e vedere le terre dove vivono le aquile maestose e gli altri incredibili animali; e poi visitare le sette penisole dei re e Reudhos l'eterna.»</p>
+        <p>Qualcosa si accese negli occhi di Neiano. Un lampo di orgoglio, forse, o di riconoscimento.</p>
         
-        <p>Neiano sospirò. Quel ragazzo era così testardo. Nel villaggio lo chiamavano Trejano Testadipietra. Era davvero ostinato come un mulo.</p>
+        <p>«Trejano...» disse piano. «Quelle sono parole sagge. Troppo sagge per un ragazzo della tua età. Mi chiedo...» si interruppe, come se avesse detto troppo. «Mi chiedo se tu sappia davvero cosa significhi proteggere qualcuno. Il peso che comporta. Le scelte che dovrai fare.»</p>
         
-        <p>Un mulo. Neiano sorrise a quel pensiero. "Mulo" era stato anche il suo soprannome da piccolo.</p>
+        <p>«Allora insegnami!» supplicò Trejano. «Tu lo sai, vero? C'è qualcosa nel modo in cui ti muovi, nel modo in cui guardi l'orizzonte... Tu non sei sempre stato un pescatore, vero padre?»</p>
         
-        <p>«Figlio mio» rispose Neiano scrutandolo con i suoi occhi color della cenere. «Non si addice ad un modesto pescatore di anguille desiderare imprese di cavalieri. La loro è una vita errabonda e perigliosa, una eterna ricerca di qualcosa che forse non raggiungeranno mai.»</p>
+        <p>Neiano parve vacillare. Per un attimo sembrò sul punto di dire qualcosa di importante, di rivelare un segreto a lungo custodito. Ma poi scosse la testa.</p>
         
-        <p>Fece una pausa, guardando le acque del fiume.</p>
-        
-        <p>«Ricca è la vita del pescatore che nella sua terra e nella sua casa è capace di scoprire il suo tesoro: non di acquemarine, ametiste, perle, smeraldi, topazi, zaffiri o rubini è formato, ma dal più profondo significato della vita.»</p>`,
+        <p>«Figlio mio, devo dirti una cosa. Devo... andare via per un po'.»</p>`,
         choices: [
             {
                 text: "➡️ Continua",
-                next: 6,
+                next: 5,
                 stats: null
             }
         ],
         flags: {
-            set: ['dialogo_determinato'],
-            modify: { 'neiano_relazione': 1 }
+            set: { 'motivazione_cavaliere': 'protezione' },
+            modify: { 'maturita_emotiva': 1, 'empatia': 1 }
         }
     },
 
-    // ===== PARAGRAFO 4: SCELTA A2 - CURIOSO =====
+    // ===== PARAGRAFO 4: SCELTA A3 - DESTINO =====
     4: {
         id: 4,
-        title: "Le Domande del Saggio",
-        text: `<p>«Ma padre» chiese Trejano con voce più dolce, «perché non posso? Tu mi racconti sempre storie di cavalieri e di terre lontane. Se sono solo storie, perché me le narri?»</p>
+        title: "Il Richiamo del Destino",
+        text: `<p>«Perché sento che è il mio destino, padre» disse Trejano, e nella sua voce c'era qualcosa di strano, quasi un'eco di qualcosa più grande. «Non so spiegarlo altrimenti. È come se... come se ci fosse una strada davanti a me che posso solo intravedere, ma che devo percorrere. Tu capisci?»</p>
         
-        <p>Era una domanda saggia per un ragazzo di tredici anni, e Neiano se n'era accorto. Guardò suo figlio con nuovo rispetto.</p>
+        <p>Il volto di Neiano impallidì. Le sue mani tremarono leggermente sulle spalle di Trejano.</p>
         
-        <p>«Le storie, figlio mio, servono a farci sognare. Ma i sogni e la realtà sono due cose diverse.» Posò una mano sulla spalla di Trejano. «Io ti racconto quelle storie perché tu possa vedere mondi che forse non vedrai mai. Perché la tua mente possa viaggiare anche se i tuoi piedi restano qui, su questa terra.»</p>
+        <p>«Destino» sussurrò. «Hai detto destino.» Guardò suo figlio con un'intensità nuova, come se lo stesse vedendo per la prima volta. O forse come se stesse vedendo qualcun altro attraverso di lui.</p>
         
-        <p>«Ma tu» insistette Trejano, «come conosci tutte queste storie? Tu sei solo un pescatore, no?»</p>
+        <p>«Padre, ti senti bene?»</p>
         
-        <p>Neiano distolse lo sguardo, guardando verso la foresta che circondava Treja. Verso quella strada misteriosa che non conduceva in nessun luogo.</p>
+        <p>«Sì, io... sì.» Neiano si passò una mano sul viso. «Trejano, tu non puoi capire quanto siano pesanti le tue parole. Il destino... il destino non è una cosa da invocare alla leggera. È un fiume che ci trascina, anche quando vorremmo nuotare in direzione opposta.»</p>
         
-        <p>«Anch'io ho sognato, una volta» mormorò. «E a volte i sogni hanno un prezzo.»</p>`,
+        <p>Si voltò verso la strada che usciva da Treja, quella che nessuno percorreva mai perché non portava da nessuna parte. O almeno, così dicevano tutti.</p>
+        
+        <p>«Figlio mio, devo dirti una cosa. Devo... andare via per un po'.»</p>`,
         choices: [
             {
                 text: "➡️ Continua",
-                next: 6,
+                next: 5,
                 stats: null
             }
         ],
         flags: {
-            set: ['dialogo_curioso'],
-            modify: { 'neiano_relazione': 1 }
+            set: { 'motivazione_cavaliere': 'destino' },
+            modify: { 'maturita_emotiva': 1, 'saggezza': 1 }
         }
     },
 
-    // ===== PARAGRAFO 5: SCELTA A3 - SILENZIOSO =====
+    // ===== PARAGRAFO 5: CONVERGENZA A =====
     5: {
         id: 5,
-        title: "Il Silenzio che Parla",
-        text: `<p>Trejano abbassò lo sguardo. Le parole del padre pesavano come pietre nel suo cuore. Strinse le mani sui pantaloni di tela di Saar, cercando di contenere la delusione che gli bruciava in gola.</p>
+        title: "L'Annuncio",
+        text: `<p>«Andare via?» ripeté Trejano, confuso. «Ma... dove? Per quanto tempo?»</p>
         
-        <p>«Va bene, padre» sussurrò.</p>
+        <p>Neiano guardò ancora la strada, quella strada che non portava da nessuna parte.</p>
         
-        <p>Ma Neiano conosceva suo figlio. Conosceva quel silenzio carico di sogni infranti. Si chinò verso di lui, sollevandogli il mento con dolcezza finché i loro occhi non si incontrarono.</p>
+        <p>«Non posso dirtelo ancora» disse piano. «Ma tornerò. Tornerò al terzo tramonto da oggi, e allora... allora ti racconterò una storia. Una storia vera, Trejano. La storia più vera che tu abbia mai ascoltato. E dopo che l'avrai sentita, deciderai tu. Deciderai tu se vuoi davvero essere un cavaliere, se vuoi davvero seguire questa strada.»</p>
         
-        <p>«Trejano» disse con voce ferma ma affettuosa. «Non è che non voglia che tu diventi qualcuno di grande. È che temo per te. Il mondo là fuori...» fece un gesto vago verso l'orizzonte, «...è più pericoloso di quanto tu possa immaginare. E io non voglio perderti.»</p>
+        <p>«Ma padre, io non capisco...»</p>
         
-        <p>Una lacrima rigò la guancia di Trejano. Neiano gliela asciugò con il pollice.</p>
+        <p>«Lo so. E mi dispiace. Ma ci sono cose che devo fare prima. Cose che devo... verificare.» Neiano posò una mano sui capelli bianchi di Trejano, un gesto di affetto che il ragazzo conosceva bene. «Tre giorni, figlio mio. Tre giorni e poi avrai tutte le risposte che cerchi. Te lo prometto.»</p>
         
-        <p>«Ma se è davvero ciò che vuoi» continuò il padre, «se il tuo cuore ti chiama altrove... allora forse non è mio compito fermarti. È solo mio dovere prepararti.»</p>`,
+        <p>Si voltò per andarsene, poi si fermò.</p>
+        
+        <p>«E Trejano... qualunque cosa tu scelga, io sarò orgoglioso di te. Ricordalo sempre.»</p>`,
         choices: [
             {
-                text: "➡️ Continua",
+                text: "➡️ Neiano si prepara a partire",
                 next: 6,
                 stats: null
             }
         ],
         flags: {
-            set: ['dialogo_silenzioso'],
-            modify: { 'neiano_relazione': 1, 'maturita_emotiva': 1 }
+            set: { 'neiano_annuncia_partenza': true, 'promessa_storia': true }
         }
     }
+    
+    // CONTINUA NELLA PARTE 2...
 };
+// ========================================
+// PARTE 3/4 - PARAGRAFI 11-15
+// Copia questo DOPO il paragrafo 10
+// ========================================
 
-// Esporta i dati
-if (typeof window !== 'undefined') {
-    window.storyData = storyData;
-    console.log('📖 Story Data caricato: Paragrafi 1-5');
-}
-// ===== STORY DATA - PARAGRAFI 6-10 =====
-// Ricongiungimento e Annuncio della Partenza di Neiano
+    // ===== PARAGRAFO 11: RICONGIUNGIMENTO - INIZIO ATTESA =
+// ========================================
+// PARTE 2/4 - PARAGRAFI 6-10
+// Copia questo DOPO il paragrafo 5
+// ========================================
 
-const storyData_6_10 = {
-    // ===== PARAGRAFO 6: RICONGIUNGIMENTO =====
+    // ===== PARAGRAFO 6: NEIANO SI PREPARA =====
     6: {
         id: 6,
-        title: "L'Annuncio",
-        text: `<p>Neiano guardò suo figlio in silenzio per qualche istante. Nei suoi occhi color della cenere bruciava qualcosa di nuovo, un fuoco che Trejano non aveva mai visto prima. Sembrava che il padre stesse lottando con una decisione importante.</p>
+        title: "La Partenza",
+        text: `<p>Neiano entrò nella palafitta e iniziò a preparare un piccolo fagotto. Poche cose: un mantello, del pane secco, una borraccia. Trejano lo guardava dalla soglia, il cuore stretto in una morsa di emozioni contrastanti.</p>
         
-        <p>Alla fine, Neiano sospirò profondamente.</p>
+        <p>Confusione. Paura. Ma anche, stranamente, eccitazione. Stava per succedere qualcosa. Qualcosa di importante.</p>
         
-        <p>«Figliolo» disse con voce grave, posando entrambe le mani sulle spalle di Trejano. «Al terzo tramonto da oggi ti narrerò una storia. Tu mi ascolterai attentamente e poi deciderai...»</p>
+        <p>«Padre» chiamò. «Quella strada... quella strada che nessuno percorre... è lì che vai?»</p>
         
-        <p>Trejano rimase perplesso. Era abituato alla chiarezza del padre e al suo pragmatismo, che abbandonava solo quando narrava le sue storie davanti al focolare. Ma ora vedeva nei suoi occhi miti e riflessivi un'intensità nuova.</p>
+        <p>Neiano si fermò. Sorrise, ma era un sorriso triste.</p>
         
-        <p>«Papà, cosa vuoi narrarmi? Perché non me lo dici adesso?»</p>
+        <p>«È l'unica strada che vale la pena percorrere, figlio mio. Le strade che tutti conoscono portano solo dove tutti sono già stati.»</p>
         
-        <p>«Figliolo» riprese Neiano senza stizza ma con perentorietà. «Frena la tua curiosità. Al terzo tramonto da oggi ti narrerò la storia. Ora debbo partire. Attendimi e sarò di ritorno per allora.»</p>`,
+        <p>Si caricò il fagotto sulle spalle e uscì. Il sole era alto ora, e il fiume brillava come argento liquido. Neiano si voltò un'ultima volta verso Trejano.</p>
+        
+        <p>«Tre giorni» disse. «E ricorda: qualunque cosa accada, io ti amo.»</p>
+        
+        <p>Poi iniziò a camminare verso la strada che non portava da nessuna parte.</p>`,
         choices: [
             {
-                text: "➡️ Partire? Ma dove?",
+                text: "Guardalo partire in silenzio",
                 next: 7,
-                stats: null
-            }
-        ]
-    },
-
-    // ===== PARAGRAFO 7: SHOCK DELLA PARTENZA =====
-    7: {
-        id: 7,
-        title: "La Strada che Non Porta da Nessuna Parte",
-        text: `<p><em>Partire?</em></p>
-        
-        <p>Trejano rimase immobile e sorpreso mentre guardava il padre voltarsi e camminare verso la palafitta. Il padre non era mai partito. Mai. Ed ora improvvisamente doveva partire.</p>
-        
-        <p>Per andare dove? Perché? Perché così repentinamente? Quale storia? Decidere cosa?</p>
-        
-        <p>Mille domande vorticavano nella mente di Trejano mentre vedeva Neiano rientrare nella palafitta. Dopo pochi minuti tornò portando una sporta da cui proveniva un gustoso odore di stufato d'anguilla e, a tracolla, un tascapane che spandeva nell'aria una fragranza di pane appena sfornato.</p>
-        
-        <p>Nell'altra mano stringeva un bastone: il bastone che utilizzava da giovane per la pesca delle anguille, protagonista di tante storie che gli aveva narrato. Dopo tanti anni di fedele servigio, il padre l'aveva riposto, lasciando a Trejano quella parte della pesca.</p>
-        
-        <p>«Arrivederci Trejano» disse Neiano, stringendo forte a sé il figlio. «Attendimi al tramonto del terzo giorno. Pane e stufato di anguilla non ti mancano. Sono sicuro che qualcuno veglierà benevolo su di te.»</p>`,
-        choices: [
-            {
-                text: "🏃 Corri dietro al padre per fermarlo!",
-                next: 8,
-                stats: { empatia: 1 }
-            },
-            {
-                text: "😢 Resta fermo, stringi forte l'abbraccio",
-                next: 9,
-                stats: { forza: 1 }
-            },
-            {
-                text: "❓ Chiedi dove sta andando",
-                next: 10,
-                stats: { astuzia: 1 }
+                requirement: null
             }
         ],
         flags: {
-            set: ['neiano_parte']
+            set: { 'neiano_parte': true }
         }
+    },
+
+    // ===== PARAGRAFO 7: MOMENTO DELLA SCELTA =====
+    7: {
+        id: 7,
+        title: "Il Momento della Scelta",
+        text: `<p>Trejano guardò Neiano allontanarsi sulla strada. Ogni passo lo portava più lontano, verso l'orizzonte dove la strada spariva tra le colline.</p>
+        
+        <p>Una parte di lui voleva correre, afferrare il padre, costringerlo a restare, a spiegare tutto subito. Un'altra parte sapeva che doveva lasciarlo andare, che questo faceva parte di qualcosa più grande.</p>
+        
+        <p>Il vento soffiava tra i capelli bianchi di Trejano, portando con sé il profumo di acqua e terra bagnata. Le palafitte di Treja scricchiolavano piano nel loro eterno dialogo con il fiume.</p>
+        
+        <p>Tre giorni. Solo tre giorni.</p>
+        
+        <p>Ma perché sembravano un'eternità?</p>`,
+        choices: [
+            {
+                text: "Corri verso di lui, ma poi ti fermi",
+                next: 8,
+                requirement: null
+            },
+            {
+                text: "Resta fermo, dimostra la tua forza",
+                next: 9,
+                requirement: null
+            },
+            {
+                text: "Grida: «Padre, dove vai davvero?»",
+                next: 10,
+                requirement: null
+            }
+        ],
+        flags: null
     },
 
     // ===== PARAGRAFO 8: SCELTA B1 - CORRI =====
     8: {
         id: 8,
-        title: "Il Richiamo del Cuore",
-        text: `<p>L'abbraccio si sciolse e Trejano vide il padre imboccare la strada che non conduceva in nessun luogo. Quella strada di cui tutti a Treja parlavano con timore. Quella che nessuno aveva mai percorso fino in fondo.</p>
+        title: "Il Passo Non Fatto",
+        text: `<p>Trejano iniziò a correre. I piedi nudi battevano sul legno umido della palafitta, poi sulla terra del sentiero.</p>
         
-        <p>Ebbe paura. Gli aveva sempre raccomandato di tenersi lontano da là. Era pericolosa...</p>
+        <p>«Padre!» stava per gridare.</p>
         
-        <p>Fece due passi in avanti, aprì la bocca per gridare. Voleva correre dietro al padre per fermarlo, per dirgli che non gli importava nulla della storia e che non voleva più diventare cavaliere. Che sarebbe rimasto con lui per sempre a pescare le anguille.</p>
+        <p>Ma poi si fermò.</p>
         
-        <p>Ma si fermò. Qualcosa lo trattenne.</p>
+        <p>Si fermò perché capì, in quel momento, che inseguire Neiano non avrebbe cambiato nulla. Il padre aveva preso la sua decisione, e doveva rispettarla. Anche se non la capiva. Anche se faceva male.</p>
         
-        <p>Già il padre era lontano qualche centinaio di metri, stava per scantonare seguendo la curva della strada che l'avrebbe rapito alla sua vista. Da lontano Neiano sembrava ringiovanito: l'andatura incerta dell'età era scomparsa, sembrava anche più alto. Sembrava, così in lontananza, un ragazzo che va in cerca di avventura...</p>
+        <p>Neiano si voltò, come se avesse percepito il movimento. I loro occhi si incontrarono attraverso la distanza. Il padre alzò una mano in un gesto di saluto, o forse di benedizione.</p>
         
-        <p>Trejano rimase fermo a guardare finché la figura del padre non scomparve dietro la curva.</p>`,
+        <p>Poi riprese a camminare, e questa volta Trejano non fece nulla per fermarlo.</p>
+        
+        <p>Restò lì, sulla strada, a guardare la figura di Neiano diventare sempre più piccola, fino a scomparire completamente dove la strada si piegava dietro una collina.</p>`,
         choices: [
             {
                 text: "➡️ I tre giorni di attesa",
@@ -245,27 +262,27 @@ const storyData_6_10 = {
             }
         ],
         flags: {
-            modify: { 'neiano_relazione': 1 }
+            modify: { 'neiano_relazione': 1, 'maturita_emotiva': 1 }
         }
     },
 
-    // ===== PARAGRAFO 9: SCELTA B2 - RESTA FERMO =====
+    // ===== PARAGRAFO 9: SCELTA B2 - RESTA =====
     9: {
         id: 9,
         title: "La Forza del Silenzio",
-        text: `<p>Trejano ricambiò la stretta del padre con tutta la forza che aveva. Non disse nulla. Un groppo gli bloccava la gola e non riusciva a parlare.</p>
+        text: `<p>Trejano non si mosse. Rimase sulla veranda della palafitta, le mani strette ai fianchi, a guardare Neiano allontanarsi.</p>
         
-        <p>Sentì il cuore di Neiano battere contro il suo petto. Un battito forte, regolare. Un battito che diceva: "Tornerò."</p>
+        <p>Voleva correre. Voleva gridare. Ma non lo fece.</p>
         
-        <p>Poi l'abbraccio si sciolse. Neiano si voltò e imboccò la strada che non conduceva in nessun luogo. Trejano rimase immobile, con i pugni stretti lungo i fianchi, guardando la figura del padre allontanarsi.</p>
+        <p>Perché in quel momento capì che questa era la prima vera prova. Non con una spada, non con un nemico da affrontare. Ma con se stesso, con la capacità di lasciare andare qualcuno che amava, fidandosi che sarebbe tornato.</p>
         
-        <p>Voleva gridare. Voleva correre. Ma rimase fermo.</p>
+        <p><em>Un cavaliere deve essere forte</em>, pensò. <em>Forte anche quando è spaventato.</em></p>
         
-        <p>Perché quella era la forza che Neiano gli aveva insegnato: non quella dei muscoli, ma quella del cuore. La forza di lasciar andare chi ami, fidando che tornerà.</p>
+        <p>Neiano non si voltò. Continuò a camminare con passo deciso, come un uomo che sa esattamente dove sta andando, anche se la strada sembrava non portare da nessuna parte.</p>
         
-        <p>Da lontano Neiano sembrava più giovane, più leggero. L'andatura si era fatta spedita, quasi allegra. Come un ragazzo che parte per un'avventura.</p>
+        <p>E Trejano rimase lì, immobile come una statua, fino a quando la figura del padre scomparve completamente all'orizzonte.</p>
         
-        <p>Trejano lo guardò finché non scomparve dietro la curva della strada. Solo allora si permise di piangere.</p>`,
+        <p>Solo allora si permise di tremare.</p>`,
         choices: [
             {
                 text: "➡️ I tre giorni di attesa",
@@ -306,21 +323,14 @@ const storyData_6_10 = {
             modify: { 'neiano_relazione': 1 }
         }
     }
-};
-
-// Esporta i dati
-if (typeof window !== 'undefined') {
-    window.storyData_6_10 = storyData_6_10;
-    console.log('📖 Story Data caricato: Paragrafi 6-10');
-}
-// ========================================
-// BLOCCO 3: PARAGRAFI 11-15
-// I Tre Giorni di Attesa
-// ========================================
-
-const storyData_11_15 = {
     
-    // ===== PARAGRAFO 11: RICONGIUNGIMENTO - INIZIO ATTESA =====
+    // CONTINUA NELLA PARTE 3...
+// ========================================
+// PARTE 3/4 - PARAGRAFI 11-15
+// Copia questo DOPO il paragrafo 10
+// ========================================
+
+    // ===== PARAGRAFO 11: RICONGIUNGIMENTO =====
     11: {
         id: 11,
         title: "I Tre Giorni",
@@ -355,7 +365,7 @@ const storyData_11_15 = {
         }
     },
 
-    // ===== PARAGRAFO 12: SCELTA C1 - RISERVATO =====
+    // ===== PARAGRAFO 12: SCELTA C1 =====
     12: {
         id: 12,
         title: "Segreti Custoditi",
@@ -365,9 +375,7 @@ const storyData_11_15 = {
         
         <p>«Cose da fare, eh?» Ago sorrise. «Misteriose cose da fare. Va bene, non chiedo altro. Ma significa che sei libero oggi? Potremmo andare alla pozza grande, quella dove i pesci-gatto si nascondono sotto le radici...»</p>
         
-        <p>Trejano guardò verso la strada dove Neiano era scomparso. Una parte di lui voleva stare solo, a riflettere sulle parole del padre. Un'altra parte sapeva che tre giorni di attesa sarebbero stati lunghi e dolorosi se passati in solitudine.</p>
-        
-        <p><em>Forse è meglio distrarsi</em>, pensò. <em>O forse dovrei usare questo tempo per pensare.</em></p>`,
+        <p>Trejano guardò verso la strada dove Neiano era scomparso. Una parte di lui voleva stare solo, a riflettere sulle parole del padre. Un'altra parte sapeva che tre giorni di attesa sarebbero stati lunghi e dolorosi se passati in solitudine.</p>`,
         choices: [
             {
                 text: "Accetta di andare alla pozza con Ago",
@@ -385,7 +393,7 @@ const storyData_11_15 = {
         }
     },
 
-    // ===== PARAGRAFO 13: SCELTA C2 - CONFUSO =====
+    // ===== PARAGRAFO 13: SCELTA C2 =====
     13: {
         id: 13,
         title: "Confessioni",
@@ -415,7 +423,7 @@ const storyData_11_15 = {
         }
     },
 
-    // ===== PARAGRAFO 14: SCELTA C3 - APERTO =====
+    // ===== PARAGRAFO 14: SCELTA C3 =====
     14: {
         id: 14,
         title: "Confidenze",
@@ -429,17 +437,17 @@ const storyData_11_15 = {
         
         <p>«I padri non sono mai d'accordo» rispose Ago con sicurezza. «Mio padre voleva che diventassi fabbro come lui. Gli ho detto che preferisco pescare. Si è arrabbiato per tre giorni, poi ha ceduto. I padri cedono sempre.»</p>
         
-        <p>Trejano non era sicuro che fosse così semplice. C'era qualcosa di più profondo nelle parole di Neiano, qualcosa che andava oltre la semplice preoccupazione di un genitore.</p>
+        <p>Trejano non era sicuro che fosse così semplice. C'era qualcosa di più profondo nelle parole di Neiano.</p>
         
         <p>«Vieni alla pozza grande?» chiese Ago. «Possiamo fare finta che sei un cavaliere che va a caccia di un drago acquatico!»</p>`,
         choices: [
             {
-                text: "Accetta entusiasta - il gioco di ruolo ti piace",
+                text: "Accetta entusiasta",
                 next: 15,
                 stats: null
             },
             {
-                text: "Accetta ma senza entusiasmo - hai bisogno di distrazione",
+                text: "Accetta senza entusiasmo",
                 next: 15,
                 stats: null
             }
@@ -449,7 +457,7 @@ const storyData_11_15 = {
         }
     },
 
-    // ===== PARAGRAFO 15: CONVERGENZA - PRIMO GIORNO =====
+    // ===== PARAGRAFO 15: CONVERGENZA =====
     15: {
         id: 15,
         title: "Il Primo Giorno",
@@ -461,7 +469,7 @@ const storyData_11_15 = {
         
         <p><em>Due giorni ancora</em>, pensò. <em>Due giorni e poi saprò.</em></p>
         
-        <p>Ma quella notte, mentre giaceva nel suo giaciglio ascoltando il fiume scorrere sotto le palafitte, Trejano si accorse di una cosa strana: non riusciva a immaginare quale storia Neiano volesse raccontargli. Ogni volta che ci provava, la mente scivolava via, come se stesse cercando di afferrare l'acqua con le mani.</p>
+        <p>Ma quella notte, mentre giaceva nel suo giaciglio ascoltando il fiume scorrere sotto le palafitte, Trejano si accorse di una cosa strana: non riusciva a immaginare quale storia Neiano volesse raccontargli.</p>
         
         <p>E questo, più di ogni altra cosa, lo teneva sveglio nella notte.</p>`,
         choices: [
@@ -475,22 +483,21 @@ const storyData_11_15 = {
             modify: { 'giorni_attesa': 2 }
         }
     }
-};
+    
+    // CONTINUA NELLA PARTE 4...
+// ========================================
+// PARTE 4/4 - CHIUSURA FILE
+// Copia questo DOPO il paragrafo 15
+// ========================================
 
-// Esporta i dati
-if (typeof window !== 'undefined') {
-    window.storyData_11_15 = storyData_11_15;
-    console.log('📖 Story Data caricato: Paragrafi 11-15');
-}
-// Unifica tutti i paragrafi in StoryData
-const StoryData = {
-    ...storyData_1_5,
-    ...storyData_6_10,
-    ...storyData_11_15
-};
+}; // CHIUDE l'oggetto StoryData
 
 // Esporta per il game engine
 if (typeof window !== 'undefined') {
     window.StoryData = StoryData;
-    console.log('✅ StoryData unificato e pronto!');
+    console.log('✅ StoryData caricato con', Object.keys(StoryData).length, 'paragrafi');
 }
+
+// ========================================
+// FINE FILE story-data.js
+// ========================================
