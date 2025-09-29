@@ -191,6 +191,7 @@ class UIManager {
         // Create character with the temporary stats
         this.gameInstance.player = new Character(this.tempStats);
         this.characterCreated = true;
+        this.enableStartButton();
         
         console.log("Personaggio creato:", this.gameInstance.player);
         
@@ -495,6 +496,22 @@ class UIManager {
             if (maturitaText) {
                 maturitaText.innerHTML = `⭐ Maturità: ${player.getMaturitaStars()}`;
             }
+        }
+    }
+
+    enableStartButton() {
+        const startBtn = document.getElementById('start-adventure-btn');
+        const statusDiv = document.getElementById('game-status');
+        
+        if (startBtn) {
+            startBtn.disabled = false;
+            startBtn.style.opacity = '1';
+            startBtn.style.cursor = 'pointer';
+        }
+        
+        if (statusDiv) {
+            statusDiv.innerHTML = '🎮 Pronto per l\'avventura!';
+            statusDiv.style.color = 'var(--accent-emerald)';
         }
     }
 }
