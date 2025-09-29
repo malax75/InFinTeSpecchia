@@ -6,7 +6,7 @@ class TrejanoGame {
         this.player = null;
         this.currentParagraph = 1;
         this.ui = null;
-        this.storyData = new StoryData();
+        this.storyData = window.StoryData;
         this.gameState = {
             volume: 1,
             flags: {},
