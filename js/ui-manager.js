@@ -335,6 +335,85 @@ class UIManager {
     this.showModal(modalContent);
 }
 
+    showInventory() {
+    if (!this.gameInstance || !this.gameInstance.player) {
+        alert('Crea prima un personaggio!');
+        return;
+    }
+
+    const player = this.gameInstance.player;
+    const inventario = player.inventario;
+    
+    // Conta oggetti totali (escluse gemme)
+    const totalItems = inventario.oggetti.length + inventario.armi.length + inventario.speciali.length;
+    
+    let modalContent;
+    
+    if (totalItems === 0) {
+        modalContent = `
+            <div class="inventory-display">
+                <h2>🎒 Inventario</h2>
+                
+                <div style="text-align: center; padding: 40px; color: var(--text-warm);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🎒</div>
+                    <h3>Inventario Vuoto</h3>
+                    <p><em>I tuoi averi sono pochi, ma il cuore è ricco di speranze...</em></p>
+                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Raccogli oggetti durante la tua avventura!</p>
+                </div>
+
+                <button id="close-modal" class="choice-button">Chiudi</button>
+            </div>
+        `;
+    } else {
+        modalContent = `
+            <div class="inventory-display">
+                <h2>🎒 Inventario</h2>
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <p><strong>Oggetti posseduti: ${totalItems}</strong></p>
+                </div>
+                
+                ${inventario.oggetti.length > 0 ? `
+                    <div style="margin-bottom: 15px;">
+                        <h3>🛍️ Oggetti Comuni</h3>
+                        ${inventario.oggetti.map(item => `
+                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                📦 ${item}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                ${inventario.armi.length > 0 ? `
+                    <div style="margin-bottom: 15px;">
+                        <h3>⚔️ Armi ed Equipaggiamento</h3>
+                        ${inventario.armi.map(item => `
+                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                ⚔️ ${item}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                
+                ${inventario.speciali.length > 0 ? `
+                    <div style="margin-bottom: 15px;">
+                        <h3>✨ Oggetti Speciali</h3>
+                        ${inventario.speciali.map(item => `
+                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                ✨ ${item}
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                <button id="close-modal" class="choice-button">Chiudi</button>
+            </div>
+        `;
+    }
+
+    this.showModal(modalContent);
+}
+    
     showRelationships() {
         if (!this.gameInstance || !this.gameInstance.player) {
             alert('Crea prima un personaggio!');
