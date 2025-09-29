@@ -86,7 +86,7 @@ class TrejanoGame {
             return;
         }
 
-        const paragraph = this.storyData.getParagraph(paragraphId);
+        const paragraph = this.storyData[paragraphId];
         if (!paragraph) {
             console.error(`Paragrafo ${paragraphId} non trovato`);
             return;
