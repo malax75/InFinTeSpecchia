@@ -1,12 +1,4 @@
-// ========================================
-// STORY DATA - IN FIN TE SPECCHIA
-// Volume I: L'Innocenza Spezzata
-// Paragrafi 1-15
-// ========================================
-
 const StoryData = {
-    
-    // ===== PARAGRAFO 1: INIZIO =====
     1: {
         id: 1,
         title: "Il Dialogo",
@@ -42,8 +34,6 @@ const StoryData = {
             set: { 'dialogo_neiano_avvenuto': true }
         }
     },
-
-    // ===== PARAGRAFO 2: SCELTA A1 - GLORIA =====
     2: {
         id: 2,
         title: "Sogni di Gloria",
@@ -72,8 +62,6 @@ const StoryData = {
             modify: { 'maturita_emotiva': 1 }
         }
     },
-
-    // ===== PARAGRAFO 3: SCELTA A2 - PROTEZIONE =====
     3: {
         id: 3,
         title: "Il Cuore del Cavaliere",
@@ -100,8 +88,6 @@ const StoryData = {
             modify: { 'maturita_emotiva': 1, 'empatia': 1 }
         }
     },
-
-    // ===== PARAGRAFO 4: SCELTA A3 - DESTINO =====
     4: {
         id: 4,
         title: "Il Richiamo del Destino",
@@ -130,8 +116,6 @@ const StoryData = {
             modify: { 'maturita_emotiva': 1, 'saggezza': 1 }
         }
     },
-
-    // ===== PARAGRAFO 5: CONVERGENZA A =====
     5: {
         id: 5,
         title: "L'Annuncio",
@@ -158,22 +142,7 @@ const StoryData = {
         flags: {
             set: { 'neiano_annuncia_partenza': true, 'promessa_storia': true }
         }
-    }
-    
-    // CONTINUA NELLA PARTE 2...
-};
-// ========================================
-// PARTE 3/4 - PARAGRAFI 11-15
-// Copia questo DOPO il paragrafo 10
-// ========================================
-
-    // ===== PARAGRAFO 11: RICONGIUNGIMENTO - INIZIO ATTESA =
-// ========================================
-// PARTE 2/4 - PARAGRAFI 6-10
-// Copia questo DOPO il paragrafo 5
-// ========================================
-
-    // ===== PARAGRAFO 6: NEIANO SI PREPARA =====
+    },
     6: {
         id: 6,
         title: "La Partenza",
@@ -203,8 +172,6 @@ const StoryData = {
             set: { 'neiano_parte': true }
         }
     },
-
-    // ===== PARAGRAFO 7: MOMENTO DELLA SCELTA =====
     7: {
         id: 7,
         title: "Il Momento della Scelta",
@@ -236,8 +203,6 @@ const StoryData = {
         ],
         flags: null
     },
-
-    // ===== PARAGRAFO 8: SCELTA B1 - CORRI =====
     8: {
         id: 8,
         title: "Il Passo Non Fatto",
@@ -265,8 +230,6 @@ const StoryData = {
             modify: { 'neiano_relazione': 1, 'maturita_emotiva': 1 }
         }
     },
-
-    // ===== PARAGRAFO 9: SCELTA B2 - RESTA =====
     9: {
         id: 9,
         title: "La Forza del Silenzio",
@@ -294,8 +257,6 @@ const StoryData = {
             modify: { 'neiano_relazione': 1, 'maturita_emotiva': 1 }
         }
     },
-
-    // ===== PARAGRAFO 10: SCELTA B3 - CHIEDI =====
     10: {
         id: 10,
         title: "Le Domande Senza Risposta",
@@ -322,15 +283,7 @@ const StoryData = {
         flags: {
             modify: { 'neiano_relazione': 1 }
         }
-    }
-    
-    // CONTINUA NELLA PARTE 3...
-// ========================================
-// PARTE 3/4 - PARAGRAFI 11-15
-// Copia questo DOPO il paragrafo 10
-// ========================================
-
-    // ===== PARAGRAFO 11: RICONGIUNGIMENTO =====
+    },
     11: {
         id: 11,
         title: "I Tre Giorni",
@@ -364,8 +317,6 @@ const StoryData = {
             set: { 'giorni_attesa': 1, 'neiano_partito': true }
         }
     },
-
-    // ===== PARAGRAFO 12: SCELTA C1 =====
     12: {
         id: 12,
         title: "Segreti Custoditi",
@@ -375,7 +326,9 @@ const StoryData = {
         
         <p>«Cose da fare, eh?» Ago sorrise. «Misteriose cose da fare. Va bene, non chiedo altro. Ma significa che sei libero oggi? Potremmo andare alla pozza grande, quella dove i pesci-gatto si nascondono sotto le radici...»</p>
         
-        <p>Trejano guardò verso la strada dove Neiano era scomparso. Una parte di lui voleva stare solo, a riflettere sulle parole del padre. Un'altra parte sapeva che tre giorni di attesa sarebbero stati lunghi e dolorosi se passati in solitudine.</p>`,
+        <p>Trejano guardò verso la strada dove Neiano era scomparso. Una parte di lui voleva stare solo, a riflettere sulle parole del padre. Un'altra parte sapeva che tre giorni di attesa sarebbero stati lunghi e dolorosi se passati in solitudine.</p>
+        
+        <p><em>Forse è meglio distrarsi</em>, pensò. <em>O forse dovrei usare questo tempo per pensare.</em></p>`,
         choices: [
             {
                 text: "Accetta di andare alla pozza con Ago",
@@ -392,8 +345,6 @@ const StoryData = {
             modify: { 'ago_relazione': 1 }
         }
     },
-
-    // ===== PARAGRAFO 13: SCELTA C2 =====
     13: {
         id: 13,
         title: "Confessioni",
@@ -422,8 +373,6 @@ const StoryData = {
             modify: { 'ago_relazione': 2 }
         }
     },
-
-    // ===== PARAGRAFO 14: SCELTA C3 =====
     14: {
         id: 14,
         title: "Confidenze",
@@ -437,7 +386,7 @@ const StoryData = {
         
         <p>«I padri non sono mai d'accordo» rispose Ago con sicurezza. «Mio padre voleva che diventassi fabbro come lui. Gli ho detto che preferisco pescare. Si è arrabbiato per tre giorni, poi ha ceduto. I padri cedono sempre.»</p>
         
-        <p>Trejano non era sicuro che fosse così semplice. C'era qualcosa di più profondo nelle parole di Neiano.</p>
+        <p>Trejano non era sicuro che fosse così semplice. C'era qualcosa di più profondo nelle parole di Neiano, qualcosa che andava oltre la semplice preoccupazione di un genitore.</p>
         
         <p>«Vieni alla pozza grande?» chiese Ago. «Possiamo fare finta che sei un cavaliere che va a caccia di un drago acquatico!»</p>`,
         choices: [
@@ -456,8 +405,6 @@ const StoryData = {
             modify: { 'ago_relazione': 3, 'ago_sa_sogni_cavaliere': true }
         }
     },
-
-    // ===== PARAGRAFO 15: CONVERGENZA =====
     15: {
         id: 15,
         title: "Il Primo Giorno",
@@ -469,7 +416,7 @@ const StoryData = {
         
         <p><em>Due giorni ancora</em>, pensò. <em>Due giorni e poi saprò.</em></p>
         
-        <p>Ma quella notte, mentre giaceva nel suo giaciglio ascoltando il fiume scorrere sotto le palafitte, Trejano si accorse di una cosa strana: non riusciva a immaginare quale storia Neiano volesse raccontargli.</p>
+        <p>Ma quella notte, mentre giaceva nel suo giaciglio ascoltando il fiume scorrere sotto le palafitte, Trejano si accorse di una cosa strana: non riusciva a immaginare quale storia Neiano volesse raccontargli. Ogni volta che ci provava, la mente scivolava via, come se stesse cercando di afferrare l'acqua con le mani.</p>
         
         <p>E questo, più di ogni altra cosa, lo teneva sveglio nella notte.</p>`,
         choices: [
@@ -482,22 +429,10 @@ const StoryData = {
         flags: {
             modify: { 'giorni_attesa': 2 }
         }
-    }
-    
-    // CONTINUA NELLA PARTE 4...
-// ========================================
-// PARTE 4/4 - CHIUSURA FILE
-// Copia questo DOPO il paragrafo 15
-// ========================================
+    },
+    };
 
-}; // CHIUDE l'oggetto StoryData
-
-// Esporta per il game engine
 if (typeof window !== 'undefined') {
     window.StoryData = StoryData;
     console.log('✅ StoryData caricato con', Object.keys(StoryData).length, 'paragrafi');
 }
-
-// ========================================
-// FINE FILE story-data.js
-// ========================================
