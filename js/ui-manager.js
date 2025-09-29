@@ -121,17 +121,17 @@ class UIManager {
                 </div>
 
                 <div class="character-actions">
-                    <button id="reroll-stats" class="btn btn-secondary" 
-                            ${this.rerollsRemaining <= 0 ? 'disabled' : ''}>
-                        🎲 Rigenera Statistiche
-                    </button>
-                    <button id="accept-character" class="btn btn-primary">
-                        ✅ Accetta Personaggio
-                    </button>
-                    <button id="back-menu" class="btn btn-secondary">
-                        ↩️ Torna al Menu
-                    </button>
-                </div>
+    <button id="reroll-stats" class="choice-button" 
+            ${this.rerollsRemaining <= 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+        🎲 Rigenera Statistiche
+    </button>
+    <button id="accept-character" class="choice-button">
+        ✅ Accetta Personaggio
+    </button>
+    <button id="back-menu" class="choice-button">
+        ↩️ Torna al Menu
+    </button>
+</div>
             </div>
         `;
 
