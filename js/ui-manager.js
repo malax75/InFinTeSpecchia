@@ -270,69 +270,70 @@ class UIManager {
     }
 
     showGems() {
-        if (!this.gameInstance || !this.gameInstance.player) {
-            alert('Crea prima un personaggio!');
-            return;
-        }
+    if (!this.gameInstance || !this.gameInstance.player) {
+        alert('Crea prima un personaggio!');
+        return;
+    }
 
-        const player = this.gameInstance.player;
-        const modalContent = `
+    const player = this.gameInstance.player;
+    const gemsOwned = player.inventario.gemme;
+    
+    let modalContent;
+    
+    if (gemsOwned.length === 0) {
+        // Nessuna gemma raccolta
+        modalContent = `
             <div class="gems-display">
                 <h2>💎 Raccolta Gemme</h2>
                 
-                <div class="gems-grid">
-                    <div class="gem-item ${player.inventario.gemme.includes('Perla di Akoia') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">⚪</span>
-                        <span class="gem-name">Perla di Akoia</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Perla di Akoia') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Ametista di Mechrios') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🟣</span>
-                        <span class="gem-name">Ametista di Mechrios</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Ametista di Mechrios') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Rubino del Fuoco') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🔴</span>
-                        <span class="gem-name">Rubino del Fuoco</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Rubino del Fuoco') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Zaffiro dell\'Acqua') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🔵</span>
-                        <span class="gem-name">Zaffiro dell'Acqua</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Zaffiro dell\'Acqua') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Smeraldo della Terra') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🟢</span>
-                        <span class="gem-name">Smeraldo della Terra</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Smeraldo della Terra') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Topazio dell\'Aria') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🟡</span>
-                        <span class="gem-name">Topazio dell'Aria</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Topazio dell\'Aria') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Acquamarina') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">🔷</span>
-                        <span class="gem-name">Acquamarina</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Acquamarina') ? '✓' : '?'}</span>
-                    </div>
-                    <div class="gem-item ${player.inventario.gemme.includes('Lapislazzulo') ? 'obtained' : 'missing'}">
-                        <span class="gem-icon">💙</span>
-                        <span class="gem-name">Lapislazzulo</span>
-                        <span class="gem-status">${player.inventario.gemme.includes('Lapislazzulo') ? '✓' : '?'}</span>
-                    </div>
+                <div style="text-align: center; padding: 40px; color: var(--text-warm);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">💎</div>
+                    <h3>Nessuna Gemma Raccolta</h3>
+                    <p><em>Le gemme sacre ti aspettano nel tuo viaggio attraverso Limb...</em></p>
+                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Esplora il mondo per trovare le 8 Gemme del Potere!</p>
                 </div>
 
-                <div class="gems-progress">
-                    <p>Gemme raccolte: ${player.inventario.gemme.length}/8</p>
-                </div>
-
-                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+                <button id="close-modal" class="choice-button">Chiudi</button>
             </div>
         `;
+    } else {
+        // Mostra solo le gemme possedute
+        const gemIcons = {
+            'Perla di Akoia': '⚪',
+            'Ametista di Mechrios': '🟣',
+            'Rubino del Fuoco': '🔴',
+            'Zaffiro dell Acqua': '🔵',
+            'Smeraldo della Terra': '🟢',
+            'Topazio dell Aria': '🟡',
+            'Acquamarina': '🔷',
+            'Lapislazzulo': '💙'
+        };
+        
+        modalContent = `
+            <div class="gems-display">
+                <h2>💎 Raccolta Gemme</h2>
+                
+                <div class="gems-progress" style="text-align: center; margin-bottom: 20px;">
+                    <p><strong>Gemme raccolte: ${gemsOwned.length}/8</strong></p>
+                </div>
+                
+                <div class="gems-grid">
+                    ${gemsOwned.map(gemName => `
+                        <div class="gem-item obtained">
+                            <span class="gem-icon">${gemIcons[gemName] || '💎'}</span>
+                            <span class="gem-name">${gemName}</span>
+                            <span class="gem-status">✓</span>
+                        </div>
+                    `).join('')}
+                </div>
 
-        this.showModal(modalContent);
+                <button id="close-modal" class="choice-button">Chiudi</button>
+            </div>
+        `;
     }
+
+    this.showModal(modalContent);
+}
 
     showRelationships() {
         if (!this.gameInstance || !this.gameInstance.player) {
