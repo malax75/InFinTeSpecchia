@@ -482,3 +482,15 @@ if (typeof window !== 'undefined') {
     window.storyData_11_15 = storyData_11_15;
     console.log('📖 Story Data caricato: Paragrafi 11-15');
 }
+// Unifica tutti i paragrafi in StoryData
+const StoryData = {
+    ...storyData_1_5,
+    ...storyData_6_10,
+    ...storyData_11_15
+};
+
+// Esporta per il game engine
+if (typeof window !== 'undefined') {
+    window.StoryData = StoryData;
+    console.log('✅ StoryData unificato e pronto!');
+}
