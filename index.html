@@ -335,6 +335,7 @@
             <aside class="sidebar">
                 <button class="sidebar-btn" onclick="showStats()">📊 Stats</button>
                 <button class="sidebar-btn" onclick="showGems()">💎 Gemme</button>
+                <button class="sidebar-btn" onclick="showInventory()">🎒 Inventario</button>
                 <button class="sidebar-btn" onclick="showRelationships()">🤝 Relazioni</button>
             </aside>
         </div>
@@ -385,6 +386,12 @@
         function showGems() {
             if (window.ui && gameReady) {
                 ui.showGems();
+            }
+        }
+
+        function showInventory() {
+            if (window.ui && gameReady) {
+                ui.showInventory();
             }
         }
 
