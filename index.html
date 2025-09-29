@@ -190,9 +190,12 @@
             </div>
 
             <div id="choices" class="choices-container">
-                <button class="choice-button" onclick="startGame()">
-                    🎮 Inizia l'Avventura
-                </button>
+    <div id="game-status" style="text-align: center; margin-bottom: 15px; color: var(--accent-ruby);">
+        ⚠️ Crea prima un personaggio per iniziare
+    </div>
+    <button id="start-adventure-btn" class="choice-button" onclick="startGame()" disabled style="opacity: 0.5; cursor: not-allowed;">
+        🎮 Inizia l'Avventura
+    </button>
                 <button class="choice-button" onclick="showCharacterCreation()">
                     ⚔️ Crea Personaggio
                 </button>
