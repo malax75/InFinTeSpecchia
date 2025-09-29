@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In Fin Te Specchia - Libro-Gioco Interattivo</title>
     <style>
-        /* CSS Base Mobile-First */
+        /* CSS Base Mobile-First Ottimizzato */
         * {
             margin: 0;
             padding: 0;
@@ -29,27 +29,35 @@
             background: linear-gradient(135deg, var(--background-dark) 0%, var(--background-parchment) 100%);
             color: var(--text-warm);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
         .game-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 8px;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             text-align: center;
-            padding: 15px 0;
+            padding: 12px 0;
             border-bottom: 2px solid var(--primary-gold);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .header h1 {
             color: var(--primary-gold);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            color: var(--secondary-bronze);
         }
 
         .status-bar {
@@ -58,33 +66,85 @@
             align-items: center;
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid var(--primary-gold);
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
         }
 
         .vita-display, .maturita-display {
             flex: 1;
         }
 
+        /* LAYOUT PRINCIPALE CON SIDEBAR */
+        .main-layout {
+            display: flex;
+            gap: 12px;
+            flex: 1;
+        }
+
         .content-area {
+            flex: 1;
             background: rgba(42, 37, 32, 0.8);
             border: 2px solid var(--border-medieval);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            min-height: 300px;
+            border-radius: 10px;
+            padding: 16px;
+            min-height: 400px;
+        }
+
+        .sidebar {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-btn {
+            background: var(--accent-emerald);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            min-height: 44px;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .sidebar-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(80, 200, 120, 0.3);
+        }
+
+        .sidebar-btn:active {
+            transform: translateY(0);
         }
 
         .story-text {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
             text-align: justify;
+            line-height: 1.4;
+        }
+
+        .story-text h2 {
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            text-align: center;
         }
 
         .choices-container {
-            margin-top: 20px;
+            margin-top: 16px;
+        }
+
+        #game-status {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .choice-button {
@@ -94,16 +154,16 @@
             color: var(--background-dark);
             border: none;
             border-radius: 8px;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 1rem;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             min-height: 44px;
         }
 
-        .choice-button:hover {
+        .choice-button:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
         }
@@ -112,31 +172,17 @@
             transform: translateY(0);
         }
 
-        .quick-access {
-            display: flex;
-            justify-content: space-around;
-            background: rgba(139, 69, 19, 0.3);
-            border-radius: 8px;
-            padding: 10px;
-        }
-
-        .quick-btn {
-            background: var(--accent-emerald);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            min-height: 44px;
+        .choice-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .test-result {
             background: rgba(50, 50, 50, 0.9);
             border: 2px solid var(--primary-gold);
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
+            padding: 12px;
+            margin: 12px 0;
             text-align: center;
         }
 
@@ -147,14 +193,94 @@
             text-align: center;
             color: var(--primary-gold);
             font-style: italic;
-            margin: 20px 0;
+            margin: 16px 0;
+            font-size: 0.9rem;
         }
 
-        /* Media Queries */
-        @media (min-width: 768px) {
-            .game-container { padding: 20px; }
-            .header h1 { font-size: 2rem; }
-            .status-bar { font-size: 1rem; }
+        /* MODAL STYLES */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #modal-content {
+            background: var(--background-parchment);
+            border: 2px solid var(--primary-gold);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            color: var(--text-warm);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                order: 2;
+            }
+            
+            .sidebar-btn {
+                flex: 1;
+                margin: 0 4px;
+                font-size: 0.75rem;
+                padding: 8px 4px;
+            }
+            
+            .content-area {
+                order: 1;
+            }
+            
+            .game-container {
+                padding: 5px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .status-bar {
+                font-size: 0.8rem;
+                padding: 6px 8px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .game-container {
+                padding: 12px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .status-bar {
+                font-size: 0.9rem;
+            }
+            
+            .story-text {
+                font-size: 1rem;
+            }
+            
+            .sidebar {
+                width: 160px;
+            }
         }
     </style>
 </head>
@@ -174,49 +300,51 @@
             </div>
         </div>
 
-        <main class="content-area">
-            <div id="story-content" class="story-text">
-                <div class="loading-message">
-                    <p>🌟 Caricamento del mondo di Limb...</p>
-                    <p><em>Le gemme si stanno risvegliando...</em></p>
+        <div class="main-layout">
+            <main class="content-area">
+                <div id="story-content" class="story-text">
+                    <div class="loading-message">
+                        <p>🌟 Caricamento del mondo di Limb...</p>
+                        <p><em>Le gemme si stanno risvegliando...</em></p>
+                    </div>
                 </div>
-            </div>
-            
-            <div id="test-result" class="test-result" style="display: none;">
-                <h3>🎲 Test di Abilità</h3>
-                <p id="test-description"></p>
-                <p id="test-details"></p>
-                <p id="test-outcome"></p>
-            </div>
+                
+                <div id="test-result" class="test-result" style="display: none;">
+                    <h3>🎲 Test di Abilità</h3>
+                    <p id="test-description"></p>
+                    <p id="test-details"></p>
+                    <p id="test-outcome"></p>
+                </div>
 
-            <div id="choices" class="choices-container">
-    <div id="game-status" style="text-align: center; margin-bottom: 15px; color: var(--accent-ruby);">
-        ⚠️ Crea prima un personaggio per iniziare
-    </div>
-    <button id="start-adventure-btn" class="choice-button" onclick="startGame()" disabled style="opacity: 0.5; cursor: not-allowed;">
-        🎮 Inizia l'Avventura
-    </button>
-                <button class="choice-button" onclick="showCharacterCreation()">
-                    ⚔️ Crea Personaggio
-                </button>
-                <button class="choice-button" onclick="loadGame()">
-                    💾 Carica Partita
-                </button>
-            </div>
-        </main>
+                <div id="choices" class="choices-container">
+                    <div id="game-status" style="color: var(--accent-ruby);">
+                        ⚠️ Crea prima un personaggio per iniziare
+                    </div>
+                    <button id="start-adventure-btn" class="choice-button" onclick="startGame()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        🎮 Inizia l'Avventura
+                    </button>
+                    <button class="choice-button" onclick="showCharacterCreation()">
+                        ⚔️ Crea Personaggio
+                    </button>
+                    <button class="choice-button" onclick="loadGame()">
+                        💾 Carica Partita
+                    </button>
+                </div>
+            </main>
 
-        <nav class="quick-access">
-            <button class="quick-btn" onclick="showStats()">📊 Stats</button>
-            <button class="quick-btn" onclick="showGems()">💎 Gemme</button>
-            <button class="quick-btn" onclick="showRelationships()">🤝 Relazioni</button>
-        </nav>
+            <aside class="sidebar">
+                <button class="sidebar-btn" onclick="showStats()">📊 Stats</button>
+                <button class="sidebar-btn" onclick="showGems()">💎 Gemme</button>
+                <button class="sidebar-btn" onclick="showRelationships()">🤝 Relazioni</button>
+            </aside>
+        </div>
     </div>
 
     <!-- Game Scripts -->
     <script src="js/character.js"></script>
-<script src="js/story-data.js"></script>
-<script src="js/ui-manager.js"></script>
-<script src="js/game-engine.js"></script>
+    <script src="js/story-data.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/game-engine.js"></script>
     <script>
         // Inizializzazione e funzioni globali
         let gameReady = false;
