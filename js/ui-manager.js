@@ -290,7 +290,7 @@ class UIManager {
                     <div style="font-size: 4rem; margin-bottom: 20px;">💎</div>
                     <h3>Nessuna Gemma Raccolta</h3>
                     <p><em>Le gemme sacre ti aspettano nel tuo viaggio attraverso Limb...</em></p>
-                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Esplora il mondo per trovare le 8 Gemme del Potere!</p>
+                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Esplora il mondo per trovare le Gemme del Potere!</p>
                 </div>
 
                 <button id="close-modal" class="choice-button">Chiudi</button>
