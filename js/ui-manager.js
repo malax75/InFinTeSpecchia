@@ -262,7 +262,7 @@ class UIManager {
                     </div>
                 </div>
 
-                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+                <button id="close-modal" class="choice-button">Chiudi</button>
             </div>
         `;
 
@@ -450,7 +450,7 @@ class UIManager {
                        <span class="friend">━━</span> Alleato (+3 a +5)</p>
                 </div>
 
-                <button id="close-modal" class="btn btn-primary">Chiudi</button>
+                <button id="close-modal" class="choice-button">Chiudi</button>
             </div>
         `;
 
