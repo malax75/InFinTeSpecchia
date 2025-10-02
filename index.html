@@ -342,154 +342,150 @@
     </div>
 
    <!-- Game Scripts -->
-<script src="js/character.js"></script>
-<script src="js/story-data.js"></script>
-<script src="js/ui-manager.js"></script>
-<script src="js/game-engine.js"></script>
-<script>
-    
-// Inizializzazione e funzioni globali
-let gameReady = false;
+    <script src="js/character.js"></script>
+    <script src="js/story-data.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script>
+        // Inizializzazione e funzioni globali
+        let gameReady = false;
 
-// ===== FUNZIONE CRITICA MANCANTE: makeChoice =====
-function makeChoice(choiceIndex) {
-    if (window.game && gameReady) {
-        game.makeChoice(choiceIndex, game.currentParagraph);
-    } else {
-        showMessage('⚠️ Gioco non pronto, attendi...', 'error');
-    }
-}
-
-// ... resto del codice dall'artifact "index.html - SEZIONE SCRIPT CORRETTA"
-</script>
-
-// Funzioni chiamate dai pulsanti
-function startGame() {
-    if (window.game && gameReady) {
-        game.startNewGame();
-    } else {
-        showMessage('🔄 Caricamento in corso, riprova fra un momento...', 'info');
-    }
-}
-
-function showCharacterCreation() {
-    if (window.ui && gameReady) {
-        ui.showCharacterCreation();
-    } else {
-        showMessage('🔄 Caricamento in corso...', 'info');
-    }
-}
-
-function loadGame() {
-    if (window.game && gameReady) {
-        if (!game.loadGame()) {
-            showMessage('❌ Nessun salvataggio trovato. Inizia una nuova partita!', 'error');
-        }
-    } else {
-        showMessage('🔄 Caricamento in corso...', 'info');
-    }
-}
-
-function showStats() {
-    if (window.ui && gameReady) {
-        ui.showStats();
-    }
-}
-
-function showGems() {
-    if (window.ui && gameReady) {
-        ui.showGems();
-    }
-}
-
-function showInventory() {
-    if (window.ui && gameReady) {
-        ui.showInventory();
-    }
-}
-
-function showRelationships() {
-    if (window.ui && gameReady) {
-        ui.showRelationships();
-    }
-}
-
-// Funzione per mostrare messaggi temporanei
-function showMessage(message, type = 'info') {
-    const messageEl = document.createElement('div');
-    messageEl.className = `temp-message ${type}`;
-    messageEl.textContent = message;
-    messageEl.style.cssText = `
-        position: fixed; top: 20px; right: 20px; z-index: 999;
-        background: var(--background-dark); color: var(--text-warm);
-        border: 2px solid var(--primary-gold); border-radius: 8px;
-        padding: 15px; max-width: 300px; opacity: 0;
-        transition: opacity 0.3s ease;
-    `;
-    
-    if (type === 'error') messageEl.style.borderColor = 'var(--accent-ruby)';
-    if (type === 'success') messageEl.style.borderColor = 'var(--accent-emerald)';
-    if (type === 'warning') messageEl.style.borderColor = 'var(--secondary-bronze)';
-    
-    document.body.appendChild(messageEl);
-    
-    setTimeout(() => messageEl.style.opacity = '1', 10);
-    setTimeout(() => {
-        messageEl.style.opacity = '0';
-        setTimeout(() => messageEl.remove(), 300);
-    }, 3000);
-}
-
-// Inizializzazione quando tutto è caricato
-document.addEventListener('DOMContentLoaded', function() {
-    // Gestione chiusura modal
-    document.addEventListener('click', function(e) {
-        if (e.target && e.target.id === 'close-modal') {
-            const modal = document.getElementById('modal');
-            if (modal) {
-                modal.style.display = 'none';
+        // FUNZIONE CRITICA: makeChoice
+        function makeChoice(choiceIndex) {
+            if (window.game && gameReady) {
+                game.makeChoice(choiceIndex, game.currentParagraph);
+            } else {
+                showMessage('⚠️ Gioco non pronto, attendi...', 'error');
             }
         }
-    });
-    
-    console.log('🚀 In Fin Te Specchia - Inizializzazione...');
-    
-    // Attendi che tutti i moduli siano caricati
-    let checkInterval = setInterval(() => {
-        if (window.game && window.ui && window.TrejanoGame && window.Character) {
-            clearInterval(checkInterval);
-            gameReady = true;
-            
-            // Aggiorna interfaccia iniziale
-            document.getElementById('vita-text').textContent = '❤️ Vita: --/--';
-            document.getElementById('maturita-text').innerHTML = '⭐ Maturità: ☆☆☆☆☆☆☆☆☆☆';
-            
-            document.getElementById('story-content').innerHTML = `
-                <h2>🌅 Benvenuto nel Mondo di Limb</h2>
-                <p>Ti chiami Trejano e vivi nel piccolo villaggio di pescatori di Treja, nelle terre di Saar. 
-                Oggi è un giorno come tanti altri, ma qualcosa nell'aria ti dice che il tuo destino 
-                sta per cambiare per sempre...</p>
-                <p><em>Benvenuto nel mondo di Limb, giovane pescatore. 
-                Le tue scelte forgeranno il futuro di questi regni divisi.</em></p>
-                <div style="text-align: center; margin-top: 20px; color: var(--primary-gold);">
-                    ✨ Scegli come iniziare la tua avventura ✨
-                </div>
+
+        // Funzioni chiamate dai pulsanti
+        function startGame() {
+            if (window.game && gameReady) {
+                game.startNewGame();
+            } else {
+                showMessage('🔄 Caricamento in corso, riprova fra un momento...', 'info');
+            }
+        }
+
+        function showCharacterCreation() {
+            if (window.ui && gameReady) {
+                ui.showCharacterCreation();
+            } else {
+                showMessage('🔄 Caricamento in corso...', 'info');
+            }
+        }
+
+        function loadGame() {
+            if (window.game && gameReady) {
+                if (!game.loadGame()) {
+                    showMessage('❌ Nessun salvataggio trovato. Inizia una nuova partita!', 'error');
+                }
+            } else {
+                showMessage('🔄 Caricamento in corso...', 'info');
+            }
+        }
+
+        function showStats() {
+            if (window.ui && gameReady) {
+                ui.showStats();
+            }
+        }
+
+        function showGems() {
+            if (window.ui && gameReady) {
+                ui.showGems();
+            }
+        }
+
+        function showInventory() {
+            if (window.ui && gameReady) {
+                ui.showInventory();
+            }
+        }
+
+        function showRelationships() {
+            if (window.ui && gameReady) {
+                ui.showRelationships();
+            }
+        }
+
+        // Funzione per mostrare messaggi temporanei
+        function showMessage(message, type = 'info') {
+            const messageEl = document.createElement('div');
+            messageEl.className = `temp-message ${type}`;
+            messageEl.textContent = message;
+            messageEl.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 999;
+                background: var(--background-dark); color: var(--text-warm);
+                border: 2px solid var(--primary-gold); border-radius: 8px;
+                padding: 15px; max-width: 300px; opacity: 0;
+                transition: opacity 0.3s ease;
             `;
             
-            console.log('✅ Gioco completamente caricato e pronto!');
-            showMessage('🌟 Benvenuto in In Fin Te Specchia!', 'success');
+            if (type === 'error') messageEl.style.borderColor = 'var(--accent-ruby)';
+            if (type === 'success') messageEl.style.borderColor = 'var(--accent-emerald)';
+            if (type === 'warning') messageEl.style.borderColor = 'var(--secondary-bronze)';
+            
+            document.body.appendChild(messageEl);
+            
+            setTimeout(() => messageEl.style.opacity = '1', 10);
+            setTimeout(() => {
+                messageEl.style.opacity = '0';
+                setTimeout(() => messageEl.remove(), 300);
+            }, 3000);
         }
-    }, 100);
-    
-    // Timeout di sicurezza
-    setTimeout(() => {
-        if (!gameReady) {
-            clearInterval(checkInterval);
-            console.error('⚠️ Timeout caricamento - controlla i file JS');
-            showMessage('⚠️ Errore di caricamento. Controlla la console.', 'error');
-        }
-    }, 5000);
-});
+
+        // Inizializzazione quando tutto è caricato
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestione chiusura modal
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.id === 'close-modal') {
+                    const modal = document.getElementById('modal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                    }
+                }
+            });
+            
+            console.log('🚀 In Fin Te Specchia - Inizializzazione...');
+            
+            // Attendi che tutti i moduli siano caricati
+            let checkInterval = setInterval(() => {
+                if (window.game && window.ui && window.TrejanoGame && window.Character) {
+                    clearInterval(checkInterval);
+                    gameReady = true;
+                    
+                    // Aggiorna interfaccia iniziale
+                    document.getElementById('vita-text').textContent = '❤️ Vita: --/--';
+                    document.getElementById('maturita-text').innerHTML = '⭐ Maturità: ☆☆☆☆☆☆☆☆☆☆';
+                    
+                    document.getElementById('story-content').innerHTML = `
+                        <h2>🌅 Benvenuto nel Mondo di Limb</h2>
+                        <p>Ti chiami Trejano e vivi nel piccolo villaggio di pescatori di Treja, nelle terre di Saar. 
+                        Oggi è un giorno come tanti altri, ma qualcosa nell'aria ti dice che il tuo destino 
+                        sta per cambiare per sempre...</p>
+                        <p><em>Benvenuto nel mondo di Limb, giovane pescatore. 
+                        Le tue scelte forgeranno il futuro di questi regni divisi.</em></p>
+                        <div style="text-align: center; margin-top: 20px; color: var(--primary-gold);">
+                            ✨ Scegli come iniziare la tua avventura ✨
+                        </div>
+                    `;
+                    
+                    console.log('✅ Gioco completamente caricato e pronto!');
+                    showMessage('🌟 Benvenuto in In Fin Te Specchia!', 'success');
+                }
+            }, 100);
+            
+            // Timeout di sicurezza
+            setTimeout(() => {
+                if (!gameReady) {
+                    clearInterval(checkInterval);
+                    console.error('⚠️ Timeout caricamento - controlla i file JS');
+                    showMessage('⚠️ Errore di caricamento. Controlla la console.', 'error');
+                }
+            }, 5000);
+        });
     </script>
     <!-- Modale per carattere/stats/gemme/relazioni -->
     <div id="modal" style="display: none;">
