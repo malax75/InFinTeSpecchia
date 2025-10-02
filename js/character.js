@@ -28,7 +28,6 @@ class Character {
             speciali: []
         };
         
-        
         // Determina appellativo automatico dalla stat dominante
         this.determinaAppellativo();
         
@@ -58,7 +57,6 @@ class Character {
 
     // ===== GENERAZIONE STATISTICHE (REGOLE ORIGINALI) =====
     generateRandomStats() {
-        // Ogni statistica: random da 6 a 14 (come nel codice Python originale)
         return {
             empatia: this.rollStatRange(6, 14),
             forza: this.rollStatRange(6, 14),
@@ -78,12 +76,10 @@ class Character {
 
     // ===== APPELLATIVO AUTOMATICO (REGOLE ORIGINALI) =====
     determinaAppellativo() {
-        // Trova la statistica più alta
         const statMax = Object.keys(this.stats).reduce((a, b) => 
             this.stats[a] > this.stats[b] ? a : b
         );
         
-        // Appellativi originali dal codice Python
         const appellativi = {
             'empatia': "il Compassionevole",
             'forza': "il Vigoroso", 
@@ -106,10 +102,8 @@ class Character {
             return false;
         }
         
-        // Incrementa contatore
         this.rerollsUsed++;
         
-        // Rigenera tutto secondo le regole originali
         this.stats = this.generateRandomStats();
         this.maxVita = 20 + this.rollDice(8) + this.rollDice(8);
         this.vita = this.maxVita;
@@ -120,7 +114,6 @@ class Character {
         console.log(`🔄 Rigenerazione ${this.rerollsUsed}/${this.maxRerolls} utilizzata`);
         console.log('📊 Nuove stats:', this.stats, 'Vita:', this.vita, 'Appellativo:', this.appellativo);
         
-        // Mostra messaggio appropriato
         if (window.game && window.game.ui) {
             if (remaining === 0) {
                 window.game.ui.showMessage('🚨 Ultima rigenerazione utilizzata!', 'warning');
@@ -134,7 +127,7 @@ class Character {
         return true;
     }
 
-    // ===== GESTIONE STATISTICHE =====
+    // ===== GESTIONE STATISTICHE (CORRETTA - NO RICALCOLO APPELLATIVO) =====
     modifyStat(statName, delta) {
         if (!this.stats[statName]) {
             console.error(`Statistica ${statName} non esistente`);
@@ -146,9 +139,15 @@ class Character {
         
         console.log(`📊 ${statName}: ${oldValue} → ${this.stats[statName]} (${delta > 0 ? '+' : ''}${delta})`);
         
-        // Ricalcola appellativo se necessario
-        if (delta !== 0) {
-            this.determinaAppellativo();
+        // Avviso visivo al giocatore
+        if (delta !== 0 && window.game && window.game.ui) {
+            const emoji = delta > 0 ? '📈' : '📉';
+            const sign = delta > 0 ? '+' : '';
+            const statLabel = statName.charAt(0).toUpperCase() + statName.slice(1);
+            window.game.ui.showMessage(
+                `${emoji} ${statLabel}: ${sign}${delta}`, 
+                delta > 0 ? 'success' : 'warning'
+            );
         }
         
         return true;
@@ -171,6 +170,15 @@ class Character {
         
         if (this.maturita > oldMaturita) {
             console.log(`⭐ Maturità aumentata: ${oldMaturita} → ${this.maturita}`);
+            
+            // Avviso visivo
+            if (window.game && window.game.ui) {
+                window.game.ui.showMessage(
+                    `⭐ Maturità: +${amount}`, 
+                    'success'
+                );
+            }
+            
             this.checkMaturitaMilestones(oldMaturita, this.maturita);
         }
     }
@@ -205,6 +213,11 @@ class Character {
         
         console.log(`💔 Danno da ${source}: -${amount} vita (${oldVita} → ${this.vita})`);
         
+        // Avviso visivo
+        if (window.game && window.game.ui) {
+            window.game.ui.showMessage(`💔 Danno: -${amount} vita`, 'error');
+        }
+        
         if (this.vita === 0) {
             console.log('💀 Vita azzerata - Game Over trigger');
             if (window.game && window.game.ui) {
@@ -220,6 +233,12 @@ class Character {
         this.vita = Math.min(this.maxVita, this.vita + amount);
         
         console.log(`💚 ${source}: +${amount} vita (${oldVita} → ${this.vita})`);
+        
+        // Avviso visivo
+        if (window.game && window.game.ui) {
+            window.game.ui.showMessage(`💚 Cura: +${amount} vita`, 'success');
+        }
+        
         return this.vita;
     }
 
@@ -232,7 +251,6 @@ class Character {
         this.inventario[category].push(item);
         console.log(`🎒 Aggiunto: ${item} (${category})`);
         
-        // Effetti speciali per gemme
         if (category === 'gemme') {
             this.onGemAcquired(item);
         }
@@ -257,7 +275,6 @@ class Character {
             return this.inventario[category] && this.inventario[category].includes(item);
         }
         
-        // Cerca in tutte le categorie
         for (const cat of Object.values(this.inventario)) {
             if (Array.isArray(cat) && cat.includes(item)) {
                 return true;
@@ -269,7 +286,6 @@ class Character {
     onGemAcquired(gemName) {
         console.log(`💎 Gemma acquisita: ${gemName}`);
         
-        // Effetti speciali per gemme specifiche
         const gemEffects = {
             'Perla di Akoia': () => this.modifyStat('empatia', 1),
             'Ametista di Mechrios': () => this.modifyStat('saggezza', 1),
@@ -331,4 +347,5 @@ class Character {
         };
     }
 }
+
 window.Character = Character;
