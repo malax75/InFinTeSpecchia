@@ -1,54 +1,31 @@
+// UI MANAGER - IN FIN TE SPECCHIA PARTE 1/2
+// SOSTITUISCI TUTTO IL FILE ui-manager.js CON PARTE 1 + PARTE 2
+
 class UIManager {
     constructor() {
-        this.gameInstance = null; // Riferimento al game
+        this.gameInstance = null;
         this.currentModal = null;
         this.characterCreated = false;
         this.rerollsRemaining = 3;
         this.initializeEventListeners();
     }
 
-    // Metodo per collegare il game instance
     setGameInstance(gameInstance) {
         this.gameInstance = gameInstance;
     }
 
     initializeEventListeners() {
-        // Event listeners per i pulsanti principali
         document.addEventListener('DOMContentLoaded', () => {
-            this.setupMainMenuButtons();
             this.setupModalButtons();
         });
     }
 
-    setupMainMenuButtons() {
-        const startBtn = document.getElementById('start-adventure');
-        const createBtn = document.getElementById('create-character');
-        const loadBtn = document.getElementById('load-game');
-        const statsBtn = document.getElementById('view-stats');
-        const gemsBtn = document.getElementById('view-gems');
-        const relBtn = document.getElementById('view-relationships');
-
-        if (startBtn) startBtn.onclick = () => this.startAdventure();
-        if (createBtn) createBtn.onclick = () => this.showCharacterCreation();
-        if (loadBtn) loadBtn.onclick = () => this.loadGame();
-        if (statsBtn) statsBtn.onclick = () => this.showStats();
-        if (gemsBtn) gemsBtn.onclick = () => this.showGems();
-        if (relBtn) relBtn.onclick = () => this.showRelationships();
-    }
-
     setupModalButtons() {
-        // Setup dinamico dei pulsanti modal
         document.addEventListener('click', (e) => {
             if (e.target.id === 'close-modal') {
                 this.hideModal();
             }
         });
-    }
-
-    showMainMenu() {
-        document.getElementById('main-menu').style.display = 'block';
-        document.getElementById('game-interface').style.display = 'none';
-        this.hideModal();
     }
 
     startAdventure() {
@@ -62,13 +39,12 @@ class UIManager {
             return;
         }
 
-        // Non cambiare display di elementi che non esistono
         console.log('🎮 Avventura iniziata con:', this.gameInstance.player.name);
         this.gameInstance.showParagraph(1);
     }
 
+    // ===== CREAZIONE PERSONAGGIO =====
     showCharacterCreation() {
-        // Generate random stats
         const stats = this.generateRandomStats();
         const epithet = this.getEpithet(stats);
         
@@ -121,85 +97,107 @@ class UIManager {
                 </div>
 
                 <div class="character-actions">
-    <button id="reroll-stats" class="choice-button" 
-            ${this.rerollsRemaining <= 0 ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-        🎲 Rigenera Statistiche
-    </button>
-    <button id="accept-character" class="choice-button">
-        ✅ Accetta Personaggio
-    </button>
-    <button id="back-menu" class="choice-button">
-        ↩️ Torna al Menu
-    </button>
-</div>
+                    <button id="reroll-stats" class="choice-button" 
+                            ${this.rerollsRemaining <= 0 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>
+                        🔄 Rigenera Statistiche
+                    </button>
+                    <button id="accept-character" class="choice-button">
+                        ✅ Accetta e Inizia
+                    </button>
+                </div>
             </div>
         `;
 
         this.showModal(modalContent);
-        
-        // Store current stats temporarily
-        this.tempStats = stats;
-        
-        // Setup button events
-        document.getElementById('reroll-stats').onclick = () => this.rerollStats();
-        document.getElementById('accept-character').onclick = () => this.acceptCharacter();
-        document.getElementById('back-menu').onclick = () => this.hideModal();
+
+        // Event listeners per i pulsanti
+        setTimeout(() => {
+            const rerollBtn = document.getElementById('reroll-stats');
+            const acceptBtn = document.getElementById('accept-character');
+
+            if (rerollBtn) {
+                rerollBtn.onclick = () => this.rerollCharacter();
+            }
+            if (acceptBtn) {
+                acceptBtn.onclick = () => this.acceptCharacter();
+            }
+        }, 100);
     }
 
     generateRandomStats() {
         return {
-            empatia: Math.floor(Math.random() * 9) + 6,    // 6-14
-            forza: Math.floor(Math.random() * 9) + 6,      // 6-14
-            agilita: Math.floor(Math.random() * 9) + 6,    // 6-14
-            saggezza: Math.floor(Math.random() * 9) + 6,   // 6-14
-            astuzia: Math.floor(Math.random() * 9) + 6     // 6-14
+            empatia: Math.floor(Math.random() * 9) + 6,
+            forza: Math.floor(Math.random() * 9) + 6,
+            agilita: Math.floor(Math.random() * 9) + 6,
+            saggezza: Math.floor(Math.random() * 9) + 6,
+            astuzia: Math.floor(Math.random() * 9) + 6
         };
     }
 
     getEpithet(stats) {
-        // Find highest stat for epithet
-        const maxStat = Math.max(stats.empatia, stats.forza, stats.agilita, stats.saggezza, stats.astuzia);
-        
-        if (stats.empatia === maxStat) return "il Compassionevole";
-        if (stats.forza === maxStat) return "il Forte";
-        if (stats.agilita === maxStat) return "il Veloce";
-        if (stats.saggezza === maxStat) return "il Saggio";
-        if (stats.astuzia === maxStat) return "l'Astuto";
-        
-        return "il Bilanciato"; // fallback
+        const maxStat = Object.keys(stats).reduce((a, b) => stats[a] > stats[b] ? a : b);
+        const epithets = {
+            'empatia': 'il Compassionevole',
+            'forza': 'il Vigoroso',
+            'agilita': 'il Veloce',
+            'saggezza': 'il Saggio',
+            'astuzia': "l'Astuto"
+        };
+        return epithets[maxStat];
     }
 
-    rerollStats() {
-        if (this.rerollsRemaining <= 0) return;
-        
-        this.rerollsRemaining--;
-        this.showCharacterCreation(); // Regenerate with new stats
-    }
-
-    acceptCharacter() {
-        console.log("acceptCharacter chiamato");
-        console.log("gameInstance:", this.gameInstance);
-        
-        if (!this.gameInstance) {
-            console.error("Game instance non trovato!");
-            alert('Errore: Game non inizializzato! Ricarica la pagina.');
+    rerollCharacter() {
+        if (this.rerollsRemaining <= 0) {
+            this.showMessage('❌ Nessuna rigenerazione rimasta!', 'error');
             return;
         }
 
-        console.log("tempStats:", this.tempStats);
-        
-        // Create character with the temporary stats
-        this.gameInstance.player = new Character(this.tempStats);
+        this.rerollsRemaining--;
+        this.showCharacterCreation();
+    }
+
+    acceptCharacter() {
+        if (!this.gameInstance) {
+            alert('Errore: Game non inizializzato!');
+            return;
+        }
+
+        this.gameInstance.player = new Character();
         this.characterCreated = true;
         this.enableStartButton();
+        this.disableCreateButton();
         
-        console.log("Personaggio creato:", this.gameInstance.player);
-        
-        // Hide modal and start game
         this.hideModal();
         this.startAdventure();
     }
 
+    enableStartButton() {
+        const startBtn = document.getElementById('start-adventure-btn');
+        const statusDiv = document.getElementById('game-status');
+        
+        if (startBtn) {
+            startBtn.disabled = false;
+            startBtn.style.opacity = '1';
+            startBtn.style.cursor = 'pointer';
+        }
+        
+        if (statusDiv) {
+            statusDiv.innerHTML = '🎮 Pronto per l\'avventura!';
+            statusDiv.style.color = 'var(--accent-emerald)';
+        }
+    }
+
+    disableCreateButton() {
+        const createBtn = document.querySelector('button[onclick="showCharacterCreation()"]');
+        if (createBtn) {
+            createBtn.disabled = true;
+            createBtn.style.opacity = '0.5';
+            createBtn.style.cursor = 'not-allowed';
+            createBtn.textContent = '✅ Personaggio Creato';
+        }
+    }
+
+    // ===== MODALE =====
     showModal(content) {
         const modal = document.getElementById('modal');
         const modalContent = document.getElementById('modal-content');
@@ -217,6 +215,93 @@ class UIManager {
         this.currentModal = null;
     }
 
+    // ===== MESSAGGI (METODO DELLA CLASSE) =====
+    showMessage(message, type = 'info') {
+        const messageEl = document.createElement('div');
+        messageEl.className = `temp-message ${type}`;
+        messageEl.textContent = message;
+        messageEl.style.cssText = `
+            position: fixed; top: 20px; right: 20px; z-index: 999;
+            background: var(--background-dark); color: var(--text-warm);
+            border: 2px solid var(--primary-gold); border-radius: 8px;
+            padding: 15px; max-width: 300px; opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+        
+        if (type === 'error') messageEl.style.borderColor = 'var(--accent-ruby)';
+        if (type === 'success') messageEl.style.borderColor = 'var(--accent-emerald)';
+        if (type === 'warning') messageEl.style.borderColor = 'var(--secondary-bronze)';
+        if (type === 'milestone') {
+            messageEl.style.borderColor = 'var(--primary-gold)';
+            messageEl.style.fontSize = '1.1rem';
+            messageEl.style.fontWeight = 'bold';
+        }
+        
+        document.body.appendChild(messageEl);
+        
+        setTimeout(() => messageEl.style.opacity = '1', 10);
+        setTimeout(() => {
+            messageEl.style.opacity = '0';
+            setTimeout(() => messageEl.remove(), 300);
+        }, type === 'milestone' ? 5000 : 3000);
+    }
+
+    // ===== PARAGRAFI E SCELTE =====
+    showParagraph(content, gameState) {
+        const storyContent = document.getElementById('story-content');
+        if (storyContent) {
+            storyContent.innerHTML = `
+                <h2>${content.title || 'Continua la tua avventura'}</h2>
+                <div class="story-text">${content.content}</div>
+            `;
+        }
+        
+        this.showChoices(content.choices || []);
+    }
+
+    showChoices(choices) {
+        const choicesContainer = document.getElementById('choices');
+        if (choicesContainer && choices.length > 0) {
+            choicesContainer.innerHTML = choices.map((choice, index) => 
+                `<button class="choice-button" onclick="makeChoice(${index})">
+                    ${choice.text}
+                </button>`
+            ).join('');
+        }
+    }
+
+    showChoicesOnly(paragraphId, gameState) {
+        const paragraph = this.gameInstance.storyData[paragraphId];
+        if (paragraph && paragraph.choices) {
+            this.showChoices(paragraph.choices);
+        }
+    }
+
+    // ===== TEST ABILITÀ =====
+    showTestResult(result) {
+        const testResult = document.getElementById('test-result');
+        if (!testResult) return;
+
+        const resultClass = result.success ? 'success' : 'failure';
+        const resultText = result.success ? '✅ SUCCESSO!' : '❌ FALLIMENTO!';
+        
+        testResult.className = `test-result ${resultClass}`;
+        testResult.style.display = 'block';
+        
+        document.getElementById('test-description').textContent = result.description;
+        document.getElementById('test-details').textContent = 
+            `🎲 Dado: ${result.roll} | 📊 ${result.stat}: ${result.statValue} | ⭐ Bonus: ${result.maturitaBonus}`;
+        document.getElementById('test-outcome').innerHTML = 
+            `<strong>Totale: ${result.total} vs Difficoltà: ${result.difficulty}</strong><br>${resultText}`;
+
+        setTimeout(() => {
+            testResult.style.display = 'none';
+        }, 4000);
+    }
+
+    // UI MANAGER PARTE 2/2 - INCOLLA DOPO LA PARTE 1
+
+    // ===== STATS, GEMME, INVENTARIO, RELAZIONI =====
     showStats() {
         if (!this.gameInstance || !this.gameInstance.player) {
             this.showCharacterCreation();
@@ -226,7 +311,7 @@ class UIManager {
         const player = this.gameInstance.player;
         const modalContent = `
             <div class="stats-display">
-                <h2>📊 Statistiche di Trejano</h2>
+                <h2>📊 Statistiche di ${player.name} ${player.appellativo}</h2>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -258,7 +343,7 @@ class UIManager {
                     </div>
                     <div class="vital-item">
                         <span class="vital-name">⭐ Maturità Emotiva:</span>
-                        <span class="vital-value">${player.maturita}/10</span>
+                        <span class="vital-value">${player.maturita}/10 ${player.getMaturitaStars()}</span>
                     </div>
                 </div>
 
@@ -270,149 +355,119 @@ class UIManager {
     }
 
     showGems() {
-    if (!this.gameInstance || !this.gameInstance.player) {
-        alert('Crea prima un personaggio!');
-        return;
-    }
+        if (!this.gameInstance || !this.gameInstance.player) {
+            alert('Crea prima un personaggio!');
+            return;
+        }
 
-    const player = this.gameInstance.player;
-    const gemsOwned = player.inventario.gemme;
-    
-    let modalContent;
-    
-    if (gemsOwned.length === 0) {
-        // Nessuna gemma raccolta
-        modalContent = `
-            <div class="gems-display">
-                <h2>💎 Raccolta Gemme</h2>
-                
-                <div style="text-align: center; padding: 40px; color: var(--text-warm);">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">💎</div>
-                    <h3>Nessuna Gemma Raccolta</h3>
-                    <p><em>Le gemme sacre ti aspettano nel tuo viaggio attraverso Limb...</em></p>
-                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Esplora il mondo per trovare le Gemme del Potere!</p>
-                </div>
-
-                <button id="close-modal" class="choice-button">Chiudi</button>
-            </div>
-        `;
-    } else {
-        // Mostra solo le gemme possedute
-        const gemIcons = {
-            'Perla di Akoia': '⚪',
-            'Ametista di Mechrios': '🟣',
-            'Rubino del Fuoco': '🔴',
-            'Zaffiro dell Acqua': '🔵',
-            'Smeraldo della Terra': '🟢',
-            'Topazio dell Aria': '🟡',
-            'Acquamarina': '🔷',
-            'Lapislazzulo': '💙'
-        };
+        const gemme = this.gameInstance.player.inventario.gemme;
         
-        modalContent = `
+        const modalContent = `
             <div class="gems-display">
                 <h2>💎 Raccolta Gemme</h2>
                 
-                <div class="gems-progress" style="text-align: center; margin-bottom: 20px;">
-                    <p><strong>Gemme raccolte: ${gemsOwned.length}/8</strong></p>
-                </div>
-                
-                <div class="gems-grid">
-                    ${gemsOwned.map(gemName => `
-                        <div class="gem-item obtained">
-                            <span class="gem-icon">${gemIcons[gemName] || '💎'}</span>
-                            <span class="gem-name">${gemName}</span>
-                            <span class="gem-status">✓</span>
-                        </div>
-                    `).join('')}
-                </div>
+                ${gemme.length === 0 ? `
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 4rem;">💎</div>
+                        <h3>Nessuna Gemma Raccolta</h3>
+                        <p><em>Le gemme sono il potere dei regni di Limb...</em></p>
+                    </div>
+                ` : `
+                    <div class="gems-grid">
+                        ${gemme.map(gem => `
+                            <div class="gem-item">
+                                💎 <strong>${gem}</strong>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <strong>Gemme raccolte: ${gemme.length}/8</strong>
+                    </p>
+                `}
 
                 <button id="close-modal" class="choice-button">Chiudi</button>
             </div>
         `;
-    }
 
-    this.showModal(modalContent);
-}
+        this.showModal(modalContent);
+    }
 
     showInventory() {
-    if (!this.gameInstance || !this.gameInstance.player) {
-        alert('Crea prima un personaggio!');
-        return;
-    }
+        if (!this.gameInstance || !this.gameInstance.player) {
+            alert('Crea prima un personaggio!');
+            return;
+        }
 
-    const player = this.gameInstance.player;
-    const inventario = player.inventario;
-    
-    // Conta oggetti totali (escluse gemme)
-    const totalItems = inventario.oggetti.length + inventario.armi.length + inventario.speciali.length;
-    
-    let modalContent;
-    
-    if (totalItems === 0) {
-        modalContent = `
-            <div class="inventory-display">
-                <h2>🎒 Inventario</h2>
-                
-                <div style="text-align: center; padding: 40px; color: var(--text-warm);">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🎒</div>
-                    <h3>Inventario Vuoto</h3>
-                    <p><em>I tuoi averi sono pochi, ma il cuore è ricco di speranze...</em></p>
-                    <p style="margin-top: 20px; color: var(--secondary-bronze);">Raccogli oggetti durante la tua avventura!</p>
+        const player = this.gameInstance.player;
+        const inventario = player.inventario;
+        
+        const totalItems = inventario.oggetti.length + inventario.armi.length + inventario.speciali.length;
+        
+        let modalContent;
+        
+        if (totalItems === 0) {
+            modalContent = `
+                <div class="inventory-display">
+                    <h2>🎒 Inventario</h2>
+                    
+                    <div style="text-align: center; padding: 40px;">
+                        <div style="font-size: 4rem;">🎒</div>
+                        <h3>Inventario Vuoto</h3>
+                        <p><em>I tuoi averi sono pochi, ma il cuore è ricco di speranze...</em></p>
+                    </div>
+
+                    <button id="close-modal" class="choice-button">Chiudi</button>
                 </div>
+            `;
+        } else {
+            modalContent = `
+                <div class="inventory-display">
+                    <h2>🎒 Inventario</h2>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <p><strong>Oggetti posseduti: ${totalItems}</strong></p>
+                    </div>
+                    
+                    ${inventario.oggetti.length > 0 ? `
+                        <div style="margin-bottom: 15px;">
+                            <h3>🛍️ Oggetti Comuni</h3>
+                            ${inventario.oggetti.map(item => `
+                                <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                    📦 ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${inventario.armi.length > 0 ? `
+                        <div style="margin-bottom: 15px;">
+                            <h3>⚔️ Armi ed Equipaggiamento</h3>
+                            ${inventario.armi.map(item => `
+                                <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                    ⚔️ ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    ${inventario.speciali.length > 0 ? `
+                        <div style="margin-bottom: 15px;">
+                            <h3>✨ Oggetti Speciali</h3>
+                            ${inventario.speciali.map(item => `
+                                <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
+                                    ✨ ${item}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
 
-                <button id="close-modal" class="choice-button">Chiudi</button>
-            </div>
-        `;
-    } else {
-        modalContent = `
-            <div class="inventory-display">
-                <h2>🎒 Inventario</h2>
-                
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <p><strong>Oggetti posseduti: ${totalItems}</strong></p>
+                    <button id="close-modal" class="choice-button">Chiudi</button>
                 </div>
-                
-                ${inventario.oggetti.length > 0 ? `
-                    <div style="margin-bottom: 15px;">
-                        <h3>🛍️ Oggetti Comuni</h3>
-                        ${inventario.oggetti.map(item => `
-                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
-                                📦 ${item}
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
-                
-                ${inventario.armi.length > 0 ? `
-                    <div style="margin-bottom: 15px;">
-                        <h3>⚔️ Armi ed Equipaggiamento</h3>
-                        ${inventario.armi.map(item => `
-                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
-                                ⚔️ ${item}
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
-                
-                ${inventario.speciali.length > 0 ? `
-                    <div style="margin-bottom: 15px;">
-                        <h3>✨ Oggetti Speciali</h3>
-                        ${inventario.speciali.map(item => `
-                            <div style="padding: 5px 0; border-bottom: 1px solid var(--border-medieval);">
-                                ✨ ${item}
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
+            `;
+        }
 
-                <button id="close-modal" class="choice-button">Chiudi</button>
-            </div>
-        `;
+        this.showModal(modalContent);
     }
-
-    this.showModal(modalContent);
-}
     
     showRelationships() {
         if (!this.gameInstance || !this.gameInstance.player) {
@@ -445,9 +500,9 @@ class UIManager {
                 </div>
 
                 <div class="relationship-legend">
-                    <p><span class="enemy">━━</span> Nemico (-5 a -3) | 
-                       <span class="neutral">━━</span> Neutrale (-2 a +2) | 
-                       <span class="friend">━━</span> Alleato (+3 a +5)</p>
+                    <p><span style="color: var(--accent-ruby);">━━</span> Nemico (-5 a -3) | 
+                       <span style="color: var(--text-warm);">━━</span> Neutrale (-2 a +2) | 
+                       <span style="color: var(--accent-emerald);">━━</span> Alleato (+3 a +5)</p>
                 </div>
 
                 <button id="close-modal" class="choice-button">Chiudi</button>
@@ -476,102 +531,14 @@ class UIManager {
         return 'neutral';
     }
 
-    updateUI() {
-        if (!this.gameInstance || !this.gameInstance.player) return;
-
-        const player = this.gameInstance.player;
-        
-        // Update vita bar
-        const vitaBar = document.querySelector('.vita-fill');
-        const vitaText = document.querySelector('.vita-text');
-        if (vitaBar && vitaText) {
-            const vitaPercent = (player.vita / player.maxVita) * 100;
-            vitaBar.style.width = vitaPercent + '%';
-            vitaText.textContent = `${player.vita}/${player.maxVita}`;
-        }
-
-        // Update maturità
-        const maturitaStars = document.querySelector('.maturita-stars');
-        if (maturitaStars) {
-            let starsHTML = '';
-            for (let i = 0; i < 10; i++) {
-                starsHTML += i < player.maturita ? '⭐' : '☆';
-            }
-            maturitaStars.innerHTML = starsHTML;
-        }
-    }
-
-    loadGame() {
-        alert('Funzione di caricamento non ancora implementata!');
-    }
-
-    // Utility per i test di abilità
-    showRollResult(result) {
-        const resultClass = result.success ? 'success' : 'failure';
-        const resultText = result.success ? 'SUCCESSO!' : 'FALLIMENTO!';
-        
-        const resultHTML = `
-            <div class="roll-result ${resultClass}">
-                <h3>${resultText}</h3>
-                <p>Lancio: ${result.roll} + Abilità: ${result.total - result.roll} = <strong>${result.total}</strong></p>
-                <p>${result.description}</p>
-            </div>
-        `;
-        
-        // Mostra temporaneamente il risultato
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = resultHTML;
-        tempDiv.style.position = 'fixed';
-        tempDiv.style.top = '50%';
-        tempDiv.style.left = '50%';
-        tempDiv.style.transform = 'translate(-50%, -50%)';
-        tempDiv.style.zIndex = '9999';
-        tempDiv.style.backgroundColor = 'rgba(0,0,0,0.9)';
-        tempDiv.style.color = 'white';
-        tempDiv.style.padding = '20px';
-        tempDiv.style.borderRadius = '10px';
-        
-        document.body.appendChild(tempDiv);
-        
-        setTimeout(() => {
-            document.body.removeChild(tempDiv);
-        }, 3000);
-    }
-
-    // METODI MANCANTI AGGIUNTI:
-    showParagraph(content, gameState) {
-        const storyContent = document.getElementById('story-content');
-        if (storyContent) {
-            storyContent.innerHTML = `
-                <h2>${content.title || 'Continua la tua avventura'}</h2>
-                <div class="story-text">${content.content}</div>
-            `;
-        }
-        
-        // Mostra le scelte se ci sono
-        this.showChoices(content.choices || []);
-    }
-
-    showChoices(choices) {
-        const choicesContainer = document.getElementById('choices');
-        if (choicesContainer && choices.length > 0) {
-            choicesContainer.innerHTML = choices.map((choice, index) => 
-                `<button class="choice-button" onclick="makeChoice(${index})">
-                    ${choice.text}
-                </button>`
-            ).join('');
-        }
-    }
-
+    // ===== AGGIORNAMENTI UI =====
     updateAllDisplays(player, gameState) {
         if (player) {
-            // Aggiorna vita
             const vitaText = document.getElementById('vita-text');
             if (vitaText) {
                 vitaText.textContent = `❤️ Vita: ${player.vita}/${player.maxVita}`;
             }
             
-            // Aggiorna maturità
             const maturitaText = document.getElementById('maturita-text');
             if (maturitaText) {
                 maturitaText.innerHTML = `⭐ Maturità: ${player.getMaturitaStars()}`;
@@ -579,33 +546,21 @@ class UIManager {
         }
     }
 
-    enableStartButton() {
-        const startBtn = document.getElementById('start-adventure-btn');
-        const statusDiv = document.getElementById('game-status');
-        
-        if (startBtn) {
-            startBtn.disabled = false;
-            startBtn.style.opacity = '1';
-            startBtn.style.cursor = 'pointer';
-        }
-        
-        if (statusDiv) {
-            statusDiv.innerHTML = '🎮 Pronto per l\'avventura!';
-            statusDiv.style.color = 'var(--accent-emerald)';
-        }
+    showGameOver() {
+        this.showModal(`
+            <div style="text-align: center;">
+                <h2>💀 Game Over</h2>
+                <p>Il viaggio di Trejano si conclude qui...</p>
+                <p>Ma ogni fine è un nuovo inizio.</p>
+                <button class="choice-button" onclick="location.reload()">
+                    🔄 Ricomincia l'Avventura
+                </button>
+            </div>
+        `);
     }
 }
 
-// Global function per facilitare i test
-function doAccept() {
-    if (window.ui) {
-        window.ui.acceptCharacter();
-    } else {
-        console.error("UI Manager non trovato!");
-    }
-}
-
-// Esporta la classe globalmente
+// Esporta globalmente
 window.UIManager = UIManager;
 
 // ===== INIZIALIZZAZIONE UI =====
