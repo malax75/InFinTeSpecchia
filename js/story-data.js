@@ -31,7 +31,7 @@ const StoryData = {
     2: {
         id: 2,
         title: "Il Colloquio",
-        text: `<p>Trejano entrò nella stanza principale della palafitta. Neiano era seduto al tavolo di legno grezzo, le mani giunte davanti a sé. I suoi occhi, solitamente pieni di calore, erano pensierosi.</p>
+        content: `<p>Trejano entrò nella stanza principale della palafitta. Neiano era seduto al tavolo di legno grezzo, le mani giunte davanti a sé. I suoi occhi, solitamente pieni di calore, erano pensierosi.</p>
         
         <p>«Siediti» disse Neiano, indicando la sedia di fronte a lui.</p>
         
@@ -61,7 +61,7 @@ const StoryData = {
     3: {
         id: 3,
         title: "L'Ultimo Momento di Pace",
-        text: `<p>Trejano rimase sulla veranda ancora un momento, respirando l'aria fresca del mattino. Il fiume scorreva placido, portando con sé piccoli pezzi di legno e foglie. Una libellula dalle ali iridescenti si posò sul parapetto accanto a lui.</p>
+        content: `<p>Trejano rimase sulla veranda ancora un momento, respirando l'aria fresca del mattino. Il fiume scorreva placido, portando con sé piccoli pezzi di legno e foglie. Una libellula dalle ali iridescenti si posò sul parapetto accanto a lui.</p>
         
         <p>Guardò verso l'orizzonte. Oltre le colline, oltre il fiume, c'era un mondo che non conosceva. Un mondo di città, castelli, cavalieri e draghi. Un mondo che lo chiamava.</p>
         
@@ -82,7 +82,7 @@ const StoryData = {
     4: {
         id: 4,
         title: "La Rivelazione di Neiano - Parte 1",
-        text: `<p>Neiano annuì lentamente, come se si fosse aspettato quella risposta.</p>
+        content: `<p>Neiano annuì lentamente, come se si fosse aspettato quella risposta.</p>
         
         <p>«Lo so» disse. «L'ho sempre saputo. Fin da quando eri bambino, guardavi l'orizzonte con quegli occhi... quegli occhi che cercavano qualcosa che Treja non poteva darti.»</p>
         
@@ -113,7 +113,7 @@ const StoryData = {
     5: {
         id: 5,
         title: "La Strada che Non Porta da Nessuna Parte",
-        text: `<p>Neiano tornò a sedersi, le mani che tremavano leggermente.</p>
+        content: `<p>Neiano tornò a sedersi, le mani che tremavano leggermente.</p>
         
         <p>«Diciassette anni fa, ti ho trovato. Non qui, a Treja. Ma sulla strada. Quella strada.» Indicò verso est, verso la strada che tutti nel villaggio conoscevano ma che nessuno percorreva. La strada che, secondo le leggende locali, non portava da nessuna parte.</p>
         
@@ -140,7 +140,7 @@ const StoryData = {
     6: {
         id: 6,
         title: "La Partenza",
-        text: `<p>«Devo andare a cercare risposte» disse Neiano. «Risposte su chi sei. Risposte su quella perla. E risposte su... su cosa sta per succedere.»</p>
+        content: `<p>«Devo andare a cercare risposte» disse Neiano. «Risposte su chi sei. Risposte su quella perla. E risposte su... su cosa sta per succedere.»</p>
         
         <p>«Ma... dove? Per quanto tempo?»</p>
         
@@ -167,7 +167,7 @@ const StoryData = {
     7: {
         id: 7,
         title: "Il Momento della Scelta",
-        text: `<p>Trejano guardò Neiano allontanarsi sulla strada. Ogni passo lo portava più lontano, verso l'orizzonte dove la strada spariva tra le colline.</p>
+        content: `<p>Trejano guardò Neiano allontanarsi sulla strada. Ogni passo lo portava più lontano, verso l'orizzonte dove la strada spariva tra le colline.</p>
         
         <p>Una parte di lui voleva correre, afferrare il padre, costringerlo a restare, a spiegare tutto subito. Un'altra parte sapeva che doveva lasciarlo andare, che questo faceva parte di qualcosa più grande.</p>
         
@@ -180,17 +180,24 @@ const StoryData = {
             {
                 text: "Corri verso di lui, ma poi ti fermi",
                 nextParagraph: 8,
-                stats: null
+                consequences: {
+                    maturita: 1
+                }
             },
             {
                 text: "Resta fermo, dimostra la tua forza",
                 nextParagraph: 9,
-                stats: null
+                consequences: {
+                    stats: { forza: 1 },
+                    maturita: 1
+                }
             },
             {
                 text: "Grida: «Padre, dove vai davvero?»",
                 nextParagraph: 10,
-                stats: null
+                consequences: {
+                    stats: { empatia: 1 }
+                }
             }
         ],
         flags: null
@@ -198,7 +205,7 @@ const StoryData = {
     8: {
         id: 8,
         title: "Il Passo Non Fatto",
-        text: `<p>Trejano iniziò a correre. I piedi nudi battevano sul legno umido della palafitta, poi sulla terra del sentiero.</p>
+        content: `<p>Trejano iniziò a correre. I piedi nudi battevano sul legno umido della palafitta, poi sulla terra del sentiero.</p>
         
         <p>«Padre!» stava per gridare.</p>
         
@@ -223,7 +230,7 @@ const StoryData = {
     9: {
         id: 9,
         title: "La Forza del Silenzio",
-        text: `<p>Trejano rimase immobile, i pugni serrati ai fianchi. Ogni fibra del suo essere voleva correre, gridare, fermare quella partenza assurda.</p>
+        content: `<p>Trejano rimase immobile, i pugni serrati ai fianchi. Ogni fibra del suo essere voleva correre, gridare, fermare quella partenza assurda.</p>
         
         <p>Ma non lo fece.</p>
         
@@ -246,7 +253,7 @@ const StoryData = {
     10: {
         id: 10,
         title: "L'Ultima Domanda",
-        text: `<p>«PADRE!» gridò Trejano. «DOVE VAI DAVVERO?»</p>
+        content: `<p>«PADRE!» gridò Trejano. «DOVE VAI DAVVERO?»</p>
         
         <p>La sua voce echeggiò tra le palafitte, facendo alzare in volo uno stormo di uccelli acquatici. Alcuni vicini si affacciarono dalle finestre, curiosi.</p>
         
@@ -271,7 +278,7 @@ const StoryData = {
     11: {
         id: 11,
         title: "Il Villaggio si Sveglia",
-        text: `<p>Trejano tornò alla palafitta con passi lenti. Il villaggio era completamente sveglio ora. I pescatori stavano uscendo con le loro barche, le donne preparavano il pane, i bambini correvano tra le palafitte giocando.</p>
+        content: `<p>Trejano tornò alla palafitta con passi lenti. Il villaggio era completamente sveglio ora. I pescatori stavano uscendo con le loro barche, le donne preparavano il pane, i bambini correvano tra le palafitte giocando.</p>
         
         <p>Tutto era normale. Tutto era come sempre.</p>
         
@@ -284,17 +291,24 @@ const StoryData = {
             {
                 text: "«Non ora, Ago. Ho bisogno di stare solo»",
                 nextParagraph: 12,
-                stats: null
+                consequences: {
+                    relationships: { ago: -1 }
+                }
             },
             {
                 text: "«Va bene, andiamo a vedere la spada»",
                 nextParagraph: 13,
-                stats: null
+                consequences: {
+                    relationships: { ago: 1 }
+                }
             },
             {
                 text: "«Ago... posso parlarti di una cosa?»",
                 nextParagraph: 14,
-                stats: null
+                consequences: {
+                    stats: { empatia: 1 },
+                    relationships: { ago: 2 }
+                }
             }
         ],
         flags: {
@@ -304,7 +318,7 @@ const StoryData = {
     12: {
         id: 12,
         title: "La Solitudine",
-        text: `<p>«Oh» disse Ago, la delusione evidente sul viso. «Va bene. Se... se hai bisogno di parlare, sai dove trovarmi.»</p>
+        content: `<p>«Oh» disse Ago, la delusione evidente sul viso. «Va bene. Se... se hai bisogno di parlare, sai dove trovarmi.»</p>
         
         <p>Il ragazzino si allontanò correndo, già distratto da qualche nuova avventura.</p>
         
@@ -327,7 +341,7 @@ const StoryData = {
     13: {
         id: 13,
         title: "La Distrazione",
-        text: `<p>Trejano seguì Ago verso la fucina. A volte, pensò, era meglio lasciarsi distrarre. A volte pensare troppo faceva solo male.</p>
+        content: `<p>Trejano seguì Ago verso la fucina. A volte, pensò, era meglio lasciarsi distrarre. A volte pensare troppo faceva solo male.</p>
         
         <p>La fucina era calda e rumorosa. Il padre di Ago, un uomo enorme con le braccia come tronchi d'albero, stava martellando qualcosa sul suo incudine. Il suono del metallo contro metallo riempiva l'aria.</p>
         
@@ -346,12 +360,16 @@ const StoryData = {
             {
                 text: "«Sto bene. È solo che... mio padre è partito»",
                 nextParagraph: 14,
-                stats: null
+                consequences: {
+                    stats: { empatia: 1 }
+                }
             },
             {
                 text: "«Non è niente. Bella spada davvero!»",
                 nextParagraph: 15,
-                stats: null
+                consequences: {
+                    stats: { astuzia: 1 }
+                }
             }
         ],
         flags: {
@@ -361,7 +379,7 @@ const StoryData = {
     14: {
         id: 14,
         title: "Confidenze",
-        text: `<p>Trejano si ritrovò a raccontare tutto. Le parole uscivano come un fiume in piena: il sogno di diventare cavaliere, la partenza di Neiano, la perla misteriosa, i tre giorni di attesa.</p>
+        content: `<p>Trejano si ritrovò a raccontare tutto. Le parole uscivano come un fiume in piena: il sogno di diventare cavaliere, la partenza di Neiano, la perla misteriosa, i tre giorni di attesa.</p>
         
         <p>Ago ascoltava a bocca aperta, gli occhi che brillavano di eccitazione.</p>
         
@@ -390,7 +408,7 @@ const StoryData = {
     15: {
         id: 15,
         title: "Il Primo Giorno",
-        text: `<p>Il primo giorno passò lentamente. Trejano cercò di tenersi occupato - riparò alcune reti, aiutò i vicini a trasportare del legname, pescò nel fiume - ma la sua mente continuava a tornare a Neiano e alla strada misteriosa.</p>
+        content: `<p>Il primo giorno passò lentamente. Trejano cercò di tenersi occupato - riparò alcune reti, aiutò i vicini a trasportare del legname, pescò nel fiume - ma la sua mente continuava a tornare a Neiano e alla strada misteriosa.</p>
         
         <p>La sera cadde su Treja portando con sé l'umidità del fiume e il canto delle rane. Trejano si ritrovò sulla veranda della palafitta, seduto esattamente dove Neiano era solito sedersi dopo una giornata di pesca.</p>
         
