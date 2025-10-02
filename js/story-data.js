@@ -423,8 +423,8 @@ const StoryData = {
         <p><strong>[CONTINUA - Altri paragrafi in sviluppo]</strong></p>`,
         choices: [
             {
-                text: "🔄 Ricomincia la storia",
-                nextParagraph: 1,
+                text: "➡️ Il Secondo Giorno",
+                nextParagraph: 16,
                 stats: null
             }
         ],
