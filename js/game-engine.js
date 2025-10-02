@@ -103,7 +103,7 @@ class TrejanoGame {
     }
 
     processContent(paragraph, gameState) {
-        let content = paragraph.text;
+        let content = paragraph.text || paragraph.content;
         
         // Sostituzioni basate su flags e stats
         content = content.replace(/\{player_name\}/g, this.player.name || 'Trejano');
