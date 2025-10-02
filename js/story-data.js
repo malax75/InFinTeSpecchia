@@ -431,6 +431,470 @@ const StoryData = {
         flags: {
             modify: { 'giorni_attesa': 1 }
         }
+    },
+    16: {
+        id: 16,
+        title: "La Notte Senza Sonno",
+        content: `<p>Quella notte Trejano non riuscì a dormire. Giaceva nel suo giaciglio di paglia, ascoltando il fiume scorrere sotto le palafitte, il suo eterno mormorio che un tempo lo cullava e ora sembrava sussurrare domande senza risposta.</p>
+        
+        <p>Pensava a Neiano. Dove era ora? Aveva già imboccato quella strada misteriosa? La strada che non conduceva in nessun luogo, come dicevano tutti nel villaggio.</p>
+        
+        <p>Ma perché Neiano ci andava, se non portava da nessuna parte?</p>
+        
+        <p>E quella perla... quella perla più grande di qualsiasi cosa Neiano avesse mai visto. Dove l'aveva nascosta? Perché era così pericolosa?</p>
+        
+        <p>Le leggi di Limb. Neiano aveva parlato delle leggi di Limb. Nessuno può possedere una gemma che non sia del proprio regno. Ma Trejano non apparteneva a nessun regno. Era solo un ragazzo trovato su una strada.</p>
+        
+        <p>Quando finalmente l'alba tingeva di rosa le acque del fiume, Trejano si alzò stanco ma inquieto. Due giorni ancora. Due lunghi giorni.</p>`,
+        choices: [
+            {
+                text: "Vai a pescare per distrarti",
+                nextParagraph: 17,
+                consequences: {
+                    stats: { agilita: 1 }
+                }
+            },
+            {
+                text: "Cerca di capire dove Neiano ha nascosto la perla",
+                nextParagraph: 18,
+                consequences: {
+                    stats: { astuzia: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'prima_notte_passata': true }
+        }
+    },
+    17: {
+        id: 17,
+        title: "La Pesca Solitaria",
+        content: `<p>Trejano prese la rete e la barca. L'acqua era fredda e calma, perfetta per pescare anguille. Ma senza Neiano, tutto sembrava diverso.</p>
+        
+        <p>Suo padre conosceva i posti migliori, sapeva leggere il fiume come altri leggevano i libri. Sapeva dove le anguille si nascondevano, quali movimenti facevano prima di abboccare.</p>
+        
+        <p>Trejano gettò la rete, aspettò, la ritirò. Vuota. Riprovò. Ancora vuota.</p>
+        
+        <p>Dopo un'ora aveva catturato solo due piccole anguille, magre e poco appetibili. In altri tempi, con Neiano, ne avrebbero prese dozzine.</p>
+        
+        <p>Si sedette sulla barca, guardando il villaggio da lontano. Le palafitte sembravano fragili, piccole, vulnerabili. Il suo mondo intero si reggeva su quelle sottili gambe di legno piantate nel fango.</p>
+        
+        <p>«Trejano!» Una voce lo chiamò dalla riva. Era Ago, che gli faceva cenni entusiasti.</p>`,
+        choices: [
+            {
+                text: "Torna alla riva da Ago",
+                nextParagraph: 19,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            },
+            {
+                text: "Fai finta di non sentire, continua a pescare",
+                nextParagraph: 20,
+                consequences: {
+                    relationships: { ago: -1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'pescato_primo_giorno': true }
+        }
+    },
+    18: {
+        id: 18,
+        title: "La Ricerca della Perla",
+        content: `<p>Trejano tornò nella palafitta. Se Neiano aveva nascosto la perla, doveva essere qui, da qualche parte. Un oggetto così prezioso, così pericoloso... dove lo avresti nascosto tu?</p>
+        
+        <p>Guardò intorno alla stanza familiare. Il giaciglio di Neiano, ordinato come sempre. Il piccolo tavolo dove mangiavano insieme. Gli attrezzi da pesca appesi alle pareti. L'arazzo che Neiano aveva comprato anni fa da un mercante di passaggio, raffigurante una scena di caccia.</p>
+        
+        <p>L'arazzo.</p>
+        
+        <p>Trejano si avvicinò, lo esaminò. Era vecchio, i colori sbiaditi dal tempo. Ma c'era qualcosa di strano nel modo in cui pendeva dal muro. Non era piatto. Come se dietro...</p>
+        
+        <p>Con mani tremanti, sollevò un angolo dell'arazzo.</p>
+        
+        <p>Dietro, scavata nel legno della parete, c'era una piccola nicchia. E dentro la nicchia, avvolta in un panno scuro, qualcosa di rotondo.</p>`,
+        choices: [
+            {
+                text: "Prendi l'oggetto e guarda cosa c'è dentro",
+                nextParagraph: 21,
+                stats: null
+            },
+            {
+                text: "Rimetti a posto l'arazzo, non è il momento",
+                nextParagraph: 22,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'nicchia_scoperta': true }
+        }
+    },
+    19: {
+        id: 19,
+        title: "Il Progetto di Ago",
+        content: `<p>Trejano remò verso la riva. Ago lo aspettava con un sorriso che sembrava troppo grande per il suo viso da bambino.</p>
+        
+        <p>«Ho avuto un'idea!» esclamò Ago prima ancora che Trejano scendesse dalla barca. «Un'idea fantastica!»</p>
+        
+        <p>«Quale idea?» chiese Trejano, cercando di sorridere nonostante la stanchezza.</p>
+        
+        <p>«Per passare il tempo mentre aspetti tuo padre! Potremmo... potremmo andare ad esplorare!»</p>
+        
+        <p>«Esplorare cosa?»</p>
+        
+        <p>«La strada!» disse Ago, abbassando la voce come se stesse rivelando un segreto. «Quella strada. Quella che... sai.»</p>
+        
+        <p>Trejano sentì un brivido lungo la schiena. La strada che non conduceva in nessun luogo. La strada dove era andato Neiano.</p>
+        
+        <p>«Ago, quella strada è pericolosa. Tutti lo dicono.»</p>
+        
+        <p>«Ma non dobbiamo andarci fino in fondo! Solo... solo un po'. Tanto per vedere. Non hai curiosità?»</p>`,
+        choices: [
+            {
+                text: "«Hai ragione, andiamo a vedere»",
+                nextParagraph: 23,
+                consequences: {
+                    stats: { agilita: 1 },
+                    relationships: { ago: 2 }
+                }
+            },
+            {
+                text: "«No Ago, è troppo pericoloso»",
+                nextParagraph: 24,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'ago_propone_esplorazione': true }
+        }
+    },
+    20: {
+        id: 20,
+        title: "La Solitudine Scelta",
+        content: `<p>Trejano fece finta di non sentire. Continuò a sistemare la rete, fingendo di essere concentrato sulla pesca. Dalla riva, vide Ago restare immobile per qualche momento, poi allontanarsi a testa bassa.</p>
+        
+        <p>Si sentì in colpa, ma aveva bisogno di stare solo. Aveva bisogno di pensare. Troppo stava succedendo, troppo velocemente.</p>
+        
+        <p>Passò il resto della mattinata sul fiume, perdendo la cognizione del tempo. Il sole saliva lento nel cielo, le ombre si accorciavano. Qualche pescatore passava in lontananza, ma nessuno gli si avvicinava. Tutti sapevano che Neiano era partito, e tutti rispettavano il silenzio di Trejano.</p>
+        
+        <p>Quando finalmente tornò a riva, aveva pescato abbastanza anguille per il pranzo. Ma il cuore era vuoto come le mattine senza Neiano.</p>
+        
+        <p>Sulla veranda della palafitta, qualcuno aveva lasciato qualcosa. Un piccolo pacchetto avvolto in foglie.</p>`,
+        choices: [
+            {
+                text: "Apri il pacchetto",
+                nextParagraph: 25,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'ago_deluso': true }
+        }
+    },
+    21: {
+        id: 21,
+        title: "La Perla di Akoia",
+        content: `<p>Con mani tremanti, Trejano prese il panno dalla nicchia. Era pesante, molto più di quanto si aspettasse. Lo posò sul tavolo e lentamente, quasi con reverenza, lo aprì.</p>
+        
+        <p>La perla.</p>
+        
+        <p>Non era come le perle che i pescatori trovavano a volte nei molluschi del fiume. Era... diversa. Enorme, delle dimensioni di un pugno chiuso, perfettamente sferica. E brillava. Anche nella luce fioca della palafitta, brillava di una luce propria, pallida come la luna.</p>
+        
+        <p>Trejano la toccò. Era calda. Pulsava sotto le sue dita come se fosse viva, come se un cuore battesse al suo interno.</p>
+        
+        <p>E improvvisamente, fu travolto da una sensazione. Immagini, suoni, emozioni che non erano sue. Vide una donna con una corona, vide un palazzo di marmo bianco, vide l'acqua che brillava sotto una luna enorme. Sentì amore, dolore, speranza, paura.</p>
+        
+        <p>Lasciò cadere la perla sul tavolo, il cuore che batteva all'impazzata.</p>
+        
+        <p>Cosa aveva appena visto? Cosa era quella perla?</p>`,
+        choices: [
+            {
+                text: "Avvolgi di nuovo la perla e rimettila nella nicchia",
+                nextParagraph: 26,
+                consequences: {
+                    stats: { saggezza: 2 }
+                }
+            },
+            {
+                text: "Tieni la perla con te, potrebbe essere importante",
+                nextParagraph: 27,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'perla_vista': true, 'perla_toccata': true }
+        }
+    },
+    22: {
+        id: 22,
+        title: "La Saggezza dell'Attesa",
+        content: `<p>Trejano rimise a posto l'arazzo con cura. Non era il momento. Neiano aveva nascosto quella cosa per un motivo. Aveva detto che avrebbe spiegato tutto al terzo tramonto.</p>
+        
+        <p>Doveva fidarsi. Doveva aspettare.</p>
+        
+        <p>Anche se ogni fibra del suo essere voleva sapere, voleva capire. Anche se la curiosità lo rodeva come un tarlo. Doveva essere paziente.</p>
+        
+        <p>Suo padre gli aveva sempre insegnato che la pazienza era la virtù più importante per un pescatore. Aspettare il momento giusto per gettare la rete. Aspettare che le anguille abbocchino. Aspettare che il fiume riveli i suoi segreti.</p>
+        
+        <p>Forse lo stesso valeva per i segreti degli uomini.</p>
+        
+        <p>Uscì dalla palafitta. Il sole era alto ora, il villaggio in piena attività. Qualcuno lo chiamò dalla riva. Era Ago.</p>`,
+        choices: [
+            {
+                text: "Vai da Ago",
+                nextParagraph: 19,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'perla_non_toccata': true, 'pazienza_dimostrata': true }
+        }
+    },
+    23: {
+        id: 23,
+        title: "Verso la Strada Misteriosa",
+        content: `<p>«Va bene» disse Trejano, sorprendendo se stesso. «Ma solo un po'. Solo per vedere dove inizia.»</p>
+        
+        <p>Il viso di Ago si illuminò. «Davvero? Oh, sarà un'avventura! Come nelle storie che racconta tuo padre!»</p>
+        
+        <p>I due ragazzi lasciarono il villaggio, dirigendosi verso la periferia dove le palafitte si diradavano. Là, poco distante, iniziava la strada.</p>
+        
+        <p>Era solo un sentiero, in realtà. Largo quanto un carro, serpeggiava tra l'erba alta e poi, dopo un paio di curve, cominciava ad inerpicarsi sulla collina che si affacciava su Treja.</p>
+        
+        <p>Nessuno la percorreva. Mai. L'erba cresceva alta ai bordi, e in alcuni punti invadeva il sentiero stesso. Era una strada dimenticata, o forse una strada che tutti avevano scelto di dimenticare.</p>
+        
+        <p>«È qui» sussurrò Ago, come se parlare troppo forte potesse svegliare qualcosa.</p>
+        
+        <p>Trejano guardò il sentiero che saliva nella collina, sparendo tra gli alberi. Da qualche parte là sopra, Neiano stava camminando. O forse aveva già raggiunto... cosa? Dove portava davvero quella strada?</p>`,
+        choices: [
+            {
+                text: "Sali sulla collina, segui il sentiero",
+                nextParagraph: 28,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Fermati qui, questo basta",
+                nextParagraph: 29,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'strada_raggiunta': true }
+        }
+    },
+    24: {
+        id: 24,
+        title: "Il Rifiuto Saggio",
+        content: `<p>«No Ago» disse Trejano con fermezza. «Quella strada è pericolosa. Tutti nel villaggio lo dicono. Mio padre è andato là perché... perché aveva un motivo. Ma noi non dobbiamo andarci.»</p>
+        
+        <p>Il viso di Ago si afflosciò. «Ma... ma non hai curiosità? Non vuoi sapere dove porta?»</p>
+        
+        <p>«Certo che ho curiosità. Ma la curiosità non è una buona ragione per mettersi in pericolo.» Trejano mise una mano sulla spalla del bambino. «Mio padre tornerà tra due giorni. E allora, forse, mi racconterà cosa c'è là sopra. E io te lo dirò.»</p>
+        
+        <p>Ago annuì, anche se era chiaro che era deluso. «Va bene. Ma me lo prometti? Me lo dirai?»</p>
+        
+        <p>«Te lo prometto.»</p>
+        
+        <p>I due ragazzi tornarono verso il villaggio. Il sole era alto ora, e faceva caldo. Altri pescatori erano sul fiume, le loro barche punteggiavano l'acqua calma come foglie galleggianti.</p>
+        
+        <p>La vita continuava. Normale. Tranquilla.</p>
+        
+        <p>Ma per quanto tempo ancora?</p>`,
+        choices: [
+            {
+                text: "Passa il pomeriggio con Ago",
+                nextParagraph: 30,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'strada_rifiutata': true }
+        }
+    },
+    25: {
+        id: 25,
+        title: "Il Dono di Ago",
+        content: `<p>Trejano prese il pacchetto. All'interno, avvolte con cura, c'erano tre piccole focacce ancora calde. Il pane che faceva la madre di Ago, quello dolce con il miele che Trejano amava tanto.</p>
+        
+        <p>Un bigliettino, scritto con la grafia incerta di un bambino:</p>
+        
+        <p><em>"Per quando hai fame. Tuo amico, Ago."</em></p>
+        
+        <p>Trejano sentì un nodo alla gola. Aveva ignorato Ago, lo aveva ferito, e lui aveva risposto con questo gesto di gentilezza.</p>
+        
+        <p>A volte, pensò, i bambini capiscono cose che gli adulti dimenticano.</p>
+        
+        <p>Mangiò una focaccia. Era buonissima, dolce e morbida. E mentre masticava, decise che appena finito sarebbe andato a cercare Ago per ringraziarlo.</p>
+        
+        <p>Forse non doveva affrontare tutto da solo. Forse aveva bisogno di un amico, anche se quell'amico aveva solo dieci anni.</p>`,
+        choices: [
+            {
+                text: "Vai a cercare Ago",
+                nextParagraph: 19,
+                consequences: {
+                    relationships: { ago: 2 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'focacce_ricevute': true }
+        }
+    },
+    26: {
+        id: 26,
+        title: "Il Segreto Custodito",
+        content: `<p>Con mani che ancora tremavano leggermente, Trejano avvolse di nuovo la perla nel panno scuro. La ripose nella nicchia e rimise l'arazzo al suo posto.</p>
+        
+        <p>Quello che aveva visto, quello che aveva sentito... non lo capiva. Ma sapeva che era importante. Sapeva che Neiano aveva ragione a tenerlo nascosto.</p>
+        
+        <p>Una perla che brillava di luce propria. Una perla che mostrava visioni quando la toccavi. Una perla che pulsava come un cuore vivo.</p>
+        
+        <p>Questa non era una perla comune. Questa era... magia? Potere? Mistero?</p>
+        
+        <p>Trejano si sedette al tavolo, la testa tra le mani. Due giorni ancora. Due giorni e Neiano avrebbe spiegato tutto. La perla, la strada, il segreto della sua nascita.</p>
+        
+        <p>Poteva aspettare. Doveva aspettare.</p>
+        
+        <p>Ma il peso di quel segreto ora gravava anche su di lui.</p>`,
+        choices: [
+            {
+                text: "Esci dalla palafitta, hai bisogno di aria",
+                nextParagraph: 30,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'segreto_custodito': true }
+        }
+    },
+    27: {
+        id: 27,
+        title: "La Perla Portata",
+        content: `<p>Trejano prese la perla, ancora avvolta nel panno. Pesava più di quanto sembrasse. La mise nella sua borsa, quella che usava per portare il pesce al mercato.</p>
+        
+        <p>Non sapeva perché lo faceva. Ma quella perla... gli apparteneva, in qualche modo. Neiano l'aveva trovata con lui quando era neonato. Era legata al suo destino, qualunque fosse.</p>
+        
+        <p>E se Neiano non fosse tornato? Se qualcosa gli fosse successo su quella strada maledetta? Allora la perla sarebbe rimasta nascosta per sempre, e nessuno avrebbe mai saputo la verità.</p>
+        
+        <p>No. Era meglio tenerla con sé. Dove poteva vederla, proteggerla.</p>
+        
+        <p>Rimise l'arazzo a posto e uscì dalla palafitta. Il peso della borsa alla cintura era strano, ma rassicurante. Come se portasse con sé un pezzo del suo passato misterioso.</p>
+        
+        <p>Un pezzo di verità.</p>`,
+        choices: [
+            {
+                text: "Vai al fiume a riflettere",
+                nextParagraph: 30,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'perla_con_se': true }
+        }
+    },
+    28: {
+        id: 28,
+        title: "I Primi Passi sulla Strada",
+        content: `<p>«Andiamo» disse Trejano, e cominciò a salire.</p>
+        
+        <p>Ago lo seguì, eccitato e un po' spaventato. Il sentiero era ripido, e l'erba alta ai lati sembrava volerli trattenere. Rovi si protendevano verso il centro, graffiando le gambe nude dei ragazzi.</p>
+        
+        <p>Dopo la prima curva, il villaggio scomparve alla vista. Gli alberi si facevano più fitti. Faggi enormi, i loro tronchi lisci e argentei, le loro chiome che filtravano la luce del sole in raggi dorati.</p>
+        
+        <p>«È bellissimo» sussurrò Ago.</p>
+        
+        <p>E lo era. C'era una quiete antica in quel bosco, un silenzio che non era vuoto ma pieno di vita nascosta. Il canto degli uccelli, il fruscio delle foglie, il sussurro del vento.</p>
+        
+        <p>Trejano guardò avanti. Il sentiero continuava a salire, serpeggiando tra gli alberi. Quanto lontano erano andati? Quanto lontano osavano andare?</p>
+        
+        <p>E poi vide qualcosa. Sul terreno, proprio al centro del sentiero. Un bastone da pesca. Il bastone da pesca di Neiano.</p>`,
+        choices: [
+            {
+                text: "Raccogli il bastone, è di tuo padre",
+                nextParagraph: 30,
+                consequences: {
+                    maturita: 1,
+                    addItems: ['Bastone da pesca di Neiano']
+                }
+            }
+        ],
+        flags: {
+            set: { 'strada_esplorata': true, 'bastone_trovato': true }
+        }
+    },
+    29: {
+        id: 29,
+        title: "Il Confine Rispettato",
+        content: `<p>«Basta così» disse Trejano. «Abbiamo visto dove inizia. Non dobbiamo andare più lontano.»</p>
+        
+        <p>Ago protestò debolmente, ma Trejano era fermo. C'era qualcosa in quella strada che lo metteva a disagio. Non era paura, esattamente. Era... rispetto? Cautela?</p>
+        
+        <p>Quella strada aveva portato via suo padre. Aveva inghiottito vent'uomini del villaggio e ne aveva restituiti solo tredici, confusi e spaventati. Non era un luogo per due ragazzi curiosi.</p>
+        
+        <p>«Torniamo» disse. «Abbiamo avuto la nostra piccola avventura.»</p>
+        
+        <p>I due ragazzi tornarono indietro, scendendo la collina. Quando raggiunsero il punto dove il sentiero diventava pianura, Trejano si voltò un'ultima volta.</p>
+        
+        <p>La strada saliva, sparendo tra gli alberi. Silenziosa. Paziente. Come se aspettasse qualcosa.</p>
+        
+        <p>O qualcuno.</p>`,
+        choices: [
+            {
+                text: "Torna al villaggio con Ago",
+                nextParagraph: 30,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'confine_rispettato': true }
+        }
+    },
+    30: {
+        id: 30,
+        title: "Il Tramonto del Primo Giorno",
+        content: `<p>Il sole stava calando quando Trejano si ritrovò sulla veranda della palafitta. Lo stesso posto dove si era seduto la sera prima, quando Neiano era ancora lì.</p>
+        
+        <p>Un giorno era passato. Restavano due giorni. Due giorni e poi Neiano sarebbe tornato. Due giorni e poi avrebbe saputo la verità.</p>
+        
+        <p>Il cielo si tingeva di rosa e arancione, gli stessi colori che aveva visto quella mattina all'alba. Il fiume rifletteva quei colori, trasformandosi in un nastro di fuoco liquido.</p>
+        
+        <p>Era bello. Era casa. Era tutto quello che aveva sempre conosciuto.</p>
+        
+        <p>Ma Trejano aveva la sensazione, chiara e inquietante, che presto tutto questo sarebbe cambiato. Che dopo il ritorno di Neiano, dopo la storia che avrebbe raccontato, niente sarebbe più stato lo stesso.</p>
+        
+        <p>Il vento soffiò tra i suoi capelli bianchi, portando con sé il profumo della sera. E da qualche parte, lontana ma non troppo, una cornacchia gracchiò tre volte.</p>
+        
+        <p><strong>Fine del Primo Giorno.</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Secondo Giorno",
+                nextParagraph: 31,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'primo_giorno_finito': true },
+            modify: { 'giorni_attesa': 2 }
+        }
     }
 };
 
