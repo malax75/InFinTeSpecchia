@@ -5,7 +5,7 @@ const StoryData = {
     1: {
         id: 1,
         title: "L'Alba di un Nuovo Giorno",
-        text: `<p>Il sole stava sorgendo sulle palafitte di Treja, tingendo di rosa le acque del fiume. Trejano, con i suoi capelli bianchi come neve che contrastavano con la sua giovane età di diciassette anni, si svegliò al suono familiare del fiume che scorreva sotto la sua casa.</p>
+        content: `<p>Il sole stava sorgendo sulle palafitte di Treja, tingendo di rosa le acque del fiume. Trejano, con i suoi capelli bianchi come neve che contrastavano con la sua giovane età di diciassette anni, si svegliò al suono familiare del fiume che scorreva sotto la sua casa.</p>
         
         <p>Neiano, suo padre adottivo, era già sveglio. Lo sentiva muoversi nella stanza accanto, preparando le reti per la pesca mattutina. Ma c'era qualcosa di diverso nell'aria quella mattina. Un silenzio strano, come se il mondo trattenesse il respiro.</p>
         
