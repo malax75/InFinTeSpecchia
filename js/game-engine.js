@@ -1,5 +1,5 @@
 // GAME ENGINE - IN FIN TE SPECCHIA
-// Core gameplay system con statistiche, test e gestione stato
+// Core gameplay system - VERSIONE CORRETTA
 
 class TrejanoGame {
     constructor() {
@@ -78,21 +78,20 @@ class TrejanoGame {
         return 0;
     }
 
-    // ===== GESTIONE PARAGRAFI =====
+    // ===== GESTIONE PARAGRAFI - CORRETTA =====
     showParagraph(paragraphId, forceShow = false) {
         if (!forceShow && this.gameState.shownParagraphs.has(paragraphId)) {
-            // Mostra solo le opzioni per paragrafi già visti
             this.ui.showChoicesOnly(paragraphId, this.gameState);
             return;
         }
 
+        // ACCESSO DIRETTO - senza getParagraph()
         const paragraph = this.storyData[paragraphId];
         if (!paragraph) {
             console.error(`Paragrafo ${paragraphId} non trovato`);
             return;
         }
 
-        // Applica modifiche basate su stats/flags
         const processedContent = this.processContent(paragraph, this.gameState);
         
         this.gameState.shownParagraphs.add(paragraphId);
@@ -104,7 +103,7 @@ class TrejanoGame {
     }
 
     processContent(paragraph, gameState) {
-        let content = paragraph.content;
+        let content = paragraph.text;
         
         // Sostituzioni basate su flags e stats
         content = content.replace(/\{player_name\}/g, this.player.name || 'Trejano');
@@ -123,9 +122,10 @@ class TrejanoGame {
         };
     }
 
-    // ===== GESTIONE SCELTE =====
+    // ===== GESTIONE SCELTE - CORRETTA =====
     makeChoice(choiceIndex, paragraphId) {
-        const paragraph = this.storyData.getParagraph(paragraphId);
+        // ACCESSO DIRETTO - senza getParagraph()
+        const paragraph = this.storyData[paragraphId];
         if (!paragraph || !paragraph.choices[choiceIndex]) {
             console.error(`Scelta ${choiceIndex} non valida per paragrafo ${paragraphId}`);
             return;
@@ -137,7 +137,7 @@ class TrejanoGame {
         // Applica conseguenze della scelta
         this.applyChoiceConsequences(choice);
 
-        // Vai al prossimo paragrafo o esegui azione
+        // Vai al prossimo paragrafo usando nextParagraph
         if (choice.nextParagraph) {
             this.showParagraph(choice.nextParagraph);
         } else if (choice.action) {
@@ -221,7 +221,10 @@ class TrejanoGame {
     saveGame() {
         const saveData = {
             player: this.player.serialize(),
-            gameState: this.gameState,
+            gameState: {
+                ...this.gameState,
+                shownParagraphs: Array.from(this.gameState.shownParagraphs)
+            },
             currentParagraph: this.currentParagraph,
             timestamp: new Date().toISOString(),
             version: '1.0'
@@ -246,7 +249,10 @@ class TrejanoGame {
             }
 
             this.player = Character.deserialize(saveData.player);
-            this.gameState = saveData.gameState;
+            this.gameState = {
+                ...saveData.gameState,
+                shownParagraphs: new Set(saveData.gameState.shownParagraphs)
+            };
             this.currentParagraph = saveData.currentParagraph;
 
             this.ui.updateAllDisplays(this.player, this.gameState);
@@ -269,15 +275,11 @@ window.TrejanoGame = TrejanoGame;
 let game;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Aspetta che ui sia già creato
     if (window.ui) {
         game = new TrejanoGame();
         ui.setGameInstance(game);
-        game.ui = ui; // Collega UI al game
-        
-        // Riferimenti globali
+        game.ui = ui;
         window.game = game;
-        
         console.log('🚀 Game engine caricato');
     }
 });
