@@ -162,7 +162,7 @@ class UIManager {
             return;
         }
 
-        this.gameInstance.player = new Character();
+        this.gameInstance.player = new Character(this.tempStats);
         this.characterCreated = true;
         this.enableStartButton();
         this.disableCreateButton();
