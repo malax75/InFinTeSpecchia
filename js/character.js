@@ -2,7 +2,7 @@
 // Sistema completo con limite rigenerazioni (3 max)
 
 class Character {
-    constructor() {
+    constructor(customStats = null) {
         this.name = 'Trejano';
         this.appellativo = '';
         
@@ -11,7 +11,7 @@ class Character {
         this.maxRerolls = 3;
         
         // Genera statistiche random 6-14 (regole originali)
-        this.stats = this.generateRandomStats();
+        this.stats = customStats;
         
         // Sistema vita: 20 + 2d8 (regole originali)
         this.maxVita = 20 + this.rollDice(8) + this.rollDice(8);
