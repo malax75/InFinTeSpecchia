@@ -47,6 +47,8 @@ class UIManager {
     showCharacterCreation() {
         const stats = this.generateRandomStats();
         const epithet = this.getEpithet(stats);
+
+        this.tempStats = stats;
         
         const modalContent = `
             <div class="character-creation">
