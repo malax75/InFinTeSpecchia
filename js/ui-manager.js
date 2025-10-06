@@ -301,6 +301,53 @@ class UIManager {
         }, 4000);
     }
 
+    // ===== PULSANTE SALVATAGGIO =====
+    showSaveButton() {
+        if (document.getElementById('save-game-btn')) return;
+        
+        const sidebar = document.querySelector('.sidebar');
+        if (!sidebar) return;
+        
+        const saveBtn = document.createElement('button');
+        saveBtn.id = 'save-game-btn';
+        saveBtn.className = 'sidebar-btn save-btn';
+        saveBtn.innerHTML = '💾 Salva';
+        saveBtn.onclick = () => {
+            if (window.game) {
+                window.game.saveGame();
+            }
+        };
+        
+        sidebar.insertBefore(saveBtn, sidebar.firstChild);
+    }
+
+    hideSaveButton() {
+        const saveBtn = document.getElementById('save-game-btn');
+        if (saveBtn) saveBtn.remove();
+    }
+
+    updateAllDisplays(player, gameState) {
+        const vitaBar = document.getElementById('vita-fill');
+        const vitaText = document.getElementById('vita-text');
+        const maturitaStars = document.getElementById('maturita-stars');
+        
+        if (vitaBar && vitaText) {
+            const vitaPercent = (player.vita / player.maxVita) * 100;
+            vitaBar.style.width = vitaPercent + '%';
+            vitaText.textContent = `${player.vita}/${player.maxVita}`;
+        }
+        
+        if (maturitaStars) {
+            let stars = '';
+            for (let i = 0; i < 10; i++) {
+                stars += i < player.maturita ? '⭐' : '☆';
+            }
+            maturitaStars.textContent = stars;
+        }
+        
+        console.log('🔄 UI aggiornata dopo caricamento');
+    }
+
     // UI MANAGER PARTE 2/2 - INCOLLA DOPO LA PARTE 1
 
     // ===== STATS, GEMME, INVENTARIO, RELAZIONI =====
