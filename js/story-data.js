@@ -1202,8 +1202,8 @@ const StoryData = {
         ],
         flags: {
             set: { 'topo_scacciato': true }
-        },
-
+        }
+    },
         41: {
         id: 41,
         title: "Il Pomeriggio del Secondo Giorno",
