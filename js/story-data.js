@@ -2789,6 +2789,305 @@ const StoryData = {
         flags: {
             set: { 'sogno_ratnaraj_secondo': true, 'dono_menzionato': true }
         }
+    },
+    91: {
+        id: 91,
+        title: "Il Risveglio del Secondo Giorno",
+        content: `<p>Trejano si svegliò con il primo raggio di sole che filtrava tra i rami. Gli uccelli di Crise erano già svegli, muovendosi sui rami con piccoli movimenti nervosi.</p>
+        
+        <p>Crise stava preparando qualcosa sul fuoco - un odore di erbe e pane tostato riempiva l'aria.</p>
+        
+        <p>«Buongiorno, ragazzo» disse il vecchio senza voltarsi. «Hai dormito bene?»</p>
+        
+        <p>Trejano si stiracchiò, sentendo i muscoli indolenziti dalla notte sul terreno duro.</p>
+        
+        <p>«Ho fatto di nuovo quel sogno» rispose. «La perla, le stelle, quella voce...»</p>
+        
+        <p>«Ratnaraj» disse Crise, girandosi. «Il Re delle Gemme. È ciò che sei destinato a diventare.»</p>
+        
+        <p>«Ma io non capisco. Io sono solo... io sono solo Trejano.»</p>
+        
+        <p>Crise gli porse una ciotola fumante.</p>
+        
+        <p>«Mangia. Oggi cammineremo molto, e lungo la via ti racconterò altre storie. Storie che ti aiuteranno a capire.»</p>`,
+        choices: [
+            {
+                text: "«Quali storie?»",
+                nextParagraph: 92,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'secondo_giorno_iniziato': true }
+        }
+    },
+    92: {
+        id: 92,
+        title: "La Strada Continua",
+        content: `<p>Dopo la colazione, ripresero il cammino. Il bosco era fitto, ma Crise sembrava conoscere ogni sentiero, ogni pietra, ogni ramo.</p>
+        
+        <p>Gli uccelli li seguivano dall'alto, saltellando di ramo in ramo, vigilanti.</p>
+        
+        <p>«Ieri ti ho parlato della Guerra dei Venti Regni» iniziò Crise mentre camminavano. «Ti ho detto di come tutto cominciò con l'Opale Supremo che si frantumò.»</p>
+        
+        <p>Trejano annuì, ricordando la storia della sera prima.</p>
+        
+        <p>«Ma non ti ho detto come finì quella guerra» continuò il vecchio. «Non ti ho detto del prezzo che Limb pagò per quella follia.»</p>
+        
+        <p>Si fermò, guardando Trejano con occhi gravi.</p>
+        
+        <p>«Vuoi sapere? È una storia dolorosa.»</p>`,
+        choices: [
+            {
+                text: "«Sì, voglio sapere tutto»",
+                nextParagraph: 93,
+                consequences: { stats: { saggezza: 1 } }
+            },
+            {
+                text: "«Se pensi che debba saperlo»",
+                nextParagraph: 93,
+                stats: null
+            }
+        ]
+    },
+    93: {
+        id: 93,
+        title: "Il Prezzo della Guerra",
+        content: `<p>Crise annuì gravemente e riprese a camminare, parlando mentre il bosco si faceva sempre più denso attorno a loro.</p>
+        
+        <p>«La guerra durò tredici anni» disse. «Tredici lunghi anni di sangue e fuoco. I venti regni si combatterono senza tregua, ognuno cercando di conquistare le gemme degli altri.»</p>
+        
+        <p>«Ma le gemme... le gemme non volevano essere conquistate. Avevano un potere proprio, una volontà antica. E quando i re tentavano di usarle per scopi malvagi, le gemme... si nascondevano.»</p>
+        
+        <p>«Si nascondevano?» chiese Trejano, affascinato.</p>
+        
+        <p>«Si disperdevano. Fuggivano. Alcune si frantumarono ulteriormente, altre semplicemente scomparvero. Alla fine della guerra, dei venti regni ne rimasero solo sette. E delle otto gemme originali, nessuna era più dove doveva essere.»</p>
+        
+        <p>Crise si fermò vicino a un ruscello, inginocchiandosi per bere.</p>
+        
+        <p>«È per questo che esiste la Profezia della Luna Nascente» disse infine. «Perché solo quando tutte le gemme saranno riunite, Limb potrà tornare unita.»</p>`,
+        choices: [
+            {
+                text: "«E la mia perla? È una di quelle gemme?»",
+                nextParagraph: 94,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'storia_guerra_completa': true }
+        }
+    },
+    94: {
+        id: 94,
+        title: "La Verità sulla Perla",
+        content: `<p>Crise si voltò lentamente, e nei suoi occhi c'era qualcosa di antico, di profondo.</p>
+        
+        <p>«Sì» disse semplicemente. «La tua perla è la Perla di Akoia. Una delle otto gemme originali. La più antica, si dice. Quella che venne dal mare quando il mondo era giovane.»</p>
+        
+        <p>Trejano portò inconsciamente la mano al petto, dove la perla era nascosta sotto la tunica.</p>
+        
+        <p>«Ma... ma come è finita a me? Perché Mesis me l'ha data?»</p>
+        
+        <p>«Mesis non te l'ha data per caso» rispose Crise. «Mesis sapeva. Sapeva chi eri, anche se tu non lo sapevi. Sapeva del tuo destino.»</p>
+        
+        <p>«Del mio destino?» Trejano sentì un nodo allo stomaco. «Che destino?»</p>
+        
+        <p>Crise sorrise tristemente.</p>
+        
+        <p>«Tutto a suo tempo, ragazzo. Per ora, continua a camminare. E tieni al sicuro quella perla. È più preziosa di quanto tu possa immaginare.»</p>`,
+        choices: [
+            {
+                text: "➡️ Prosegui nel bosco",
+                nextParagraph: 95,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'perla_riconosciuta_gemma': true }
+        }
+    },
+    95: {
+        id: 95,
+        title: "La Lezione delle Piante",
+        content: `<p>Camminarono in silenzio per un po', Trejano perso nei suoi pensieri. Poi Crise si fermò di nuovo, indicando una pianta bassa con foglie argentate.</p>
+        
+        <p>«Vedi questa?» disse. «Si chiama lunaria. Cresce solo dove la luce della luna è forte. Le sue foglie, seccate e polverizzate, possono curare le febbri causate dalla magia.»</p>
+        
+        <p>Trejano la osservò con attenzione.</p>
+        
+        <p>«E questa» continuò Crise, spostandosi verso un cespuglio con bacche rosse, «è il vischio. Non toccarla a mani nude - le sue bacche sono velenose. Ma se cotte nel modo giusto, diventano un potente antidoto contro i morsi di serpente.»</p>
+        
+        <p>«Come fai a sapere tutte queste cose?» chiese Trejano.</p>
+        
+        <p>Crise rise piano.</p>
+        
+        <p>«Quando vivi tanti anni quanto me, ragazzo, impari. Impari per necessità. E un giorno, forse, anche tu insegnerai a qualcuno più giovane.»</p>`,
+        choices: [
+            {
+                text: "«Voglio imparare. Insegnami tutto»",
+                nextParagraph: 96,
+                consequences: { stats: { saggezza: 1 } }
+            },
+            {
+                text: "«Continua a raccontarmi delle gemme»",
+                nextParagraph: 96,
+                stats: null
+            }
+        ]
+    },
+    96: {
+        id: 96,
+        title: "Mezzogiorno nel Bosco",
+        content: `<p>Il sole era alto quando si fermarono per riposare in una piccola radura. Crise distribuì del pane secco e formaggio, mentre gli uccelli si posavano sui rami vicini, aspettando le briciole.</p>
+        
+        <p>«Ne abbiamo ancora molta di strada davanti» disse Crise. «Giorni e giorni di cammino. Ma non temere - ogni giorno imparerai qualcosa di nuovo.»</p>
+        
+        <p>Trejano masticò il pane in silenzio, osservando il vecchio. C'era qualcosa in lui, qualcosa che non riusciva a definire. Un'aura di potere, forse. O di saggezza antica.</p>
+        
+        <p>«Crise» disse infine. «Tu... tu non sei solo un viandante, vero?»</p>
+        
+        <p>Il vecchio sorrise.</p>
+        
+        <p>«No, ragazzo. Non sono solo un viandante. Ma anche questo, tutto a suo tempo.»</p>
+        
+        <p>Mangiarono in silenzio, circondati dal canto degli uccelli e dal fruscio del vento tra le foglie.</p>`,
+        choices: [
+            {
+                text: "➡️ Riprendi il viaggio",
+                nextParagraph: 97,
+                stats: null
+            }
+        ]
+    },
+    97: {
+        id: 97,
+        title: "Il Pomeriggio",
+        content: `<p>Il pomeriggio trascorse in un susseguirsi di sentieri e radure. Crise continuava a indicare piante e insegnare i loro nomi, le loro proprietà.</p>
+        
+        <p>«La malva, per le ferite. L'ortica, per dare forza. Il timo selvatico, per purificare l'acqua.»</p>
+        
+        <p>Trejano cercava di ricordare tutto, ma era tanto. Troppo. La sua mente era ancora piena di domande sulle gemme, sulla guerra, sul suo destino.</p>
+        
+        <p>E su Neiano. Sempre su Neiano.</p>
+        
+        <p><em>Dove sei, papà?</em> pensò guardando il cielo tra le fronde. <em>Cosa ti è successo?</em></p>
+        
+        <p>«Stai pensando a tuo padre» disse Crise all'improvviso.</p>
+        
+        <p>Trejano sussultò. «Come...?»</p>
+        
+        <p>«Si vede dal tuo volto. E ti capisco. Ma devi essere paziente, Trejano. La verità arriva a chi sa aspettare.»</p>`,
+        choices: [
+            {
+                text: "«Mi dirai di lui? Di Neiano?»",
+                nextParagraph: 98,
+                stats: null
+            },
+            {
+                text: "Resta in silenzio",
+                nextParagraph: 98,
+                consequences: { stats: { empatia: -1 } }
+            }
+        ]
+    },
+    98: {
+        id: 98,
+        title: "Verso Sera",
+        content: `<p>«Ti parlerò di Neiano» disse Crise mentre camminavano. «Ma non oggi. Oggi hai già sentito abbastanza storie. Oggi il tuo cuore deve riposare.»</p>
+        
+        <p>Il sole cominciava a calare, tingendo il cielo tra gli alberi di arancione e rosa.</p>
+        
+        <p>«Tra poco ci fermeremo per la notte» continuò il vecchio. «C'è un buon posto più avanti. Protetto. Gli uccelli l'hanno già controllato.»</p>
+        
+        <p>Uno dei corvi gracchiò in risposta, come a confermare.</p>
+        
+        <p>Camminarono ancora per un po', e poi Crise si fermò in una zona dove tre grandi querce formavano una specie di riparo naturale.</p>
+        
+        <p>«Qui» disse. «Qui passeremo la notte.»</p>`,
+        choices: [
+            {
+                text: "Aiuta a preparare il campo",
+                nextParagraph: 99,
+                consequences: { 
+                    stats: { empatia: 1 },
+                    relationships: { crise: 1 }
+                }
+            },
+            {
+                text: "Siediti e riposa",
+                nextParagraph: 99,
+                stats: null
+            }
+        ]
+    },
+    99: {
+        id: 99,
+        title: "La Seconda Notte",
+        content: `<p>Il fuoco crepitava allegro mentre la notte scendeva sul bosco. Crise aveva preparato una zuppa con erbe selvatiche e radici, sorprendentemente gustosa.</p>
+        
+        <p>Trejano mangiava in silenzio, osservando le fiamme danzare. Due giorni erano passati da quando era fuggito da Treja. Due giorni che sembravano un'eternità.</p>
+        
+        <p>«Domani» disse Crise all'improvviso, «domani ti insegnerò qualcosa di importante. Qualcosa che ti servirà nel tuo viaggio.»</p>
+        
+        <p>«Cosa?» chiese Trejano.</p>
+        
+        <p>«Come ascoltare il bosco. Come sentire i pericoli prima che arrivino. Come muoverti in silenzio.»</p>
+        
+        <p>Il vecchio sorrise.</p>
+        
+        <p>«Dopotutto, non puoi restare un pescatore di anguille per sempre. Devi imparare a sopravvivere in questo mondo più grande.»</p>
+        
+        <p>Trejano annuì, sentendo un misto di paura ed eccitazione.</p>
+        
+        <p>«Ora dormi» disse Crise. «Domani inizia davvero il tuo addestramento.»</p>`,
+        choices: [
+            {
+                text: "➡️ Dormi",
+                nextParagraph: 100,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'secondo_accampamento': true }
+        }
+    },
+    100: {
+        id: 100,
+        title: "Sogni e Ombre",
+        content: `<p>Quella notte, Trejano sognò di nuovo.</p>
+        
+        <p>Ma questa volta il sogno era diverso. Vedeva Treja dall'alto, come se volasse. Vedeva le palafitte sul fiume, vedeva la sua casa.</p>
+        
+        <p>E la vedeva bruciare.</p>
+        
+        <p>Fiamme rosse che divoravano il legno, fumo nero che saliva verso il cielo. Urla. Tante urla.</p>
+        
+        <p>E in mezzo al fuoco, una figura. Qualcuno che cercava qualcosa. Qualcuno che lo cercava.</p>
+        
+        <p>«Ratnaraj...» sussurrava una voce. «Dove sei, Ratnaraj...»</p>
+        
+        <p>Si svegliò di colpo, sudato e tremante.</p>
+        
+        <p>Il fuoco si era quasi spento. Crise dormiva dall'altra parte, immobile. Gli uccelli erano silenziosi sui rami.</p>
+        
+        <p>Ma Trejano non riuscì più a dormire. Restò sveglio fino all'alba, con il cuore pesante e la mente piena di terrore.</p>
+        
+        <p><em>Cos'era quel sogno? Era reale? Era già successo?</em></p>
+        
+        <p>Non lo sapeva. E questo lo spaventava più di qualsiasi cosa.</p>
+        
+        <p><strong>[Continua al paragrafo 101]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Terzo Giorno",
+                nextParagraph: 101,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'sogno_treja_brucia': true },
+            modify: { maturita: 1 }
+        }
     }
 }
 
