@@ -98,6 +98,7 @@ class TrejanoGame {
         this.currentParagraph = paragraphId;
         
         this.ui.showParagraph(processedContent, this.gameState);
+        this.ui.showSaveButton();
         
         console.log(`📖 Mostrato paragrafo ${paragraphId}`);
     }
@@ -240,12 +241,16 @@ class TrejanoGame {
         }
     }
 
-    loadGame() {
+  loadGame() {
         try {
             const saveData = JSON.parse(localStorage.getItem('trejano_save'));
             if (!saveData) {
                 this.ui.showMessage('❌ Nessun salvataggio trovato', 'error');
                 return false;
+            }
+
+            if (saveData.version !== '1.0') {
+                this.ui.showMessage('⚠️ Salvataggio di versione diversa', 'warning');
             }
 
             this.player = Character.deserialize(saveData.player);
@@ -255,11 +260,19 @@ class TrejanoGame {
             };
             this.currentParagraph = saveData.currentParagraph;
 
+            this.ui.showGameScreen();
+            this.ui.showSaveButton();
             this.ui.updateAllDisplays(this.player, this.gameState);
             this.showParagraph(this.currentParagraph, true);
             
-            this.ui.showMessage('✅ Gioco caricato!', 'success');
-            console.log('📁 Gioco caricato');
+            const date = new Date(saveData.timestamp);
+            const dateStr = date.toLocaleString('it-IT');
+            this.ui.showMessage(`✅ Partita caricata (${dateStr})`, 'success');
+            
+            console.log('📁 Gioco caricato con successo');
+            console.log('  └─ Paragrafo:', this.currentParagraph);
+            console.log('  └─ Vita:', this.player.vita + '/' + this.player.maxVita);
+            
             return true;
         } catch (error) {
             this.ui.showMessage('❌ Errore nel caricamento', 'error');
