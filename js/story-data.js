@@ -898,6 +898,622 @@ const StoryData = {
     }
 };
 
+    31: {
+        id: 31,
+        title: "Il Secondo Giorno - Risveglio",
+        content: `<p>Trejano si svegliò con la prima luce dell'alba. Aveva dormito poco e male, tormentato da sogni confusi di strade che non portavano da nessuna parte e perle che brillavano nel buio.</p>
+        
+        <p>Si alzò dal giaciglio con le membra indolenzite. La palafitta era silenziosa, vuota. Il secondo giorno di attesa era cominciato.</p>
+        
+        <p>Due giorni. Solo due giorni ancora.</p>
+        
+        <p>Uscì sulla veranda. Il fiume scorreva placido, avvolto nella nebbia mattutina. Alcune barche erano già sull'acqua - i pescatori più mattinieri che iniziavano la loro giornata.</p>
+        
+        <p>Trejano guardò verso est, verso la strada. Nessun movimento. Nessuna figura che tornava.</p>
+        
+        <p>«Devo tenermi occupato» disse a voce alta, come se parlare rendesse più reale la decisione. «Devo fare qualcosa, altrimenti impazzirò.»</p>`,
+        choices: [
+            {
+                text: "Vai a pescare da solo per tutta la mattina",
+                nextParagraph: 32,
+                consequences: {
+                    stats: { agilita: 1 }
+                }
+            },
+            {
+                text: "Vai a cercare Ago, hai bisogno di compagnia",
+                nextParagraph: 33,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            },
+            {
+                text: "Ripara le reti sulla veranda, resta vicino a casa",
+                nextParagraph: 34,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'secondo_giorno_iniziato': true }
+        }
+    },
+    32: {
+        id: 32,
+        title: "La Pesca Solitaria del Secondo Giorno",
+        content: `<p>Trejano prese il bastone, le pinze e il sacco. Pescare da solo era difficile, ma forse la concentrazione richiesta lo avrebbe distratto dai pensieri cupi.</p>
+        
+        <p>Remò verso il suo punto preferito, dove il fiume formava un'ansa e l'acqua era più profonda. Lì le anguille si nascondevano tra i sassi sul fondo.</p>
+        
+        <p>Ma oggi qualcosa era diverso. Il fiume sembrava... inquieto. L'acqua si muoveva in modo strano, formando piccoli mulinelli che non aveva mai visto prima.</p>
+        
+        <p>E poi vide qualcosa. Una forma bianca che nuotava sotto la superficie. Troppo grande per essere un pesce. Troppo veloce per essere legno alla deriva.</p>
+        
+        <p>La seguì con lo sguardo mentre spariva nell'acqua scura. Cosa era stato?</p>
+        
+        <p>Un brivido gli percorse la schiena. C'erano storie, nel villaggio. Storie di creature che vivevano nel fiume. Creature che apparivano solo quando qualcosa stava per cambiare.</p>`,
+        choices: [
+            {
+                text: "Continua a pescare, erano solo suggestioni",
+                nextParagraph: 35,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Torna a riva, meglio non restare qui",
+                nextParagraph: 36,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'creatura_bianca_vista': true }
+        }
+    },
+    33: {
+        id: 33,
+        title: "Alla Ricerca di Ago",
+        content: `<p>Trejano andò verso la casa di Ago. Il ragazzino abitava con la sua famiglia in una piccola casa di legno vicino ai campi coltivati, non lontano dal villaggio.</p>
+        
+        <p>Quando arrivò, trovò Ago che stava aiutando suo padre a portare sacchi di grano dal campo al granaio. Il ragazzo, vedendolo, lasciò cadere il sacco che stava trasportando e corse incontro all'amico.</p>
+        
+        <p>«Trejano! Stavo proprio pensando a te! Come va? È tornato tuo padre?»</p>
+        
+        <p>«No» rispose Trejano. «Mancano ancora due giorni.»</p>
+        
+        <p>«Devono essere giorni lunghissimi per te» disse Ago, con una maturità sorprendente per un bambino di dieci anni. «Vuoi che facciamo qualcosa insieme? Possiamo andare a esplorare, o pescare, o...»</p>
+        
+        <p>Il padre di Ago li chiamò: «Ago! Questi sacchi non si trasportano da soli!»</p>
+        
+        <p>«Posso aiutare» si offrì Trejano.</p>`,
+        choices: [
+            {
+                text: "Aiuta Ago e suo padre con i sacchi",
+                nextParagraph: 37,
+                consequences: {
+                    stats: { forza: 1 },
+                    relationships: { ago: 1 }
+                }
+            },
+            {
+                text: "«Meglio che tu finisca il lavoro, ci vediamo dopo»",
+                nextParagraph: 38,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'ago_incontrato_secondo_giorno': true }
+        }
+    },
+    34: {
+        id: 34,
+        title: "Le Reti e i Ricordi",
+        content: `<p>Trejano si sedette sulla veranda con le reti da riparare. Era un lavoro che aveva fatto mille volte con Neiano. Le mani si muovevano quasi da sole, intrecciando i fili, annodando, riparando gli strappi.</p>
+        
+        <p>Ma ogni gesto gli ricordava il padre. Ogni nodo era una lezione appresa. Ogni movimento delle dita portava con sé un ricordo.</p>
+        
+        <p><em>"Tira forte, Trejano. Un nodo debole significa anguille perdute."</em></p>
+        
+        <p><em>"Vedi questa rete? Ha più di vent'anni. Se la curi bene, durerà altri venti."</em></p>
+        
+        <p><em>"Le cose importanti richiedono tempo e pazienza. Come pescare. Come vivere."</em></p>
+        
+        <p>Trejano si accorse che stava piangendo solo quando una lacrima cadde sulla rete, bagnando i fili.</p>
+        
+        <p>Improvvisamente, sentì una presenza. Si voltò di scatto.</p>
+        
+        <p>Un piccolo topo dai lunghi baffi bianchi lo stava osservando dal bordo della veranda. I suoi occhi erano stranamente intelligenti, quasi... umani?</p>`,
+        choices: [
+            {
+                text: "Osserva il topo con curiosità",
+                nextParagraph: 39,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            },
+            {
+                text: "Scaccialo via, è solo un topo",
+                nextParagraph: 40,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'topo_bianco_visto': true, 'reti_riparate': true }
+        }
+    },
+    35: {
+        id: 35,
+        title: "La Pesca Continua",
+        content: `<p>Trejano scosse la testa. «Sono solo suggestioni. Troppo tempo a pensare a cose strane.»</p>
+        
+        <p>Si concentrò sulla pesca. Colpì i sassi con il bastone, cercando di stanare le anguille. Una, due, tre... Lentamente, il sacco cominciò a riempirsi.</p>
+        
+        <p>Ma non riusciva a scacciare del tutto la sensazione di essere osservato. Di tanto in tanto guardava l'acqua, cercando quella forma bianca. Ma non la vide più.</p>
+        
+        <p>Dopo alcune ore, quando il sole era alto nel cielo, tornò a riva con un buon bottino. Abbastanza anguille per diversi pasti.</p>
+        
+        <p>«Almeno non morirò di fame» disse tra sé, cercando di sorridere.</p>
+        
+        <p>Ma il sorriso non raggiunse i suoi occhi.</p>`,
+        choices: [
+            {
+                text: "Torna alla palafitta",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'pesca_secondo_giorno_completata': true }
+        }
+    },
+    36: {
+        id: 36,
+        title: "Il Ritorno Prudente",
+        content: `<p>Trejano remò velocemente verso la riva. Non aveva paura, esattamente. Ma c'era qualcosa nell'aria, nel fiume, che non andava.</p>
+        
+        <p>Quando toccò terra, si voltò a guardare l'acqua. Per un momento, gli sembrò di vedere di nuovo quella forma bianca, appena sotto la superficie. Poi sparì.</p>
+        
+        <p>«Forse dovrei parlarne con qualcuno» pensò. «Forse i vecchi del villaggio sapranno cos'era.»</p>
+        
+        <p>Ma poi decise di no. Aveva già abbastanza preoccupazioni. Non aveva bisogno di aggiungerne altre.</p>
+        
+        <p>Tirò la barca a riva e si diresse verso il villaggio. Aveva bisogno di compagnia. Aveva bisogno di sentire voci umane, di vedere persone che sorridevano e vivevano normalmente.</p>
+        
+        <p>Aveva bisogno di dimenticare, anche solo per poco, che suo padre era sparito su una strada che non portava da nessuna parte.</p>`,
+        choices: [
+            {
+                text: "Vai al mercato del villaggio",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'ritorno_prudente': true }
+        }
+    },
+    37: {
+        id: 37,
+        title: "Il Lavoro Condiviso",
+        content: `<p>Per le ore successive, Trejano aiutò Ago e suo padre a trasportare i sacchi di grano. Era un lavoro duro - ogni sacco pesava quanto un bambino piccolo - ma c'era qualcosa di rassicurante nella fatica fisica.</p>
+        
+        <p>Il padre di Ago, un uomo robusto con mani enormi e un sorriso gentile, lo ringraziò più volte. «Sei un bravo ragazzo, Trejano. Neiano ha fatto bene a crescerti così.»</p>
+        
+        <p>Quelle parole scaldarono il cuore di Trejano più di quanto avrebbe immaginato.</p>
+        
+        <p>Quando finirono, il padre di Ago preparò del pane fresco con formaggio per i due ragazzi. Mangiarono seduti all'ombra di un grande albero, guardando i campi che si estendevano fino all'orizzonte.</p>
+        
+        <p>«Sai» disse Ago con la bocca piena, «a volte penso che vivere qui, a Treja, sia noioso. Ma poi guardo tutto questo...» indicò i campi, il fiume in lontananza, le colline, «e penso che forse non è poi così male.»</p>
+        
+        <p>«Non è noioso» rispose Trejano. «È casa.»</p>`,
+        choices: [
+            {
+                text: "Passa il pomeriggio con Ago",
+                nextParagraph: 42,
+                consequences: {
+                    relationships: { ago: 2 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'lavoro_con_ago': true }
+        }
+    },
+    38: {
+        id: 38,
+        title: "L'Attesa Continua",
+        content: `<p>«Meglio che tu finisca il lavoro» disse Trejano. «Ci vediamo dopo.»</p>
+        
+        <p>Ago annuì, anche se sembrava deluso. «Va bene. Se hai bisogno di me, sai dove trovarmi!»</p>
+        
+        <p>Trejano tornò verso il villaggio. Il sole saliva nel cielo, scaldando l'aria. Sarebbe stata una giornata calda.</p>
+        
+        <p>Passò davanti alla locanda, dove alcuni uomini stavano bevendo birra e discutendo animatamente. Passò davanti alla fucina, da dove provenivano i colpi ritmici del martello sull'incudine.</p>
+        
+        <p>Tutto era normale. Tutto era come sempre.</p>
+        
+        <p>Ma per Trejano nulla era normale. Ogni cosa gli ricordava l'assenza di Neiano. Ogni angolo del villaggio portava un ricordo.</p>
+        
+        <p>Si ritrovò, senza averlo pianificato, vicino all'inizio della strada. Quella strada.</p>`,
+        choices: [
+            {
+                text: "Guarda la strada, cerca segni di movimento",
+                nextParagraph: 43,
+                consequences: {
+                    stats: { empatia: 1 }
+                }
+            },
+            {
+                text: "Allontanati, non serve tormentarsi",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: null
+    },
+    39: {
+        id: 39,
+        title: "Il Topo dai Baffi Bianchi",
+        content: `<p>Trejano posò la rete e osservò il topo. Non scappava. Non si muoveva nemmeno. Restava lì, seduto sulle zampe posteriori, a guardarlo.</p>
+        
+        <p>«Che cosa vuoi?» chiese Trejano, sentendosi un po' stupido a parlare con un topo.</p>
+        
+        <p>Il topo inclinò la testa, come se stesse riflettendo sulla domanda. Poi fece un verso strano - non il tipico squittio di un topo, ma qualcosa di più... musicale?</p>
+        
+        <p>E poi, così rapidamente che Trejano quasi non lo vide muoversi, il topo corse via, sparendo in un buco nel muro della palafitta.</p>
+        
+        <p>Trejano rimase a fissare il buco per un lungo momento. Aveva immaginato tutto? O c'era davvero qualcosa di strano in quel topo?</p>
+        
+        <p>«Sto diventando pazzo» disse a voce alta. «Parlo con i topi e vedo cose strane nel fiume. Forse ho solo bisogno di dormire di più.»</p>
+        
+        <p>Ma sapeva che non era vero. C'era qualcosa nell'aria. Qualcosa stava per accadere.</p>`,
+        choices: [
+            {
+                text: "Continua a riparare le reti",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'topo_osservato': true, 'erhon_incontrata_forma_topo': true }
+        }
+    },
+    40: {
+        id: 40,
+        title: "Il Topo Scacciato",
+        content: `<p>«Via! Fuori di qui!» Trejano agitò una mano verso il topo.</p>
+        
+        <p>Il piccolo animale lo guardò per un momento con quelli che sembravano occhi... dispiaciuti? Poi scappò via, sparendo in un buco nel muro.</p>
+        
+        <p>Trejano tornò alle sue reti. Era solo un topo. I topi cercavano sempre cibo intorno alle case. Non c'era nulla di strano.</p>
+        
+        <p>Ma mentre annodava i fili, non riusciva a scacciare la sensazione di aver perso qualcosa. Come se avesse scacciato via non solo un topo, ma... qualcos'altro.</p>
+        
+        <p>«Stupidaggini» si disse. «Sono solo stanco e preoccupato.»</p>
+        
+        <p>Continuò a lavorare, ma le sue mani tremavano leggermente.</p>`,
+        choices: [
+            {
+                text: "Finisci di riparare le reti",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'topo_scacciato': true }
+        }
+
+        41: {
+        id: 41,
+        title: "Il Pomeriggio del Secondo Giorno",
+        content: `<p>Il pomeriggio scivolò via lentamente. Trejano si trovò a vagare per il villaggio senza meta, osservando la vita che continuava intorno a lui.</p>
+        
+        <p>I pescatori rientravano con le loro catture. Le donne lavavano i panni al fiume, chiacchierando e ridendo. I bambini giocavano tra le palafitte, rincorrendosi e gridando.</p>
+        
+        <p>Tutto era così normale. Così... sereno.</p>
+        
+        <p>Ma Trejano si sentiva come se stesse guardando tutto da dietro un velo. Come se non facesse più davvero parte di quel mondo.</p>
+        
+        <p>«Ehi, Trejano!» Il vecchio Soriano, il locandiere, lo chiamò dalla porta della sua taverna. «Vieni qui un momento!»</p>
+        
+        <p>Trejano si avvicinò. Soriano era un uomo enorme, con una barba bianca che gli arrivava al petto e occhi che brillavano di perpetua allegria.</p>
+        
+        <p>«Ho sentito che tuo padre è partito» disse Soriano, facendogli cenno di entrare. «Siediti, ragazzo. Ti offro da bere.»</p>`,
+        choices: [
+            {
+                text: "Entra nella locanda",
+                nextParagraph: 44,
+                consequences: {
+                    stats: { empatia: 1 }
+                }
+            },
+            {
+                text: "Ringrazia ma declina, preferisci stare solo",
+                nextParagraph: 45,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'pomeriggio_secondo_giorno': true }
+        }
+    },
+    42: {
+        id: 42,
+        title: "Il Pomeriggio con Ago",
+        content: `<p>Trejano e Ago passarono il pomeriggio insieme. Andarono a pescare nel fiume, anche se non catturarono molto. Esplorarono la palude vicino al villaggio, saltando tra le rocce e cercando rane.</p>
+        
+        <p>Ago chiacchierava incessantemente - di tutto e di niente. Parlava dei suoi sogni di diventare un grande avventuriero, di visitare le sette penisole, di vedere un drago.</p>
+        
+        <p>«Pensi che i draghi esistano davvero?» chiese a un certo punto.</p>
+        
+        <p>«Non lo so» rispose Trejano. «Forse. Il mondo è grande.»</p>
+        
+        <p>«Se esistono, un giorno li vedremo insieme» disse Ago con convinzione. «Tu diventerai un cavaliere e io... io sarò il tuo scudiero! O forse anche io diventerò un cavaliere. Cavalieri Trejano e Ago! Suona bene, no?»</p>
+        
+        <p>Trejano sorrise. Era impossibile non sorridere quando Ago era così entusiasta.</p>
+        
+        <p>«Sì» disse. «Suona bene.»</p>
+        
+        <p>Ma mentre pronunciava quelle parole, sentì un peso al cuore. Un presentimento. Come se sapesse che quei sogni infantili sarebbero stati spazzati via molto presto.</p>`,
+        choices: [
+            {
+                text: "Il pomeriggio finisce, torna a casa",
+                nextParagraph: 46,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'pomeriggio_con_ago': true }
+        }
+    },
+    43: {
+        id: 43,
+        title: "La Strada Silenziosa",
+        content: `<p>Trejano si fermò all'inizio della strada, guardando verso l'alto. Il sentiero saliva tra gli alberi, sparendo oltre la prima curva.</p>
+        
+        <p>Silenzio. Nessun movimento. Nessun segno di vita.</p>
+        
+        <p>«Padre» sussurrò. «Dove sei?»</p>
+        
+        <p>Il vento soffiò tra i rami, portando con sé un suono. Forse era solo il fruscio delle foglie. O forse... voci?</p>
+        
+        <p>Trejano tese l'orecchio. Sì, erano voci. Lontane, indistinte. Non riusciva a capire le parole, ma c'era qualcosa di strano in quei suoni. Qualcosa di antico, di altro.</p>
+        
+        <p>E poi, all'improvviso, silenzio assoluto. Anche il vento si fermò. Anche gli uccelli smisero di cantare.</p>
+        
+        <p>Un brivido gelido percorse la schiena di Trejano.</p>
+        
+        <p>«Vattene da qui» disse una voce dietro di lui.</p>
+        
+        <p>Trejano si voltò di scatto. Era il vecchio Mentore, un pescatore così anziano che nessuno ricordava più la sua vera età. I suoi occhi erano bianchi per la cataratta, ma sembravano vedere oltre le apparenze.</p>
+        
+        <p>«Quella strada non è per te. Non ancora.»</p>`,
+        choices: [
+            {
+                text: "«Cosa intende, signore?»",
+                nextParagraph: 47,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            },
+            {
+                text: "Allontanati senza rispondere",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'mentore_incontrato': true }
+        }
+    },
+    44: {
+        id: 44,
+        title: "Nella Locanda",
+        content: `<p>Trejano entrò nella locanda. Era buio e fresco dentro, un piacevole contrasto con il caldo pomeriggio. L'odore di stufato di anguilla riempiva l'aria.</p>
+        
+        <p>Soriano gli mise davanti una tazza di sidro di mele. «Bevi. È fresco.»</p>
+        
+        <p>Trejano bevve. Era buono, dolce e aspro allo stesso tempo.</p>
+        
+        <p>«Tuo padre è un buon uomo» disse Soriano dopo un momento di silenzio. «Un uomo saggio. Se è partito, aveva una buona ragione.»</p>
+        
+        <p>«Lo so» rispose Trejano. «Ma... non capisco. Perché quella strada? Tutti dicono che è maledetta.»</p>
+        
+        <p>Soriano si grattò la barba pensieroso. «Maledetta... forse. O forse è solo dimenticata. Sai, quella strada una volta portava da qualche parte. Prima della guerra, prima che i regni si chiudessero in se stessi.»</p>
+        
+        <p>«La guerra?»</p>
+        
+        <p>«La Guerra dei Venti Regni. Tanto tempo fa. Prima che tu nascessi. Prima che molti di noi nascessero.» Soriano guardò nel vuoto, come se vedesse cose che Trejano non poteva vedere. «Cambiò tutto. Le strade si chiusero. I confini divennero muri. E quella strada... quella strada fu dimenticata.»</p>`,
+        choices: [
+            {
+                text: "«Ma dove portava? Dove porta ora?»",
+                nextParagraph: 48,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'soriano_guerra_raccontata': true }
+        }
+    },
+    45: {
+        id: 45,
+        title: "La Solitudine Cercata",
+        content: `<p>«Grazie, signor Soriano, ma preferirei stare solo» disse Trejano.</p>
+        
+        <p>Il vecchio locandiere annuì, comprensivo. «Capisco, ragazzo. Ma ricorda: se hai bisogno di parlare, la mia porta è sempre aperta.»</p>
+        
+        <p>Trejano si allontanò dalla locanda e tornò alla palafitta. Il sole stava iniziando a calare. Presto sarebbe stato il secondo tramonto.</p>
+        
+        <p>Si sedette sulla veranda, nella stessa posizione in cui si era seduto la sera prima. E la sera prima ancora, quando Neiano era ancora qui.</p>
+        
+        <p>Guardò il fiume, le palafitte, le colline in lontananza. Tutto era immobile nella luce dorata del pomeriggio.</p>
+        
+        <p>E improvvisamente, senza preavviso, sentì le lacrime scendere sulle guance.</p>
+        
+        <p>Non stava piangendo per la tristezza, esattamente. O per la paura. Era qualcosa di più profondo. Era... solitudine. Una solitudine così grande che sembrava inghiottirlo intero.</p>`,
+        choices: [
+            {
+                text: "Lascia che le lacrime scorrano",
+                nextParagraph: 49,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'pianto_secondo_giorno': true }
+        }
+    },
+    46: {
+        id: 46,
+        title: "Il Tramonto del Secondo Giorno",
+        content: `<p>Quando Trejano tornò alla palafitta, il sole stava già calando. Il cielo si tingeva di arancione e rosso, colori di fuoco che si riflettevano sull'acqua del fiume.</p>
+        
+        <p>Si sedette sulla veranda, guardando lo spettacolo. Era bellissimo. Doloroso nella sua bellezza.</p>
+        
+        <p>Un altro tramonto. Ne restava solo uno.</p>
+        
+        <p>Domani sera, al tramonto del terzo giorno, Neiano sarebbe tornato. O almeno, così aveva promesso.</p>
+        
+        <p>Ma cosa succedeva se non tornava? Cosa succedeva se qualcosa gli era accaduto su quella strada maledetta?</p>
+        
+        <p>Trejano scosse la testa, cercando di scacciare quei pensieri. Doveva avere fede. Doveva credere che suo padre sarebbe tornato.</p>
+        
+        <p>Il sole toccò l'orizzonte, poi lentamente scivolò al di sotto. Le ombre si allungarono, il cielo passò dal rosso al viola al blu scuro.</p>
+        
+        <p>Le prime stelle cominciarono a brillare.</p>
+        
+        <p><strong>Fine del Secondo Giorno.</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Terzo Giorno",
+                nextParagraph: 51,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'secondo_giorno_finito': true },
+            modify: { 'giorni_attesa': 1 }
+        }
+    },
+    47: {
+        id: 47,
+        title: "Le Parole del Mentore",
+        content: `<p>«Cosa intende, signore?» chiese Trejano. «Perché dice che non è ancora per me?»</p>
+        
+        <p>Il vecchio Mentore lo guardò con quegli occhi bianchi che sembravano vedere tutto. «Perché quella strada chiama solo chi è pronto. Chi ha qualcosa da cercare. Chi ha qualcosa da perdere.»</p>
+        
+        <p>«Mio padre...»</p>
+        
+        <p>«Tuo padre era pronto. Tu non ancora.» Il vecchio mise una mano sulla spalla di Trejano. Era una mano leggera come una piuma, ma Trejano sentì un peso enorme in quel tocco. «Ma presto lo sarai. Molto presto. E quando quel momento arriverà, riconoscerai la strada. E la strada riconoscerà te.»</p>
+        
+        <p>Il Mentore si allontanò, trascinando i piedi nella polvere. Trejano lo guardò andare via, confuso e inquietato dalle sue parole.</p>
+        
+        <p>Cosa aveva voluto dire? Come poteva una strada "riconoscere" qualcuno?</p>`,
+        choices: [
+            {
+                text: "Torna al villaggio",
+                nextParagraph: 41,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'profezia_mentore': true }
+        }
+    },
+    48: {
+        id: 48,
+        title: "La Storia della Strada",
+        content: `<p>«Ma dove portava?» insistette Trejano. «Dove porta ora?»</p>
+        
+        <p>Soriano sospirò profondamente. «Nessuno lo sa con certezza. C'è chi dice che portasse alle terre alte, dove vivono le aquile. C'è chi dice che conducesse ai regni perduti, quelli che sparirono durante la guerra.»</p>
+        
+        <p>«I regni perduti?»</p>
+        
+        <p>«Prima della guerra ce n'erano venti. Venti regni, venti gemme. Dopo la guerra ne rimasero solo sette. Gli altri... sparirono. Inghiottiti dalla terra, dicono alcuni. Distrutti dal fuoco, dicono altri. Trasformati in deserto, dicono altri ancora.»</p>
+        
+        <p>Soriano si avvicinò, abbassando la voce. «Ma c'è una storia che pochi conoscono. Una storia che i vecchi sussurrano quando pensano che i giovani non ascoltino. Dicono che quella strada non porta a un luogo fisico. Dicono che porta... al destino.»</p>
+        
+        <p>«Al destino?»</p>
+        
+        <p>«A ciò che sei destinato a diventare. A ciò che devi essere.» Soriano si raddrizzò. «Ma sono solo storie da vecchi. Superstizioni.»</p>
+        
+        <p>Ma il modo in cui lo disse fece capire a Trejano che Soriano non pensava affatto che fossero solo storie.</p>`,
+        choices: [
+            {
+                text: "«Grazie, signor Soriano»",
+                nextParagraph: 46,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'storia_strada_appresa': true }
+        }
+    },
+    49: {
+        id: 49,
+        title: "Le Lacrime e la Notte",
+        content: `<p>Trejano lasciò che le lacrime scorressero. Non cercò di fermarle, non si vergognò. Pianse per Neiano, per la paura, per la solitudine. Pianse per tutto quello che era cambiato e per tutto quello che stava per cambiare.</p>
+        
+        <p>Quando finalmente le lacrime si fermarono, sentì una strana pace. Non era felicità. Non era sollievo. Era... accettazione. Accettazione del fatto che la sua vita non sarebbe mai più stata la stessa.</p>
+        
+        <p>Il sole era tramontato completamente. La notte era scesa su Treja, portando con sé il canto delle rane e il profumo dell'acqua.</p>
+        
+        <p>Trejano entrò nella palafitta e si sdraiò sul giaciglio. Quella notte dormì meglio. Non un sonno profondo, ma un sonno tranquillo. Un sonno di chi ha accettato ciò che non può cambiare.</p>
+        
+        <p>E nei suoi sogni, vide una strada che saliva verso il cielo. E alla fine della strada, una luce.</p>`,
+        choices: [
+            {
+                text: "➡️ Il Terzo Giorno",
+                nextParagraph: 51,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'pianto_liberatorio': true, 'seconda_notte_serena': true }
+        }
+    },
+    50: {
+        id: 50,
+        title: "La Vigilia dell'Attesa",
+        content: `<p>La seconda notte passò. Trejano dormì a tratti, svegliandosi spesso per guardare fuori dalla finestra, verso la strada.</p>
+        
+        <p>Ogni volta vedeva solo oscurità e stelle.</p>
+        
+        <p>All'alba del terzo giorno, si alzò con un senso di anticipazione misto a terrore. Questo era il giorno. Il giorno in cui Neiano avrebbe dovuto tornare. Il giorno in cui avrebbe saputo la verità.</p>
+        
+        <p>Si vestì lentamente, ritardando il momento di uscire. Come se restare nella palafitta potesse fermare il tempo, impedire che il giorno avanzasse verso il suo inevitabile tramonto.</p>
+        
+        <p>Ma alla fine uscì. Il sole era già sorto, tingendo il mondo di oro rosato.</p>
+        
+        <p>Il terzo giorno era cominciato.</p>
+        
+        <p>L'ultimo giorno di attesa.</p>
+        
+        <p><strong>[Il Terzo Giorno inizia al paragrafo 51]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Terzo Giorno",
+                nextParagraph: 51,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'terzo_giorno_inizia': true }
+        }
+    }
+}
+
 // Esporta per uso nel browser
 if (typeof window !== 'undefined') {
     window.StoryData = StoryData;
