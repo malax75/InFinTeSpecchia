@@ -2469,6 +2469,326 @@ const StoryData = {
         flags: {
             set: { 'viaggio_iniziato': true, 'lasciato_treja': true }
         }
+    },
+    81: {
+        id: 81,
+        title: "Primi Passi nel Bosco",
+        content: `<p>Il bosco era denso e oscuro. Gli alberi si ergevano alti intorno a loro, le chiome che filtravano la luce del sole in raggi sottili e dorati.</p>
+        
+        <p>Crise camminava davanti, con passo sicuro nonostante l'età. Trejano lo seguiva, cercando di non inciampare nelle radici che spuntavano dal terreno.</p>
+        
+        <p>«Dove... dove stiamo andando esattamente?» chiese dopo un po'.</p>
+        
+        <p>«A nord» rispose Crise senza voltarsi. «Sempre a nord. Verso le montagne, verso Tojen.»</p>
+        
+        <p>«E quanto tempo ci vorrà?»</p>
+        
+        <p>«Venti giorni. Forse più, se incontreremo ostacoli.»</p>
+        
+        <p>Venti giorni. Trejano non riusciva nemmeno a immaginarlo. Non era mai stato lontano da Treja per più di qualche ora. E ora doveva camminare per venti giorni attraverso terre sconosciute.</p>
+        
+        <p>«E... e cosa c'è a Tojen?» chiese timidamente.</p>
+        
+        <p>«Risposte» disse Crise. «E un'aquila.»</p>`,
+        choices: [
+            {
+                text: "«Un'aquila?»",
+                nextParagraph: 82,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'primo_giorno_viaggio': true }
+        }
+    },
+    82: {
+        id: 82,
+        title: "Le Terre delle Aquile",
+        content: `<p>«Sì, un'aquila» disse Crise con un mezzo sorriso. «Ma non un'aquila qualunque. Quilian, la regina delle aquile. Una delle ultime creature ancestrali rimaste a Limb.»</p>
+        
+        <p>«Ancestrali?»</p>
+        
+        <p>«Creature antiche. Potenti. Sopravvissute alla Guerra dei Venti Regni.» Crise si fermò, guardando verso nord. «Ma di questo parleremo lungo il cammino. Ho promesso di raccontarti la storia, e lo farò. Nei prossimi giorni saprai tutto. O quasi tutto.»</p>
+        
+        <p>Riprese a camminare, e Trejano lo seguì.</p>
+        
+        <p>Dopo alcune ore, Crise si fermò vicino a una pianta con foglie larghe e fiori gialli.</p>
+        
+        <p>«Guarda» disse, indicando la pianta. «Questa è arnica. Buona per le contusioni e le ferite. Impara a riconoscerla.»</p>
+        
+        <p>Si chinò e raccolse alcuni fiori, mettendoli nella sua bisaccia.</p>`,
+        choices: [
+            {
+                text: "«Puoi insegnarmi?»",
+                nextParagraph: 83,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            },
+            {
+                text: "Osserva in silenzio",
+                nextParagraph: 83,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'arnica_mostrata': true }
+        }
+    },
+    83: {
+        id: 83,
+        title: "Le Erbe del Bosco",
+        content: `<p>«Insegnarti?» Crise alzò lo sguardo verso Trejano. «Sì, certo. Dovrai imparare molte cose nei prossimi giorni. Le erbe sono solo l'inizio.»</p>
+        
+        <p>Continuarono a camminare, e Crise si fermava spesso per mostrare a Trejano diverse piante.</p>
+        
+        <p>«Questa è achillea. Ferma le emorragie.»</p>
+        
+        <p>«Questo è iperico. Cura le ferite e solleva lo spirito.»</p>
+        
+        <p>«Questa è belladonna. MOLTO pericolosa. Non toccarla mai. Un solo fiore può uccidere un uomo.»</p>
+        
+        <p>Trejano cercava di ricordare tutto, ma erano così tante piante, così tanti nomi. La testa gli girava.</p>
+        
+        <p>«Non preoccuparti» disse Crise, vedendo la sua espressione. «Non devi ricordare tutto subito. Imparerai con il tempo.»</p>
+        
+        <p>«Ma perché devo imparare queste cose? Io sono solo... ero solo un pescatore.»</p>
+        
+        <p>Crise lo guardò a lungo prima di rispondere.</p>`,
+        choices: [
+            {
+                text: "Aspetta la risposta",
+                nextParagraph: 84,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'lezione_erbe_iniziata': true }
+        }
+    },
+    84: {
+        id: 84,
+        title: "Più di un Pescatore",
+        content: `<p>«Perché tu non sei solo un pescatore, Trejano» disse Crise piano. «E forse non lo sei mai stato. Ma questo... questa è una storia lunga. Una storia che inizierò a raccontarti questa sera, quando ci accamperemo.»</p>
+        
+        <p>«Ma...»</p>
+        
+        <p>«Pazienza» lo interruppe Crise. «Impara ad avere pazienza. È una delle virtù più importanti. Tu vuoi tutte le risposte subito, ma alcune cose devono essere rivelate al momento giusto.»</p>
+        
+        <p>Trejano annuì, anche se dentro ribolliva di frustrazione. Voleva sapere. Voleva capire. Perché gli uomini in rosso lo avevano cercato? Perché Neiano era partito? Cosa significava tutto questo?</p>
+        
+        <p>Ma Crise aveva ripreso a camminare, e Trejano non ebbe altra scelta che seguirlo.</p>
+        
+        <p>Il sole cominciava a calare quando si fermarono in una piccola radura.</p>
+        
+        <p>«Qui accamperemo per la notte» disse Crise.</p>`,
+        choices: [
+            {
+                text: "Aiuta a preparare il campo",
+                nextParagraph: 85,
+                consequences: {
+                    stats: { forza: 1 },
+                    relationships: { crise: 1 }
+                }
+            },
+            {
+                text: "Siediti, sei troppo stanco",
+                nextParagraph: 85,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'prima_sera_viaggio': true }
+        }
+    },
+    85: {
+        id: 85,
+        title: "Il Primo Campo",
+        content: `<p>Crise raccolse legna per il fuoco mentre Trejano lo guardava, incerto su come potesse aiutare.</p>
+        
+        <p>«Raccogliere legna secca» disse Crise, vedendo la sua esitazione. «Guarda sotto gli alberi. Solo rami caduti, non strappare nulla dalle piante vive.»</p>
+        
+        <p>Trejano si mise al lavoro. Era strano, ma familiare allo stesso tempo. A Treja aveva raccolto legna mille volte per il fuoco della palafitta.</p>
+        
+        <p>La palafitta. Che ora non esisteva più.</p>
+        
+        <p>Quando tornò con le braccia piene di legna, Crise aveva già preparato un piccolo cerchio di pietre per il fuoco.</p>
+        
+        <p>«Bene» disse, prendendo la legna. Con movimenti esperti, accese il fuoco usando delle pietre focaie.</p>
+        
+        <p>Le fiamme si alzarono, e Trejano si accorse con un brivido che avevano lo stesso strano colore verde-giada di prima.</p>
+        
+        <p>«Come fai a fare questo?» chiese, indicando le fiamme.</p>`,
+        choices: [
+            {
+                text: "Ascolta la spiegazione",
+                nextParagraph: 86,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'primo_campo_preparato': true }
+        }
+    },
+    86: {
+        id: 86,
+        title: "Le Fiamme di Giada",
+        content: `<p>«Un trucco» disse Crise con un mezzo sorriso. «Polvere di rame mescolata alla legna. Fa bruciare il fuoco con questo colore. E ha anche proprietà... dissuasive per certi animali.»</p>
+        
+        <p>«Animali pericolosi?»</p>
+        
+        <p>«Alcuni. Ma non preoccuparti. Stanotte avremo anche altre sentinelle.»</p>
+        
+        <p>Come se avesse chiamato qualcosa, un gufo atterrò su un ramo sopra di loro. Poi un altro. E un altro ancora.</p>
+        
+        <p>Presto, una dozzina di uccelli notturni li circondava, osservandoli con occhi brillanti nell'oscurità crescente.</p>
+        
+        <p>«Loro sono i nostri guardiani» disse Crise. «Mi avvertiranno se qualcuno si avvicina.»</p>
+        
+        <p>Tirò fuori dalla bisaccia del pane secco e lo condivise con Trejano. Mangiarono in silenzio per un po', guardando il fuoco verde-giada danzare.</p>
+        
+        <p>Poi Crise parlò.</p>`,
+        choices: [
+            {
+                text: "Ascolta",
+                nextParagraph: 87,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'uccelli_sentinella_prima_volta': true }
+        }
+    },
+    87: {
+        id: 87,
+        title: "L'Inizio della Storia",
+        content: `<p>«Ti ho promesso di raccontarti una storia» disse Crise. «E stasera inizierò. Ma sappi che questa storia richiederà molte notti per essere raccontata tutta. E alla fine... alla fine capirai chi sei davvero.»</p>
+        
+        <p>Trejano si raddrizzò, improvvisamente completamente sveglio nonostante la stanchezza.</p>
+        
+        <p>«C'era una volta» iniziò Crise, «un tempo in cui Limb era unita. Venti regni, venti gemme, un'unica grande terra. L'età dell'Opale Supremo, la chiamavano. Un'età di pace e prosperità.»</p>
+        
+        <p>«Ma poi venne la guerra. La Guerra dei Venti Regni. E tutto cambiò.»</p>
+        
+        <p>La voce di Crise era profonda, ipnotica. Trejano si ritrovò ad ascoltare, completamente assorbito.</p>
+        
+        <p>«La guerra durò cento anni. Cento anni di sangue e fuoco. E quando finì, tredici regni erano scomparsi. Cancellati dalla faccia di Limb.»</p>`,
+        choices: [
+            {
+                text: "«Cosa li distrusse?»",
+                nextParagraph: 88,
+                stats: null
+            },
+            {
+                text: "Ascolta in silenzio",
+                nextParagraph: 88,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'storia_iniziata': true, 'guerra_venti_regni_raccontata': true }
+        }
+    },
+    88: {
+        id: 88,
+        title: "La Guerra e le Gemme",
+        content: `<p>«L'avidità» disse Crise semplicemente. «La paura. La sete di potere. Un re - Reudhos I di Rubino - decise che un regno non era abbastanza. Voleva tutte le gemme. Voleva tutto il potere.»</p>
+        
+        <p>«E iniziò la guerra. Gli altri regni si coalizzarono contro di lui, ma era troppo forte. Troppo spietato. Uno dopo l'altro, i regni cadevano.»</p>
+        
+        <p>«Alla fine, solo sette rimasero. Sette regni, sette gemme. Rubino, Ametista, Perla, Zaffiro, Smeraldo, Topazio, Acquamarina.»</p>
+        
+        <p>«E gli altri tredici?»</p>
+        
+        <p>«Scomparsi. Le loro terre distrutte, le loro gemme perdute. O almeno, così si credeva.»</p>
+        
+        <p>Crise guardò Trejano intensamente.</p>
+        
+        <p>«Ma alcune gemme non erano perdute. Erano solo... nascoste.»</p>
+        
+        <p>Toccò l'anello al suo dito, la gemma trasparente che brillava debolmente.</p>
+        
+        <p>«Cristallo di Rocca. Una delle gemme perdute. E ce ne sono altre.»</p>`,
+        choices: [
+            {
+                text: "«La perla...»",
+                nextParagraph: 89,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'sette_regni_spiegati': true, 'tredici_perduti_spiegati': true }
+        }
+    },
+    89: {
+        id: 89,
+        title: "La Connessione",
+        content: `<p>«La perla» ripeté Trejano, e improvvisamente tutto cominciò a connettersi nella sua mente. «La perla che Neiano aveva nascosto. Era...»</p>
+        
+        <p>«Una delle gemme perdute» confermò Crise. «La Perla di Akoia. La gemma del regno perduto di Perla.»</p>
+        
+        <p>«Ma... ma come...»</p>
+        
+        <p>«Quella storia» disse Crise, «te la racconterò domani sera. Per stanotte, basta così. Hai bisogno di dormire, e io di pensare.»</p>
+        
+        <p>Si alzò e aggiunse altra legna al fuoco.</p>
+        
+        <p>«Dormi, Trejano. Domani avremo un'altra lunga giornata di cammino.»</p>
+        
+        <p>Trejano si sdraiò, avvolgendosi nella coperta. Ma la sua mente turbinava. La guerra. Le gemme perdute. La perla.</p>
+        
+        <p>Tutto era connesso. Lui era connesso a tutto questo, in qualche modo.</p>
+        
+        <p>Ma come?</p>`,
+        choices: [
+            {
+                text: "Cerca di dormire",
+                nextParagraph: 90,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'perla_collegata': true }
+        }
+    },
+    90: {
+        id: 90,
+        title: "Sogni e Stelle",
+        content: `<p>Quella notte, Trejano dormì male. I sogni lo tormentavano. Vedeva regni che bruciavano, gemme che brillavano, un re con una corona di rubini che rideva mentre il mondo crollava intorno a lui.</p>
+        
+        <p>E vedeva una perla. Una perla enorme e brillante, che galleggiava in un mare di stelle.</p>
+        
+        <p>Una voce sussurrava: <em>"Ratnaraj. Re delle Gemme. Il tuo destino ti attende."</em></p>
+        
+        <p>Si svegliò di soprassalto. Era ancora notte, ma il cielo a est cominciava a schiarire leggermente. L'alba non era lontana.</p>
+        
+        <p>Crise era seduto vicino al fuoco, sveglio, vigile. Gli uccelli erano ancora sui rami, occhi brillanti nell'oscurità.</p>
+        
+        <p>«Hai fatto di nuovo quel sogno?» chiese Crise senza voltarsi.</p>
+        
+        <p>«Come... come lo sai?»</p>
+        
+        <p>«Perché tu hai il dono. E il dono si manifesta attraverso i sogni, all'inizio.»</p>
+        
+        <p>Si voltò a guardare Trejano.</p>
+        
+        <p>«Preparati, ragazzo. Abbiamo un'altra lunga giornata davanti a noi.»</p>
+        
+        <p><strong>[Continua al paragrafo 91]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Secondo Giorno di Viaggio",
+                nextParagraph: 91,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'sogno_ratnaraj_secondo': true, 'dono_menzionato': true }
+        }
     }
 }
 
