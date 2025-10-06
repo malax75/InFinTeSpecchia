@@ -314,7 +314,10 @@ class Character {
     }
     
     static deserialize(data) {
-        const character = new Character();
+        // Crea carattere SENZA chiamare constructor normale
+        const character = Object.create(Character.prototype);
+        
+        // Ripristina tutti i dati salvati
         character.name = data.name;
         character.appellativo = data.appellativo;
         character.stats = data.stats;
@@ -324,6 +327,8 @@ class Character {
         character.inventario = data.inventario;
         character.rerollsUsed = data.rerollsUsed || 0;
         character.maxRerolls = data.maxRerolls || 3;
+        
+        console.log('📁 Personaggio deserializzato:', character.name, character.appellativo);
         
         return character;
     }
