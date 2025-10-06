@@ -2146,6 +2146,329 @@ const StoryData = {
         flags: {
             set: { 'risveglio': true, 'crise_presentato': true, 'nelle_terre_saar': true }
         }
+    },
+    71: {
+        id: 71,
+        title: "Le Prime Domande",
+        content: `<p>«Chi... chi sei?» chiese Trejano, la voce ancora debole. «Come conosci il mio nome?»</p>
+        
+        <p>Crise continuò a preparare qualcosa vicino al fuoco. Trejano riusciva ora a vedere meglio: c'era una pentola appesa su ceppi di legno, e le fiamme avevano uno strano colore verde-giada.</p>
+        
+        <p>«Neiano mi ha parlato di te» disse Crise senza voltarsi. «Mi ha raccontato molto del ragazzo dai capelli bianchi che ha cresciuto come figlio.»</p>
+        
+        <p>«Mio padre... dove... dov'è mio padre?»</p>
+        
+        <p>Il vecchio si irrigidì per un momento, poi riprese a mescolare il contenuto della pentola.</p>
+        
+        <p>«Ogni cosa a suo tempo, Trejano. Prima devi riprenderti. Poi parleremo.»</p>
+        
+        <p>«No! Voglio sapere ora!» Trejano cercò di alzarsi, ma la testa gli girò e dovette sdraiarsi di nuovo. «Dov'è mio padre? È... è vivo?»</p>`,
+        choices: [
+            {
+                text: "Insisti per avere risposte",
+                nextParagraph: 72,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Aspetta, sei troppo debole",
+                nextParagraph: 72,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'prime_domande_neiano': true }
+        }
+    },
+    72: {
+        id: 72,
+        title: "Il Decotto di Millefoglio",
+        content: `<p>Crise si voltò finalmente. I suoi occhi - quegli stessi occhi che avevano brillato così intensamente durante la trasformazione - ora erano miti, benevoli.</p>
+        
+        <p>«Bevi questo» disse, porgendogli una ciotola di legno fumante.</p>
+        
+        <p>Trejano la prese con mani tremanti.</p>
+        
+        <p>«È un decotto di millefoglio. Servirà a guarire più rapidamente la ferita che hai sul capo.»</p>
+        
+        <p>Trejano bevve lentamente. Il liquido era caldo e amaro, ma quasi subito sentì il dolore alla tempia allargarsi... e poi sparire completamente. Era come se il dolore venisse dissolto, lavato via da un'onda gentile.</p>
+        
+        <p>«Meglio?» chiese Crise.</p>
+        
+        <p>Trejano annuì, stupito. Toccò la tempia: c'era un impiastro umido, ma non faceva più male.</p>
+        
+        <p>«Come... come hai fatto?»</p>
+        
+        <p>«Erbe. Conoscenza. Tempo.» Crise sorrise leggermente. «E un po' di magia, forse. Ma soprattutto le prime due cose.»</p>`,
+        choices: [
+            {
+                text: "«Chi sei davvero?»",
+                nextParagraph: 73,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            },
+            {
+                text: "«Perché mi hai salvato?»",
+                nextParagraph: 73,
+                consequences: {
+                    stats: { empatia: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'decotto_bevuto': true, 'ferita_curata': true }
+        }
+    },
+    73: {
+        id: 73,
+        title: "Crise Si Presenta",
+        content: `<p>«Il mio nome è Crise» disse il vecchio, sedendosi su un tronco caduto vicino al fuoco. «Sono un Viandante, come forse hai già capito. Ma non tutti i Viandanti sono malvagi, Trejano. Alcuni di noi cercano semplicemente... altre strade.»</p>
+        
+        <p>«Ti sei trasformato in un gattopardo» disse Trejano, la voce ancora incredula al ricordo. «Ti ho visto. La tua testa... il tuo corpo...»</p>
+        
+        <p>«Sì. È uno dei miei doni.» Crise mostrò l'anello al dito: la gemma trasparente brillava debolmente nella luce del fuoco. «Cristallo di rocca. Una delle gemme perdute. Mi permette di assumere alcune forme animali.»</p>
+        
+        <p>«Ma... ma perché? Perché mi hai salvato? Quelli... quegli uomini con le tuniche rosse... cos'erano?»</p>
+        
+        <p>L'espressione di Crise si fece cupa. «Sicofanti. Gli assassini di re Reudhos di Rubino. Erano venuti per te, Trejano. Per ucciderti.»</p>`,
+        choices: [
+            {
+                text: "«Per me? Ma... perché?»",
+                nextParagraph: 74,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'crise_presentato': true, 'sicofanti_spiegati': true }
+        }
+    },
+    74: {
+        id: 74,
+        title: "Le Domande su Neiano",
+        content: `<p>«Perché?» ripeté Trejano. «Io... io sono solo un pescatore. Non ho fatto niente!»</p>
+        
+        <p>«Sei molto di più di un pescatore» disse Crise piano. «Ma questa è una conversazione lunga e complessa. E tu hai bisogno di riposo.»</p>
+        
+        <p>«NO!» Trejano si alzò a sedere, ignorando il giramento di testa. «Basta evasioni! Voglio sapere cosa sta succedendo! Voglio sapere dov'è mio padre!»</p>
+        
+        <p>Le ultime parole uscirono come un grido disperato. E con esse vennero le lacrime - lacrime di paura, di rabbia, di confusione.</p>
+        
+        <p>Crise lo guardò a lungo, in silenzio. Poi sospirò.</p>
+        
+        <p>«Neiano...» iniziò, poi si fermò. «Neiano era un uomo coraggioso. Un uomo che ha sacrificato molto per proteggerti.»</p>
+        
+        <p>«Era? PERCHÉ USI IL PASSATO?»</p>
+        
+        <p>Crise non rispose subito. E quel silenzio disse a Trejano tutto quello che doveva sapere.</p>`,
+        choices: [
+            {
+                text: "«No... no, non può essere...»",
+                nextParagraph: 75,
+                consequences: {
+                    maturita: 1
+                }
+            },
+            {
+                text: "Piangi in silenzio",
+                nextParagraph: 75,
+                consequences: {
+                    stats: { empatia: 1 },
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'sospetto_morte_neiano': true }
+        }
+    },
+    75: {
+        id: 75,
+        title: "La Verità Nascosta",
+        content: `<p>«Non posso dirtelo con certezza» disse Crise dopo un lungo silenzio. «Non so cosa gli sia accaduto su quella strada. Ma... temo il peggio.»</p>
+        
+        <p>Non era la verità completa. Trejano lo sentiva. Ma era più di quanto avesse saputo fino a quel momento.</p>
+        
+        <p>«Quando Neiano partì» continuò Crise, «sapeva che era pericoloso. Sapeva che forse non sarebbe tornato. Ma doveva andare. Doveva cercare risposte. Per te.»</p>
+        
+        <p>«Non volevo che andasse!» gridò Trejano. «Non volevo le sue risposte! Volevo solo che rimanesse!»</p>
+        
+        <p>«Lo so» disse Crise gentilmente. «Ma alcune cose devono accadere, che ci piaccia o no. Alcune strade devono essere percorse.»</p>
+        
+        <p>Trejano si accasciò, esausto emotivamente e fisicamente. Tutto era troppo. Troppo dolore, troppa paura, troppe domande senza risposta.</p>`,
+        choices: [
+            {
+                text: "«Cosa succede ora?»",
+                nextParagraph: 76,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'crise_evita_verita_completa': true }
+        }
+    },
+    76: {
+        id: 76,
+        title: "Il Viaggio Annunciato",
+        content: `<p>«Ora» disse Crise, «dobbiamo muoverci. Non siamo ancora al sicuro. I sicofanti potrebbero seguire le nostre tracce.»</p>
+        
+        <p>«Dove andiamo?»</p>
+        
+        <p>«A nord. Verso le terre delle aquile. Verso Tojen l'inaccessibile.» Crise si alzò, iniziando a spegnere il fuoco. «Riposa perché ci attende un viaggio di oltre venti giorni.»</p>
+        
+        <p>«Venti giorni?» Trejano non riusciva nemmeno a immaginarlo. Non si era mai allontanato da Treja per più di qualche ora.</p>
+        
+        <p>«Forse di più» disse Crise. «Dipende da quanto velocemente riusciamo a viaggiare. E da quanti... ostacoli incontreremo.»</p>
+        
+        <p>«Ma... ma io non posso! Devo tornare a Treja! Devo cercare Ago! Devo...»</p>
+        
+        <p>«Treja non c'è più» disse Crise, e la durezza nella sua voce fermò Trejano. «È bruciata, Trejano. Quasi completamente. E tornare ora significherebbe solo morire.»</p>`,
+        choices: [
+            {
+                text: "«E Ago? Cosa ne è di Ago?»",
+                nextParagraph: 77,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            },
+            {
+                text: "Accetta in silenzio, troppo scioccato per parlare",
+                nextParagraph: 77,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'viaggio_annunciato': true, 'destinazione_tojen': true }
+        }
+    },
+    77: {
+        id: 77,
+        title: "La Speranza per Ago",
+        content: `<p>«E Ago?» chiese Trejano, la voce che tremava. «Il mio amico... era al villaggio. Era...»</p>
+        
+        <p>«Non lo so» disse Crise onestamente. «Non so cosa gli sia accaduto. Ma tuo amico è giovane e veloce. Forse è riuscito a scappare. Forse...»</p>
+        
+        <p>Si fermò, vedendo l'espressione sul viso di Trejano.</p>
+        
+        <p>«Ascolta» disse, più gentilmente. «Non possiamo saperlo con certezza. Ma dobbiamo avere speranza. La speranza è tutto quello che abbiamo, a volte.»</p>
+        
+        <p>Trejano annuì debolmente. Ago. Il suo migliore amico. Forse morto. Forse vivo e solo, spaventato.</p>
+        
+        <p>E lui, Trejano, stava per lasciare le terre di Saar. Stava per andare chissà dove con uno sconosciuto che si trasformava in animali.</p>
+        
+        <p>Come era potuto accadere tutto questo? Solo quella mattina stava aspettando che Neiano tornasse. Solo quella mattina il mondo aveva ancora un senso.</p>`,
+        choices: [
+            {
+                text: "«Quando partiamo?»",
+                nextParagraph: 78,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'preoccupazione_ago': true }
+        }
+    },
+    78: {
+        id: 78,
+        title: "I Preparativi",
+        content: `<p>«All'alba» disse Crise. «Fra poche ore. Ora devi dormire un po'. Hai bisogno di forze per il viaggio.»</p>
+        
+        <p>«Non riuscirò a dormire» disse Trejano.</p>
+        
+        <p>«Prova comunque. Chiudi gli occhi. Respira. Il corpo ha bisogno di riposo anche quando la mente è turbata.»</p>
+        
+        <p>Crise preparò una coperta e la diede a Trejano. Era ruvida ma calda.</p>
+        
+        <p>«Io farò la guardia» disse il vecchio. «Dormi tranquillo. Nessuno ci troverà stanotte.»</p>
+        
+        <p>Trejano si sdraiò, avvolgendosi nella coperta. Il terreno era duro sotto la sua schiena, così diverso dal suo giaciglio nella palafitta.</p>
+        
+        <p>La palafitta. Bruciata ora. Cenere e rovine.</p>
+        
+        <p>Chiuse gli occhi, cercando di non piangere. Ma le lacrime vennero comunque, silenziose, scorrendo sui lati del viso.</p>`,
+        choices: [
+            {
+                text: "Cerca di dormire",
+                nextParagraph: 79,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'preparativi_viaggio': true }
+        }
+    },
+    79: {
+        id: 79,
+        title: "La Prima Notte Lontano da Casa",
+        content: `<p>Alla fine, esausto, Trejano scivolò in un sonno inquieto.</p>
+        
+        <p>Sognò Treja in fiamme. Sognò Ago che correva e gridava. Sognò Neiano che camminava su una strada bianca, allontanandosi sempre di più.</p>
+        
+        <p>E sognò una perla. Una perla enorme che brillava come la luna. La perla che Neiano aveva nascosto. La perla per cui, forse, gli uomini in rosso erano venuti.</p>
+        
+        <p>Nel sogno, la perla gli parlava. Una voce antica, gentile: <em>"Non temere, piccolo Ratnaraj. Il tuo cammino è appena iniziato."</em></p>
+        
+        <p>Ratnaraj. Quel nome di nuovo. Lo stesso nome che aveva sussurrato Mesis, il mercante, anni prima.</p>
+        
+        <p>Ma cosa significava?</p>
+        
+        <p>Trejano si svegliò di soprassalto. Era ancora notte, ma il cielo a est cominciava a schiarire. L'alba si avvicinava.</p>
+        
+        <p>Crise era seduto vicino al fuoco ormai spento, sveglio, vigile. Quando vide Trejano muoversi, annuì.</p>
+        
+        <p>«È ora» disse. «Dobbiamo andare.»</p>`,
+        choices: [
+            {
+                text: "Alzati, è ora di partire",
+                nextParagraph: 80,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'sogno_ratnaraj_primo': true, 'prima_notte_passata': true }
+        }
+    },
+    80: {
+        id: 80,
+        title: "L'Inizio del Viaggio",
+        content: `<p>Trejano si alzò lentamente. Ogni muscolo del corpo gli faceva male. Il colpo alla testa era guarito grazie al decotto, ma il resto del corpo ricordava la fuga disperata della notte precedente.</p>
+        
+        <p>Crise gli diede del pane secco e un po' d'acqua da una borraccia di pelle.</p>
+        
+        <p>«Mangia. È tutto quello che abbiamo per ora, ma cercheremo altro cibo lungo il cammino.»</p>
+        
+        <p>Trejano mangiò in silenzio. Il pane era duro e insapore, ma aveva fame.</p>
+        
+        <p>Quando finì, Crise si alzò e indicò verso nord.</p>
+        
+        <p>«Andiamo. Abbiamo molta strada da fare.»</p>
+        
+        <p>Trejano guardò indietro, verso sud. Verso dove era stata Treja. Non si vedeva nulla da qui, solo alberi e nebbia mattutina.</p>
+        
+        <p>La sua casa. Il suo mondo. Tutto lasciato alle spalle.</p>
+        
+        <p>«Trejano» disse Crise gentilmente. «So che è difficile. Ma devi andare avanti. È l'unica strada.»</p>
+        
+        <p>Trejano annuì, anche se il cuore gli si spezzava. Si voltò verso nord.</p>
+        
+        <p>E insieme a Crise, iniziò a camminare verso l'ignoto.</p>
+        
+        <p><strong>[Continua al paragrafo 81]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Il Viaggio Attraverso Saar",
+                nextParagraph: 81,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'viaggio_iniziato': true, 'lasciato_treja': true }
+        }
     }
 }
 
