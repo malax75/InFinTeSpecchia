@@ -217,6 +217,18 @@ class UIManager {
         this.currentModal = null;
     }
 
+    // ===== GESTIONE SCHERMATE =====
+    showGameScreen() {
+        const storyContent = document.getElementById('story-content');
+        if (storyContent) {
+            const loadingMsg = storyContent.querySelector('.loading-message');
+            if (loadingMsg) {
+                loadingMsg.style.display = 'none';
+            }
+        }
+        console.log('🎮 Schermata di gioco visualizzata');
+    }
+
     // ===== MESSAGGI (METODO DELLA CLASSE) =====
     showMessage(message, type = 'info') {
         const messageEl = document.createElement('div');
