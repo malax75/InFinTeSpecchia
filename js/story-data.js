@@ -1510,6 +1510,642 @@ const StoryData = {
         flags: {
             set: { 'terzo_giorno_inizia': true }
         }
+    },
+    51: {
+        id: 51,
+        title: "Il Terzo Giorno - L'Alba dell'Attesa",
+        content: `<p>Trejano si svegliò all'alba del terzo giorno. Non aveva dormito quasi per niente. Ogni rumore nella notte lo aveva fatto sobbalzare, sperando che fosse Neiano che tornava.</p>
+        
+        <p>Ma non era tornato.</p>
+        
+        <p>Oggi. Doveva tornare oggi, al tramonto del terzo giorno. Così aveva promesso.</p>
+        
+        <p>Trejano uscì sulla veranda. Il cielo era grigio, carico di nuvole basse. L'aria era umida e pesante, come prima di un temporale. Il fiume scorreva più veloce del solito, l'acqua scura e agitata.</p>
+        
+        <p>Tutto sembrava sbagliato. Tutto sembrava presagio di qualcosa di terribile.</p>
+        
+        <p>«È solo paura» disse Trejano a voce alta, cercando di convincersi. «Padre tornerà. Ha promesso.»</p>
+        
+        <p>Ma le sue stesse parole suonavano vuote nell'aria umida del mattino.</p>`,
+        choices: [
+            {
+                text: "Resta sulla veranda, guarda verso la strada",
+                nextParagraph: 52,
+                consequences: {
+                    stats: { empatia: 1 }
+                }
+            },
+            {
+                text: "Vai a cercare Ago, non vuoi essere solo oggi",
+                nextParagraph: 53,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'terzo_giorno_iniziato': true }
+        }
+    },
+    52: {
+        id: 52,
+        title: "L'Attesa Solitaria",
+        content: `<p>Trejano rimase sulla veranda per ore, guardando fisso verso est, verso la strada. Ogni ombra tra gli alberi lo faceva sussultare. Ogni movimento gli sembrava la figura di Neiano che tornava.</p>
+        
+        <p>Ma non era mai lui.</p>
+        
+        <p>Il sole, nascosto dalle nuvole, saliva lento nel cielo. Il tempo sembrava essersi fermato. Ogni minuto era un'eternità.</p>
+        
+        <p>A metà mattina, Ago apparve dal sentiero. Vedendo Trejano sulla veranda, accelerò il passo.</p>
+        
+        <p>«Trejano! Oggi è il giorno! Tuo padre tornerà!»</p>
+        
+        <p>La voce di Ago era piena di speranza, di eccitazione. Ma Trejano sentiva solo un peso nel petto.</p>
+        
+        <p>«Sì» disse. «Oggi.»</p>`,
+        choices: [
+            {
+                text: "Passa la giornata con Ago",
+                nextParagraph: 54,
+                consequences: {
+                    relationships: { ago: 1 }
+                }
+            }
+        ],
+        flags: null
+    },
+    53: {
+        id: 53,
+        title: "La Ricerca di Compagnia",
+        content: `<p>Trejano non riusciva a stare solo. Andò a cercare Ago, sperando che la presenza dell'amico potesse alleviare l'ansia che lo divorava.</p>
+        
+        <p>Trovò il ragazzo che stava aiutando suo padre nei campi. Quando Ago lo vide, lasciò cadere il rastrello e corse incontro.</p>
+        
+        <p>«Oggi è il giorno!» esclamò. «Tuo padre tornerà al tramonto!»</p>
+        
+        <p>«Sì» disse Trejano, cercando di sorridere. «Al tramonto.»</p>
+        
+        <p>«Cosa facciamo? Come passiamo la giornata?» chiese Ago. «Dobbiamo tenerti distratto! Altrimenti impazzirai!»</p>
+        
+        <p>Aveva ragione. Trejano non poteva semplicemente aspettare, guardando il sole muoversi lentamente nel cielo.</p>`,
+        choices: [
+            {
+                text: "Passa la giornata con Ago",
+                nextParagraph: 54,
+                consequences: {
+                    relationships: { ago: 2 }
+                }
+            }
+        ],
+        flags: null
+    },
+    54: {
+        id: 54,
+        title: "L'Ultimo Giorno con Ago",
+        content: `<p>Trejano e Ago passarono la giornata insieme. Andarono nei campi, giocarono nella palude, pescarono nel fiume - anche se Trejano non riusciva davvero a concentrarsi.</p>
+        
+        <p>La sua mente continuava a tornare a Neiano. Dove era? Cosa stava facendo? Stava bene?</p>
+        
+        <p>Nel pomeriggio, mentre il sole cominciava a calare, Ago propose: «Andiamo sulla collina! Da lì si vede la strada. Potremo vedere tuo padre arrivare da lontano!»</p>
+        
+        <p>Trejano esitò. Quella collina, quella vista della strada... gli metteva paura. Ma Ago aveva ragione. Da lì avrebbero visto Neiano per primi.</p>
+        
+        <p>«Va bene» disse. «Andiamo.»</p>
+        
+        <p>Salirono sulla collina all'inizio della strada. Da lì si vedeva tutto: Treja con le sue palafitte, i campi, il fiume. E la strada che serpeggiava verso l'alto, sparendo oltre l'orizzonte.</p>`,
+        choices: [
+            {
+                text: "Siediti e aspetta, guardando la strada",
+                nextParagraph: 55,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'collina_terzo_giorno': true }
+        }
+    },
+    55: {
+        id: 55,
+        title: "Sulla Collina dell'Attesa",
+        content: `<p>I due ragazzi si sedettero sull'erba, guardando la strada. Ago chiacchierava, cercando di distrarre l'amico.</p>
+        
+        <p>«Tuo padre è andato per la strada proibita?» chiese a un certo punto, la voce più seria. «Perché?»</p>
+        
+        <p>«Non lo so» rispose Trejano. «Mi ha parlato di una storia e mi ha detto di aspettarlo fino al terzo tramonto. Ho paura, Ago. E se venisse divorato dalle bestie feroci?»</p>
+        
+        <p>«Oh, non preoccuparti. Neiano è un uomo forte e saggio» lo rincuorò Ago, anche se non sembrava troppo convinto delle sue stesse parole.</p>
+        
+        <p>Già la strada era pericolosa. E negli ultimi tempi qualcuno aveva giurato che si aggirasse nei dintorni del villaggio, proveniente da quella strada, un Viandante che era giunto sin là chissà come.</p>
+        
+        <p>Nelle terre di Saar i Viandanti erano considerati una sorta di pericolosi fuorilegge: uomini e donne senza patria né casa, dediti alle forze occulte.</p>
+        
+        <p>La schiena di Trejano fu percorsa da un brivido.</p>`,
+        choices: [
+            {
+                text: "«Credi che mio padre potrebbe incontrare i Viandanti?»",
+                nextParagraph: 56,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'conversazione_viandanti': true }
+        }
+    },
+    56: {
+        id: 56,
+        title: "Le Storie dei Viandanti",
+        content: `<p>«Credi che mio padre potrebbe incontrare i Viandanti?» chiese Trejano.</p>
+        
+        <p>«Starà ben attento ad evitarli» rispose Ago, non troppo convinto neppure questa volta. Voleva rassicurare l'amico, ma era spaventato alla sola idea di questi uomini terribili.</p>
+        
+        <p>Ripensò a Falk, il giullare pellegrino, e alle sue storie sul terrificante viandante Criadel, capace di assumere le forme di animali feroci e di uccidere qualsiasi uomo o donna che incontrasse per estinguere la sua atavica sete di sangue.</p>
+        
+        <p>Finché l'eroico Toli l'aveva sconfitto e ucciso grazie alla protezione contro le magie di una misteriosa gemma gialla. Chissà quanti Viandanti crudeli esistevano ancora...</p>
+        
+        <p>Trejano era in preda all'agitazione. I suoi occhi guardavano Treja, ma vedevano suo padre in estremo pericolo. Nel suo giovane cuore si addensavano fosche nubi.</p>
+        
+        <p>Il sole stava calando. Presto sarebbe stato il tramonto.</p>`,
+        choices: [
+            {
+                text: "Resta sulla collina, aspettando",
+                nextParagraph: 57,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'storie_viandanti_raccontate': true }
+        }
+    },
+    57: {
+        id: 57,
+        title: "Il Tramonto Si Avvicina",
+        content: `<p>Il sole, divenuto più tenue, si avviò verso la sua culla d'occidente. Dapprima lentamente, poi sempre più rapido, quasi precipitasse giù dal cielo.</p>
+        
+        <p>Saliva la smania di Trejano. Gli occhi fissi sulla strada, cercando disperatamente la figura di Neiano.</p>
+        
+        <p>«Guarda!» gridò improvvisamente Ago, indicando la strada.</p>
+        
+        <p>Trejano balzò in piedi. C'era qualcosa... un'ombra... una figura...</p>
+        
+        <p>«Padre!» gridò, il cuore che batteva all'impazzata.</p>
+        
+        <p>Ma l'ombra si dissipò. Era solo un gioco di luce, una piega del terreno, un albero.</p>
+        
+        <p>«Mi sono sbagliato» pensò Trejano, la delusione che gli stringeva il petto come una morsa. L'ansia di rivedere il padre gli giocava brutti tiri.</p>
+        
+        <p>Il sole era già per metà scomparso dietro i grandi massicci occidentali.</p>
+        
+        <p>«Trejano» disse Ago piano. «Forse... forse dovresti tornare a casa. Ad aspettarlo lì.»</p>`,
+        choices: [
+            {
+                text: "«Hai ragione. Torniamo.»",
+                nextParagraph: 58,
+                consequences: {
+                    stats: { saggezza: 1 }
+                }
+            },
+            {
+                text: "«No, resto qui. Devo vederlo arrivare.»",
+                nextParagraph: 58,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'falso_avvistamento': true }
+        }
+    },
+    58: {
+        id: 58,
+        title: "Il Ritorno alla Palafitta",
+        content: `<p>Trejano tornò alla palafitta mentre il sole continuava a calare. Ago lo accompagnò fino alla porta, poi, vedendo che l'amico voleva stare solo, si allontanò con un cenno silenzioso.</p>
+        
+        <p>Trejano entrò nella casa vuota. Accese la lanterna. La luce tremolante creava ombre danzanti sulle pareti.</p>
+        
+        <p>Andò alla finestra che dava verso la strada. Da lì riusciva a vederne l'imbocco. Aguzzò la vista, cercando disperatamente di scorgere il padre.</p>
+        
+        <p>Il sole stava definitivamente abbandonando il cielo. Il tramonto del terzo giorno.</p>
+        
+        <p>Ma Neiano non c'era.</p>
+        
+        <p>Trejano avvertì allora una presenza dietro di lui e si girò di scatto. Ma la luce della lanterna non rivelò nessuno nella stanza.</p>
+        
+        <p>Inquieto, prese il suo bastone da pesca e lo strinse nella mano destra. Tornò al suo punto di osservazione.</p>
+        
+        <p>E allora ebbe un tuffo al cuore.</p>`,
+        choices: [
+            {
+                text: "Guarda verso la strada",
+                nextParagraph: 59,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'alla_finestra_terzo_tramonto': true }
+        }
+    },
+    59: {
+        id: 59,
+        title: "Le Ombre Rosse",
+        content: `<p>Sulla strada si vedeva ora un gruppetto di uomini. Trejano li contò con il cuore che batteva forte.</p>
+        
+        <p>Sette. Sette figure.</p>
+        
+        <p>La luce del sole stava definitivamente abbandonando il cielo, ma Trejano riuscì a vedere che indossavano una tunica con un cappuccio calcato sulla testa.</p>
+        
+        <p>Gli abiti sembravano color del sangue.</p>
+        
+        <p>Un brivido gelido percorse la schiena di Trejano. Quelli non erano viaggiatori normali. Non erano mercanti. Non erano pescatori.</p>
+        
+        <p>Erano... qualcos'altro.</p>
+        
+        <p>Le figure confabularono per qualche minuto, sembrando incerte sul da farsi. Poi, come se avessero preso una decisione, cominciarono a muoversi verso il villaggio.</p>
+        
+        <p>Verso Treja.</p>
+        
+        <p>Trejano non era riuscito a impedire che il suo respiro divenisse mozzo e affannato. Chi erano quegli uomini o quegli esseri? Cosa cercavano?</p>
+        
+        <p>Dove era il padre? E se fosse stato catturato o peggio ucciso...</p>`,
+        choices: [
+            {
+                text: "Spegni la lanterna, nasconditi nell'oscurità",
+                nextParagraph: 60,
+                consequences: {
+                    stats: { astuzia: 1 }
+                }
+            },
+            {
+                text: "Resta alla finestra, devi capire cosa sta succedendo",
+                nextParagraph: 60,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'sicofanti_visti': true, 'sette_incappucciati': true }
+        }
+    },
+    60: {
+        id: 60,
+        title: "Gli Occhi di Bragia",
+        content: `<p>Rapido, Trejano spense la lanterna, rimanendo nell'oscurità. Poi tornò al suo punto di osservazione, cercando di controllare il respiro.</p>
+        
+        <p>Il sole era ormai tramontato, ma già la luce del plenilunio prendeva il suo posto nel cielo. Nella luce argentea, le figure rosse sembravano fantasmi.</p>
+        
+        <p>Si fermarono. Sembravano guardare direttamente verso la palafitta di Trejano. Come se sapessero che era lì. Come se lo stessero cercando.</p>
+        
+        <p>Poi successe tutto in un battibaleno.</p>
+        
+        <p>Uno degli incappucciati tirò fuori qualcosa da sotto la tunica. Un istante dopo gli altri lo imitarono.</p>
+        
+        <p>Improvvisamente, occhi di bragia illuminavano l'aria. Frecce. Frecce con le punte infuocate.</p>
+        
+        <p>Trejano riuscì a stento a gettarsi di lato.</p>
+        
+        <p>Una freccia infuocata sibilò dove un attimo prima si affacciava il ragazzo e si conficcò nell'arazzo appeso alla parete.</p>
+        
+        <p>L'arazzo di Mesis prese fuoco.</p>
+        
+        <p><strong>[Continua al paragrafo 61]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ L'Attacco Inizia",
+                nextParagraph: 61,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'frecce_infuocate': true, 'arazzo_in_fiamme': true, 'attacco_iniziato': true }
+        }
+    },
+    61: {
+        id: 61,
+        title: "Le Fiamme Divorano",
+        content: `<p>Trejano si rialzò, stordito. L'arazzo stava bruciando rapidamente, le fiamme che divoravano la seta antica. La stanza si riempì di fumo acre.</p>
+        
+        <p>Doveva uscire. Doveva scappare.</p>
+        
+        <p>Ma dove? Gli incappucciati rossi erano là fuori. Se usciva, lo avrebbero visto. Lo avrebbero preso.</p>
+        
+        <p>O peggio.</p>
+        
+        <p>Il fumo gli bruciava gli occhi, la gola. Tossì violentemente, cercando aria pulita. Le fiamme si stavano espandendo, lambendo ora anche le travi di legno del soffitto.</p>
+        
+        <p>Tutta la palafitta sarebbe bruciata. E lui con essa, se non faceva qualcosa.</p>
+        
+        <p>Poi, attraverso il fumo e le lacrime, vide qualcosa. Una figura. Un'ombra che si muoveva nella stanza.</p>
+        
+        <p>«Chi... chi sei?» riuscì a dire tra i colpi di tosse.</p>`,
+        choices: [
+            {
+                text: "Stringi il bastone, preparati a difenderti",
+                nextParagraph: 62,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Arretra verso la finestra",
+                nextParagraph: 62,
+                consequences: {
+                    stats: { agilita: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'palafitta_in_fiamme': true }
+        }
+    },
+    62: {
+        id: 62,
+        title: "Il Vecchio dagli Occhi Saettanti",
+        content: `<p>La figura si avvicinò. Era un vecchio. Un uomo anziano con occhi che brillavano nella luce delle fiamme. Occhi intensi, penetranti. Occhi che sembravano vedere attraverso Trejano.</p>
+        
+        <p>«Da dove... da dove sei entrato?» balbettò Trejano.</p>
+        
+        <p>Il vecchio non rispose. Si mosse con una velocità sorprendente per la sua età, balzando verso Trejano.</p>
+        
+        <p>Trejano non ebbe il tempo di alzare il bastone che ancora stringeva per difendersi. Il vecchio era troppo veloce.</p>
+        
+        <p>E poi, mentre si avvicinava rapidamente, il vecchio fece qualcosa di strano. Portò la mano destra alla fronte e sfregò qualcosa contro la pelle.</p>
+        
+        <p>Un anello. Un anello in cui era incastonata una gemma trasparente, che brillava di luce propria.</p>
+        
+        <p>E allora tutto cambiò.</p>`,
+        choices: [
+            {
+                text: "Guarda terrorizzato la trasformazione",
+                nextParagraph: 63,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'crise_apparso': true, 'anello_cristallo_visto': true }
+        }
+    },
+    63: {
+        id: 63,
+        title: "La Trasformazione",
+        content: `<p>La testa del vecchio sembrò allargarsi e accorciarsi. La faccia si coprì di un pelame fitto e giallo, chiazzato di nero.</p>
+        
+        <p>I suoi occhi divennero brillanti, felini. Anche il suo corpo si appiattì, affusolandosi e perdendosi in una coda pendula.</p>
+        
+        <p>La sua bocca era ora spalancata e piena di aguzzi denti.</p>
+        
+        <p>Un gattopardo. Il vecchio si era trasformato in un enorme gattopardo.</p>
+        
+        <p>Trejano, spaventato, fu investito dall'alito caldo e umido dell'animale. "È la fine" pensò. Chiuse gli occhi.</p>
+        
+        <p>Era un Viandante. Non aveva più speranze. Attendeva i feroci denti e i crudeli artigli.</p>
+        
+        <p>Ma la morte non arrivò.</p>
+        
+        <p>Invece, si sentì improvvisamente sollevare da terra.</p>`,
+        choices: [
+            {
+                text: "Resta immobile, paralizzato dalla paura",
+                nextParagraph: 64,
+                consequences: {
+                    stats: { empatia: 1 }
+                }
+            },
+            {
+                text: "Lotta, cerca di divincolarti",
+                nextParagraph: 64,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            }
+        ],
+        flags: {
+            set: { 'trasformazione_vista': true, 'crise_gattopardo': true }
+        }
+    },
+    64: {
+        id: 64,
+        title: "Afferrato dalla Bestia",
+        content: `<p>L'animale lo aveva azzannato alla collottola dell'abito di tela. La resistente tela di Saar non cedette.</p>
+        
+        <p>La fiera lo portava come fa un gatto con il suo cucciolo.</p>
+        
+        <p>Trejano attendeva la morte, rimpiangendo la sua breve vita. Ma poi sentì l'affuocata aria della palafitta in fiamme lasciare il posto alla fresca aria della notte che ora gli sferzava il viso.</p>
+        
+        <p>Riaprì per un istante gli occhi.</p>
+        
+        <p>Stavano correndo. Il gattopardo saettava veloce nelle strade del villaggio di Treja, ora illuminato da fuochi sempre più alti.</p>
+        
+        <p>Palafitte e case bruciavano in una gimkana sempre più indiavolata.</p>
+        
+        <p>E Trejano, appeso alle fauci del gattopardo, vedeva tutto: il suo villaggio in fiamme, le persone che correvano e gridavano, il fumo che saliva nero contro il cielo stellato.</p>
+        
+        <p>«Colpite il ragazzo e il gattopardo!» sentì urlare alle sue spalle.</p>`,
+        choices: [
+            {
+                text: "Chiudi gli occhi, non guardare",
+                nextParagraph: 65,
+                stats: null
+            },
+            {
+                text: "Continua a guardare, devi ricordare",
+                nextParagraph: 65,
+                consequences: {
+                    maturita: 1
+                }
+            }
+        ],
+        flags: {
+            set: { 'afferrato_gattopardo': true, 'fuga_iniziata': true }
+        }
+    },
+    65: {
+        id: 65,
+        title: "La Pioggia di Morte",
+        content: `<p>Un nugolo di frecce e piccoli giavellotti piombò sul gattopardo e sul ragazzo.</p>
+        
+        <p>Ma l'animale, destramente, riuscì a evitarli. Correva ora a una velocità vorticosa, zigzagando come un fulmine nel cielo.</p>
+        
+        <p>A destra. A sinistra. Sotto un pontile. Sopra una barca rovesciata. Il gattopardo si muoveva con una grazia impossibile, schivando ogni proiettile.</p>
+        
+        <p>Trejano, appeso alle sue fauci, veniva sballottato come un fagotto. Sentiva le frecce sibilare vicino alle sue orecchie, sentiva il calore delle fiamme mentre passavano accanto alle case in fiamme.</p>
+        
+        <p>E poi, improvvisamente, il gattopardo cadde a terra.</p>
+        
+        <p>Anche Trejano rotolò nella polvere, battendo la testa contro un largo masso.</p>
+        
+        <p>Il dolore esplose nel suo cranio. La vista si annebbiò.</p>`,
+        choices: [
+            {
+                text: "Cerca di rialzarti",
+                nextParagraph: 66,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Resta a terra, stordito",
+                nextParagraph: 66,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'gattopardo_colpito': true, 'testa_colpita': true }
+        }
+    },
+    66: {
+        id: 66,
+        title: "Il Giavellotto",
+        content: `<p>Attraverso la nebbia del dolore, Trejano vide il gattopardo rialzarsi. L'animale era stato colpito sul dorso da un giavellotto che lo aveva ferito.</p>
+        
+        <p>Sangue scuro macchiava il pelo giallo chiazzato di nero.</p>
+        
+        <p>Ma la bestia non si arrese. Si rialzò lesto, riafferrò Trejano tra le fauci e si tuffò in una corsa ancora più agile e sfrenata.</p>
+        
+        <p>Trejano aveva la vista annebbiata per la paura e per il colpo ricevuto sulla testa. Riuscì a girare appena la testa per guardare dietro.</p>
+        
+        <p>Treja bruciava. Tutto il villaggio era avvolto dalle fiamme. Le urla dei misteriosi uomini erano ormai lontane.</p>
+        
+        <p>Frecce e giavellotti non riuscivano più a raggiungere i due fuggitivi.</p>
+        
+        <p>Il gattopardo correva verso l'esterno del villaggio, verso l'oscurità della notte, verso la salvezza.</p>
+        
+        <p>O forse verso qualcosa di peggio.</p>`,
+        choices: [
+            {
+                text: "Resisti, non svenire",
+                nextParagraph: 67,
+                consequences: {
+                    stats: { forza: 1 }
+                }
+            },
+            {
+                text: "Lasciati andare, il dolore è troppo",
+                nextParagraph: 67,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'gattopardo_ferito': true, 'fuga_continua': true }
+        }
+    },
+    67: {
+        id: 67,
+        title: "L'Ultima Vista di Casa",
+        content: `<p>Trejano, con le ultime forze, girò ancora una volta la testa per guardare indietro.</p>
+        
+        <p>Treja. La sua casa. Il suo mondo.</p>
+        
+        <p>Tutto bruciava. Le palafitte crollavano nel fiume con schianti terribili. Le fiamme salivano alte contro il cielo notturno, trasformando la notte in un inferno arancione.</p>
+        
+        <p>E le persone... riusciva a vedere le persone che correvano, che gridavano. Riusciva a sentire le urla di terrore.</p>
+        
+        <p>Ago. Dov'era Ago?</p>
+        
+        <p>«Ago...» sussurrò, ma la sua voce si perse nel vento della corsa.</p>
+        
+        <p>Il gattopardo correva sempre più veloce, sempre più lontano. Treja diventava sempre più piccola, sempre più lontana.</p>
+        
+        <p>E poi, mentre il dolore alla testa diventava insopportabile e l'oscurità iniziava a inghiottirlo, Trejano pensò a Neiano.</p>
+        
+        <p>Padre, dove sei?</p>`,
+        choices: [
+            {
+                text: "Svieni",
+                nextParagraph: 68,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'treja_vista_ultima_volta': true, 'pensiero_ago': true }
+        }
+    },
+    68: {
+        id: 68,
+        title: "Nell'Oscurità",
+        content: `<p>L'oscurità lo inghiottì.</p>
+        
+        <p>Trejano svenne, il corpo che diventava un peso morto tra le fauci del gattopardo.</p>
+        
+        <p>Ma la bestia non si fermò. Continuò a correre, portando il ragazzo lontano dalle fiamme, lontano dai sicofanti, lontano da tutto ciò che Trejano aveva mai conosciuto.</p>
+        
+        <p>Nella sua incoscienza, Trejano sognò. Sognò Neiano che camminava su una strada bianca. Sognò Ago che correva e rideva. Sognò una perla che brillava come la luna.</p>
+        
+        <p>E sognò una voce, una voce antica e gentile, che sussurrava: <em>"Non temere, piccolo Ratnaraj. Il tuo cammino è appena iniziato."</em></p>
+        
+        <p>Ma quando cercò di capire da dove venisse quella voce, l'oscurità si fece più profonda, e non sognò più nulla.</p>`,
+        choices: [
+            {
+                text: "➡️ Il Risveglio",
+                nextParagraph: 69,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'svenuto': true, 'sogno_ratnaraj': true }
+        }
+    },
+    69: {
+        id: 69,
+        title: "Lontano da Treja",
+        content: `<p>Il gattopardo correva nella notte. Lontano dalle fiamme, lontano dalle urla, lontano dalla morte.</p>
+        
+        <p>La luna piena illuminava il suo cammino. Correva verso nord, verso le terre selvagge di Saar, dove gli alberi erano fitti e le paludi profonde.</p>
+        
+        <p>Correva fino a quando le luci di Treja non furono più visibili, fino a quando non ci fu più nulla alle sue spalle se non oscurità e silenzio.</p>
+        
+        <p>Solo allora rallentò. Solo allora, quando fu certo che nessuno li seguiva più, si fermò.</p>
+        
+        <p>Depose delicatamente Trejano a terra, sotto un grande albero. Il ragazzo era ancora privo di sensi, il respiro debole ma regolare.</p>
+        
+        <p>Il gattopardo lo guardò per un lungo momento. Poi, lentamente, la trasformazione si invertì.</p>
+        
+        <p>Il pelo si ritrasse. Il corpo si raddrizzò. Le zampe divennero braccia.</p>
+        
+        <p>E dove un momento prima c'era un gattopardo, ora c'era di nuovo il vecchio. Il vecchio dagli occhi saettanti.</p>
+        
+        <p>Crise.</p>`,
+        choices: [
+            {
+                text: "➡️ Trejano si Sveglia",
+                nextParagraph: 70,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'lontani_da_treja': true, 'crise_ritrasformato': true }
+        }
+    },
+    70: {
+        id: 70,
+        title: "Il Risveglio nelle Terre di Saar",
+        content: `<p>Non sapeva quanto tempo fosse passato quando Trejano aprì gli occhi.</p>
+        
+        <p>La prima cosa che vide fu il cielo. Un cielo nero punteggiato di stelle. Entaris brillava più forte di tutte, la stella del nord, la guida dei viaggiatori.</p>
+        
+        <p>Poi sentì il dolore. La testa gli pulsava dove aveva battuto contro il masso. Ogni movimento era agonia.</p>
+        
+        <p>«Piano» disse una voce. «Non muoverti troppo in fretta.»</p>
+        
+        <p>Trejano girò la testa, ignorando il dolore. Accanto a lui, seduto su un tronco caduto, c'era il vecchio. L'uomo che si era trasformato in gattopardo. L'uomo che lo aveva salvato.</p>
+        
+        <p>«Chi... chi sei?» riuscì a dire Trejano, la voce roca.</p>
+        
+        <p>Il vecchio sorrise. Era un sorriso triste, pieno di memoria e rimpianto.</p>
+        
+        <p>«Il mio nome è Crise» disse. «E ho molto da raccontarti, giovane Trejano. Ma prima...» Si interruppe, guardando indietro verso sud, verso dove era Treja. «Prima dobbiamo muoverci. Non siamo ancora al sicuro.»</p>
+        
+        <p><strong>[Continua al paragrafo 71]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ La Fuga Continua",
+                nextParagraph: 71,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'risveglio': true, 'crise_presentato': true, 'nelle_terre_saar': true }
+        }
     }
 }
 
