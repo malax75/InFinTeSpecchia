@@ -895,8 +895,7 @@ const StoryData = {
             set: { 'primo_giorno_finito': true },
             modify: { 'giorni_attesa': 2 }
         }
-    }
-};
+    },
 
     31: {
         id: 31,
