@@ -3088,6 +3088,577 @@ const StoryData = {
             set: { 'sogno_treja_brucia': true },
             modify: { maturita: 1 }
         }
+    },
+    101: {
+        id: 101,
+        title: "Il Ricordo (Due Anni Prima)",
+        content: `<p><strong>[FLASHBACK - Due anni prima]</strong></p>
+        
+        <p>Ora Trejano osservava proprio quell'arazzo sulla parete della sua stanza. Dopo due anni in un ambiente così umido, aveva serbato intatti i suoi disegni e le sue trame.</p>
+        
+        <p>Ma mancava qualcosa. La piccola gemma bianca incastonata nella seta, la perla nella mano del cavaliere, non c'era più.</p>
+        
+        <p>Trejano portò inconsciamente la mano alla tasca interna della casacca, dove custodiva il cofanetto. Era ancora lì, al sicuro.</p>
+        
+        <p>Ripensò a quel giorno. Due anni prima. Quando Mesis era arrivato a Treja.</p>
+        
+        <p><em>Com'era cominciato tutto...</em></p>`,
+        choices: [
+            {
+                text: "➡️ Ricorda quel giorno",
+                nextParagraph: 102,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'flashback_iniziato': true }
+        }
+    },
+    102: {
+        id: 102,
+        title: "L'Arrivo del Mercante",
+        content: `<p><strong>[Due anni prima - Trejano ha 11 anni]</strong></p>
+        
+        <p>Era stata una mattina come tante. Trejano pescava sul fiume con Neiano quando sentirono il rumore di una carovana sulla strada.</p>
+        
+        <p>Carovane a Treja erano rare. Il villaggio era troppo piccolo, troppo isolato per attirare mercanti. Ma quella mattina, una piccola carovana si fermò proprio all'ingresso del paese.</p>
+        
+        <p>Un uomo scese dal carro principale. Aveva capelli scuri e occhi penetranti, vestiva abiti ricchi ma polverosi dal viaggio. Dietro di lui, un aiutante anziano sistemava le mercanzie.</p>
+        
+        <p>«Buongiorno, buona gente!» gridò l'uomo con voce chiara. «Sono Mesis, mercante viaggiatore! Ho con me mercanzie rare dalle sette penisole!»</p>
+        
+        <p>Tutto il villaggio accorse, incuriosito. Anche Trejano, lasciando la barca, corse a vedere.</p>`,
+        choices: [
+            {
+                text: "➡️ Avvicinati alle mercanzie",
+                nextParagraph: 103,
+                stats: null
+            }
+        ]
+    },
+    103: {
+        id: 103,
+        title: "Le Mercanzie Misteriose",
+        content: `<p>Mesis apriva bauli e sacchi, mostrando stoffe preziose, spezie profumate, piccoli oggetti d'artigianato. Ma vendeva tutto a prezzi incredibilmente bassi.</p>
+        
+        <p>«Solo dieci Dramie di rame!» diceva sorridendo. «Niente di più!»</p>
+        
+        <p>Gli abitanti di Treja si accalcavano, increduli di tanta generosità. Neiano osservava da lontano, con uno sguardo che Trejano non riusciva a decifrare.</p>
+        
+        <p>Trejano, timido, si avvicinò per ultimo. Era affascinato da un arazzo ripiegato in un angolo. Anche da lontano si vedeva che era di fattura preziosa.</p>
+        
+        <p>Mesis lo notò e sorrise.</p>
+        
+        <p>«Non avere paura ragazzo. Sei stato il primo a concedermi l'onore di guardare le mie mercanzie» disse, anche se non era vero. «Come premio puoi scegliere quello che più ti piace. Te lo regalo.»</p>`,
+        choices: [
+            {
+                text: "«Voglio quell'arazzo»",
+                nextParagraph: 104,
+                stats: null
+            },
+            {
+                text: "«Non posso accettare un regalo così prezioso»",
+                nextParagraph: 104,
+                consequences: { stats: { saggezza: 1 } }
+            }
+        ]
+    },
+    104: {
+        id: 104,
+        title: "L'Arazzo del Cavaliere",
+        content: `<p>Mesis sorrise, come se si aspettasse quella risposta.</p>
+        
+        <p>«Insisto» disse. Fece un cenno all'aiutante anziano - Metiq - che dispiegò l'arazzo.</p>
+        
+        <p>Era magnifico. Mostrava scene arcane: una luna coronata di stelle, un mostro con miriadi di bocche, un guerriero-donna con una spada lucente. E al centro, un cavaliere bianco con una gemma nella mano.</p>
+        
+        <p>Trejano rimase a bocca aperta. Era esattamente come aveva sempre sognato - lui stesso come cavaliere, con un'armatura splendente.</p>
+        
+        <p>«È tuo» disse Mesis, osservandolo con attenzione.</p>
+        
+        <p>Nel frattempo, Trejano vide Neiano avvicinarsi. Il suo volto era serio. Mesis e Neiano si guardarono per un lungo momento, come se si stessero studiando.</p>
+        
+        <p>Poi i due uomini si allontanarono, parlando in disparte.</p>`,
+        choices: [
+            {
+                text: "Cerca di ascoltare cosa dicono",
+                nextParagraph: 105,
+                consequences: { stats: { astuzia: 1 } }
+            },
+            {
+                text: "Resta a guardare l'arazzo",
+                nextParagraph: 105,
+                stats: null
+            }
+        ]
+    },
+    105: {
+        id: 105,
+        title: "Le Parole Sussurrate",
+        content: `<p>Trejano non riuscì a sentire la conversazione completa, ma qualche parola gli arrivò.</p>
+        
+        <p>Metiq, l'aiutante anziano, sussurrava a bassa voce: «...pescatore... proibito... Gembhma... perla...»</p>
+        
+        <p>Poi Mesis parlò più forte, con tono grave: «Sapete entrambi cosa significa. Il tempo si compie.»</p>
+        
+        <p>Neiano annuì lentamente, il volto invecchiato di colpo.</p>
+        
+        <p>Dopo pochi minuti, tornarono. Mesis sorrideva di nuovo, come se nulla fosse.</p>
+        
+        <p>«L'arazzo è tuo, giovane Trejano» disse. «Portalo con cura. Un giorno capirai il suo vero significato.»</p>
+        
+        <p>Gli aiutanti di Mesis arrotolarono l'arazzo con reverenza e lo consegnarono a Neiano.</p>`,
+        choices: [
+            {
+                text: "➡️ Mesis si prepara a partire",
+                nextParagraph: 106,
+                stats: null
+            }
+        ]
+    },
+    106: {
+        id: 106,
+        title: "L'Addio di Mesis",
+        content: `<p>Mesis vendette le ultime mercanzie, sempre a prezzi ridicolmente bassi. Era come se volesse liberarsi di tutto in fretta.</p>
+        
+        <p>Quando la carovana si preparò a ripartire, Mesis si avvicinò di nuovo a Trejano. Notò il medaglione d'ametista che il ragazzo portava al collo - un piccolo ciondolo che aveva trovato anni prima sul fiume.</p>
+        
+        <p>«È un'ametista, la gemma del mio paese» disse Mesis toccando il medaglione. «È proibito possederle o portarle se non sei nato nella terra di Amadriade. Ma per te farò un'eccezione.»</p>
+        
+        <p>Poi, abbassando il tono fino a un sussurro che solo Trejano poteva sentire, aggiunse:</p>
+        
+        <p>«Ti saluto piccolo Ratnaraj, che la fausta sorte possa agghindare il tuo capo di luna.»</p>
+        
+        <p>Trejano rimase confuso. <em>Ratnaraj? Che nome strano...</em></p>
+        
+        <p>Mesis salì sul carro e la carovana partì, lasciando Treja nella polvere della strada.</p>`,
+        choices: [
+            {
+                text: "➡️ Quella sera...",
+                nextParagraph: 107,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'mesis_incontrato': true, 'ratnaraj_menzionato': true }
+        }
+    },
+    107: {
+        id: 107,
+        title: "Il Dono di Neiano",
+        content: `<p>Quella sera, dopo che avevano appeso l'arazzo nella palafitta, Neiano chiamò Trejano in disparte.</p>
+        
+        <p>Aveva in mano un piccolo cofanetto di legno scuro, intarsiato con simboli che Trejano non riconosceva.</p>
+        
+        <p>«Trejano» disse con voce grave. «Prendilo e conservane il suo contenuto gelosamente.»</p>
+        
+        <p>Gli porse il cofanetto.</p>
+        
+        <p>«Non farla vedere a nessuno. È proibito portarla e persino possederla a chi non è nato nella terra di Gembhma.»</p>
+        
+        <p>Trejano aprì il cofanetto con mani tremanti.</p>
+        
+        <p>Dentro, su un cuscino di velluto nero, giaceva una perla.</p>`,
+        choices: [
+            {
+                text: "Osserva la perla",
+                nextParagraph: 108,
+                stats: null
+            }
+        ]
+    },
+    108: {
+        id: 108,
+        title: "La Perla di Akoia",
+        content: `<p>Non era una perla qualunque.</p>
+        
+        <p>Sembrava ancora più bella e luminosa nella sua semplicità. Il suo bianco era intenso, ma sembrava avere in sé tutti i colori del mondo.</p>
+        
+        <p>Quando Trejano la toccò, sentì un calore diffondersi nel petto. Un senso di... appartenenza. Come se quella perla fosse sempre stata destinata a lui.</p>
+        
+        <p>«Da dove viene?» chiese.</p>
+        
+        <p>Neiano lo guardò a lungo prima di rispondere.</p>
+        
+        <p>«È un'eredità» disse infine. «Un giorno capirai. Per ora, tienila nascosta. Sempre. E non parlarne con nessuno.»</p>
+        
+        <p>«Nemmeno con Ago?»</p>
+        
+        <p>«Nemmeno con Ago.»</p>
+        
+        <p>Trejano annuì, chiudendo il cofanetto. Lo nascose nella tasca interna della casacca che si era cucito faticosamente proprio per questo scopo.</p>`,
+        choices: [
+            {
+                text: "«La proteggerò, papà»",
+                nextParagraph: 109,
+                consequences: { 
+                    stats: { empatia: 1 },
+                    relationships: { neiano: 1 }
+                }
+            },
+            {
+                text: "«Non capisco perché sia così importante»",
+                nextParagraph: 109,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'perla_ricevuta': true }
+        }
+    },
+    109: {
+        id: 109,
+        title: "Due Anni di Segreto",
+        content: `<p>Da quel giorno, Trejano portò sempre la perla con sé. Nascosta nel cofanetto, nella tasca interna della casacca.</p>
+        
+        <p>Per due anni la tenne segreta. A volte, quando era solo, la tirava fuori e la guardava. Le parlava, anche, nei momenti di solitudine.</p>
+        
+        <p>Era diventata il suo tesoro più prezioso. Più preziosa persino del sogno di diventare cavaliere.</p>
+        
+        <p>L'arazzo rimase appeso alla parete della palafitta, testimone silenzioso di quei due anni. La piccola perla incastonata nella mano del cavaliere di seta era scomparsa - Neiano l'aveva tolta e data a Trejano quella sera stessa.</p>
+        
+        <p>E ora, due anni dopo, mentre Neiano non tornava dal suo viaggio misterioso, Trejano guardava quell'arazzo e si chiedeva...</p>
+        
+        <p><em>Cosa sapeva Mesis? Cosa sapeva mio padre? E perché io?</em></p>`,
+        choices: [
+            {
+                text: "➡️ Ritorna al presente",
+                nextParagraph: 110,
+                stats: null
+            }
+        ],
+        flags: {
+            modify: { maturita: 1 }
+        }
+    },
+    110: {
+        id: 110,
+        title: "Il Presente - Terza Notte",
+        content: `<p><strong>[FINE FLASHBACK - Ritorno al presente]</strong></p>
+        
+        <p>Trejano si riscosse dai ricordi. Era di nuovo nella palafitta, nella terza notte senza Neiano.</p>
+        
+        <p>L'arazzo era ancora lì, fedele testimone di quei due anni. Fuori, il buio era completo. La luna era nascosta dietro le nuvole.</p>
+        
+        <p>Tirò fuori il cofanetto dalla tasca interna. Lo aprì. La perla brillava nella penombra, con quella sua luce propria che sembrava venire da dentro.</p>
+        
+        <p>«Ratnaraj» sussurrò, ricordando le parole di Mesis. «Re delle Gemme.»</p>
+        
+        <p>Si sentiva già meglio nonostante la partenza del padre. La perla aveva sempre avuto questo potere - di calmarlo, di confortarlo.</p>
+        
+        <p>Ma quella notte, mentre la stringeva tra le mani, qualcosa cambiò.</p>
+        
+        <p>Un rumore. Fuori. Voci. E poi...</p>
+        
+        <p>Luce rossa. Fiamme.</p>
+        
+        <p><strong>[Continua al paragrafo 111]</strong></p>`,
+        choices: [
+            {
+                text: "➡️ Corri alla finestra",
+                nextParagraph: 111,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'flashback_finito': true, 'attacco_imminente': true }
+        }
+    },
+    111: {
+        id: 111,
+        title: "Ombre sulla Strada",
+        content: `<p>Trejano corse alla finestra, stringendo ancora la perla nella mano.</p>
+        
+        <p>Quello che vide gli gelò il sangue nelle vene.</p>
+        
+        <p>Sulla strada, illuminati dalle torce, c'erano sette figure incappucciate. Indossavano tuniche rosse come il sangue, scarlatte come il fuoco.</p>
+        
+        <p>Le figure confabularono per qualche minuto, sembrando incerte sul da farsi. Trejano non era riuscito ad impedire che il suo respiro divenisse mozzo ed affannato.</p>
+        
+        <p><em>Chi erano quegli uomini o quegli esseri? Cosa cercavano? Dove era il padre?</em></p>
+        
+        <p>E se Neiano fosse stato catturato... o peggio...</p>
+        
+        <p>Non riuscì a completare il pensiero. La mano gli tremava mentre cercava freneticamente di spegnere la lanterna nella stanza.</p>`,
+        choices: [
+            {
+                text: "Spegni la lanterna e nasconditi",
+                nextParagraph: 112,
+                consequences: { stats: { astuzia: 1 } }
+            },
+            {
+                text: "Resta alla finestra a osservare",
+                nextParagraph: 112,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'sicofanti_avvistati': true }
+        }
+    },
+    112: {
+        id: 112,
+        title: "Occhi di Bragia",
+        content: `<p>Poi successe tutto in un battibaleno.</p>
+        
+        <p>Uno degli incappucciati tirò fuori qualcosa da sotto la tunica ed un istante dopo gli altri lo imitarono.</p>
+        
+        <p>Improvvisamente occhi di bragia illuminavano l'aria.</p>
+        
+        <p>Frecce. Frecce infuocate.</p>
+        
+        <p>Trejano riuscì a stento a gettarsi di lato. Una freccia infuocata sibilò dove un attimo prima si affacciava il ragazzo e si conficcò nell'arazzo di Mesis che prese fuoco.</p>
+        
+        <p>«No!» gridò Trejano, guardando le fiamme divorare il tessuto prezioso, il cavaliere bianco, le scene misteriose. Due anni aveva conservato quell'arazzo, e ora...</p>
+        
+        <p>Il fumo riempì rapidamente la stanza. Il calore divenne insopportabile.</p>
+        
+        <p>E poi, attraverso il fumo, vide una figura.</p>`,
+        choices: [
+            {
+                text: "➡️ Chi è?",
+                nextParagraph: 113,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'arazzo_bruciato': true }
+        }
+    },
+    113: {
+        id: 113,
+        title: "Il Vecchio dagli Occhi Saettanti",
+        content: `<p>Trejano vide davanti a sé un vecchio dagli occhi saettanti.</p>
+        
+        <p><em>Da dove era entrato?</em></p>
+        
+        <p>Il vecchio non disse nulla. Balzò su Trejano che non ebbe il tempo di alzare il bastone che ancora stringeva per difendersi.</p>
+        
+        <p>Mentre si avvicinava rapidamente, il vecchio sfregò sulla fronte un anello in cui era incastonata una gemma trasparente.</p>
+        
+        <p>E allora accadde qualcosa di terribile.</p>
+        
+        <p>La sua testa sembrò allargarsi ed accorciarsi. La faccia si coprì di un pelame fitto e giallo, chiazzato di nero. I suoi occhi diventarono brillanti. Anche il suo corpo si appiattì, affusolandosi e perdendosi in una coda pendula. La sua bocca era ora spalancata e piena di aguzzi denti.</p>
+        
+        <p>Un gattopardo.</p>
+        
+        <p>Trejano fu investito dall'alito caldo e umido del vecchio trasformatosi in fiera.</p>
+        
+        <p><em>"È la fine"</em> pensò.</p>`,
+        choices: [
+            {
+                text: "Chiudi gli occhi",
+                nextParagraph: 114,
+                stats: null
+            },
+            {
+                text: "Cerca di colpirlo col bastone",
+                nextParagraph: 114,
+                consequences: { stats: { forza: -1 } }
+            }
+        ],
+        flags: {
+            set: { 'crise_trasformazione_vista': true }
+        }
+    },
+    114: {
+        id: 114,
+        title: "La Fuga",
+        content: `<p>Chiuse gli occhi. Era un Viandante, non aveva più speranze. Attendeva i feroci denti ed i crudeli artigli.</p>
+        
+        <p>Si sentì improvvisamente sollevare da terra e attese la morte rimpiangendo la sua breve vita.</p>
+        
+        <p>Poi sentì l'affuocata aria della palafitta in fiamme lasciare il posto alla fresca aria della notte che ora gli sferzava il viso.</p>
+        
+        <p>Riaprì per un istante gli occhi. L'animale l'aveva azzannato alla collottola dell'abito di tela. La resistente tela di Saar non cedette. La fiera lo portava come fa un gatto col suo cucciolo.</p>
+        
+        <p>Saettava veloce nelle strade del villaggio di Treja ora illuminato da fuochi sempre più alti. Palafitte e case bruciavano ora in una gimkana sempre più indiavolata.</p>
+        
+        <p>«Colpite il ragazzo ed il gattopardo!» sentì urlare alle sue spalle.</p>`,
+        choices: [
+            {
+                text: "➡️ Continua la fuga",
+                nextParagraph: 115,
+                stats: null
+            }
+        ]
+    },
+    115: {
+        id: 115,
+        title: "Tra le Fiamme",
+        content: `<p>Un nugolo di frecce e piccoli giavellotti piombò sulla fiera e sul ragazzo, ma l'animale destramente riuscì ad evitarli.</p>
+        
+        <p>Correva ora ad una velocità vorticosa, zigzagando come un fulmine nel cielo.</p>
+        
+        <p>Trejano, con la vista annebbiata per la paura, vedeva Treja bruciare. Le palafitte che conosceva da sempre, le case dei vicini, il Rifugio dell'Anguilla...</p>
+        
+        <p>Tutto in fiamme.</p>
+        
+        <p>E le urla. Tante urla. Di uomini, donne, bambini.</p>
+        
+        <p>Improvvisamente il gattopardo cadde a terra e anche Trejano rotolò nella polvere battendo la testa contro un largo masso.</p>
+        
+        <p>L'animale era stato colpito sul dorso da un giavellotto che l'aveva ferito.</p>`,
+        choices: [
+            {
+                text: "«Lasciami! Scappa!»",
+                nextParagraph: 116,
+                consequences: { stats: { empatia: 1 } }
+            },
+            {
+                text: "Resta in silenzio",
+                nextParagraph: 116,
+                stats: null
+            }
+        ]
+    },
+    116: {
+        id: 116,
+        title: "L'Ultimo Sguardo",
+        content: `<p>Il gattopardo si rialzò lesto, ignorando la ferita. Riafferrò il ragazzo tra le fauci e si tuffò in una corsa sempre più agile e sfrenata.</p>
+        
+        <p>Trejano aveva la vista annebbiata per la paura e per il colpo ricevuto sulla testa.</p>
+        
+        <p>Riuscì a girare appena appena la testa per guardare dietro.</p>
+        
+        <p>L'ultima cosa che vide fu Treja.</p>
+        
+        <p>La sua Treja. Il suo villaggio. La sua casa.</p>
+        
+        <p>Tutto avvolto dalle fiamme, divorato dal fuoco rosso come le tuniche degli incappucciati.</p>
+        
+        <p>Le urla dei misteriosi uomini erano ormai lontane e frecce e giavellotti non riuscivano più a raggiungere i due fuggitivi.</p>
+        
+        <p>E poi tutto divenne nero.</p>
+        
+        <p>Trejano svenne.</p>`,
+        choices: [
+            {
+                text: "➡️ [Interludio: Il Destino di Ago]",
+                nextParagraph: 117,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'treja_distrutta': true, 'trejano_ferito': true }
+        }
+    },
+    117: {
+        id: 117,
+        title: "Ago - Il Risveglio nel Fuoco",
+        content: `<p><strong>[INTERLUDIO - Destino di Ago]</strong></p>
+        
+        <p>Ago si svegliò di colpo quando i primi fuochi illuminarono il cielo, e poi la terra, le povere case degli uomini.</p>
+        
+        <p>Presto un'eco di urla rimbombò ovunque e Ago era in piedi alla finestra.</p>
+        
+        <p>«Trejano!» urlò.</p>
+        
+        <p>L'amico era tra le fauci di un animale orrendo - un gattopardo gigante che correva tra le fiamme!</p>
+        
+        <p>Fu subito alla porta, il bastone stretto nella mano sinistra, ma la bestia era sfrecciata via.</p>
+        
+        <p>Ago correva a più non posso. L'animale era lontano. Poi lo vide rotolare e con lui rotolò Trejano.</p>
+        
+        <p><em>Posso raggiungerli!</em></p>
+        
+        <p>Ma la bestia si rialzò, riprese una corsa ancora più sfrenata. Trejano sparì nella notte.</p>`,
+        choices: [
+            {
+                text: "➡️ Ago fugge",
+                nextParagraph: 118,
+                stats: null
+            }
+        ]
+    },
+    118: {
+        id: 118,
+        title: "Ago - La Fuga Disperata",
+        content: `<p>Attorno ad Ago sibilavano frecce e giavellotti. Una freccia lo colpì alla tempia e il ragazzo cadde.</p>
+        
+        <p>Sentì sgorgare il sangue. Ebbe paura, ma la ferita era superficiale e Ago si rialzò un po' barcollante.</p>
+        
+        <p>Si voltò indietro e la paura lo bloccò. Treja era invasa da lingue di fuoco. Sentiva distintamente le grida, portate dalla crudele brezza della notte che aizzava le fiamme, di uomini, di donne e bambini.</p>
+        
+        <p>Il Rifugio dell'Anguilla, rosa dalle fiamme, collassò su se stessa con uno schianto.</p>
+        
+        <p>E dal fumo vide sbucare tre uomini incappucciati. Rosse al pari delle fiamme le loro tuniche, correvano rapidi e silenziosi come ombre di morte nella notte.</p>
+        
+        <p>Ago si voltò e riprese a correre, aspettando di sentire da un momento all'altro una freccia conficcarsi nella schiena.</p>
+        
+        <p>Ma non accadde.</p>`,
+        choices: [
+            {
+                text: "➡️ Continua a correre",
+                nextParagraph: 119,
+                stats: null
+            }
+        ]
+    },
+    119: {
+        id: 119,
+        title: "Ago - La Caduta",
+        content: `<p>Accadde invece che corse più veloce delle sue gambe e rotolò rovinosamente al suolo.</p>
+        
+        <p>Provò a rialzarsi, ma una fitta alla caviglia destra lo fece cadere supino.</p>
+        
+        <p>I suoi occhi corsero al cielo, quel cielo che aveva guardato affascinato mille volte, con cui aveva parlato in mille notti.</p>
+        
+        <p>Entaris brillava più forte della luce del plenilunio, ignara della morte nella terra di Saar.</p>
+        
+        <p>Ago non lottava più. Trejano ucciso da una terribile bestia, Treja che bruciava con chi di più caro aveva al mondo.</p>
+        
+        <p>I tre uomini lo raggiunsero.</p>
+        
+        <p>Uno afferrò il ragazzo per il bavero e discostò leggermente il cappuccio per osservarlo meglio al riflesso dei fuochi.</p>
+        
+        <p>Ago vide la sua pelle rossa e poi una gemma bellissima al suo collo, color sangue, color fuoco.</p>
+        
+        <p>Un rubino.</p>`,
+        choices: [
+            {
+                text: "➡️ Il verdetto",
+                nextParagraph: 120,
+                stats: null
+            }
+        ]
+    },
+    120: {
+        id: 120,
+        title: "Ago - L'Aquila",
+        content: `<p>«Non è il ragazzo dai capelli bianchi» disse il sicofante stizzito agli altri due. «Uccidilo.»</p>
+        
+        <p>L'uomo che aveva parlato ed un altro ripresero il loro inseguimento. Il terzo si avvicinò ad Ago, estrasse dal fodero una corta spada ricurva.</p>
+        
+        <p>Ago vedeva tutto questo senza paura, come se la sua vita appartenesse ad un altro, con rassegnazione e un velo di malinconia.</p>
+        
+        <p>Ripensò a Trejano e alle anguille, alle notti stellate e a Sira la sorella, alla madre dal volto lontano nel tempo e al padre...</p>
+        
+        <p>La spada si alzò.</p>
+        
+        <p>Ma poi - improvviso - da una buia plaga del cielo sbucò un'ombra gigante.</p>
+        
+        <p>Un'aquila. Enorme, maestosa, con ali che sembravano abbracciare il cielo stesso.</p>
+        
+        <p>Il braccio dell'incappucciato che calava su Ago improvvisamente fu in una posa innaturale, l'avambraccio lacerato dal rostro dell'uccello.</p>
+        
+        <p>Ago non capì cosa stesse succedendo. Sentì solo artigli potenti afferrarlo con delicatezza, e poi...</p>
+        
+        <p>Volava.</p>
+        
+        <p>Sotto di lui, Treja bruciava. E lui volava, portato dall'aquila verso il cielo stellato.</p>
+        
+        <p><strong>[Fine Interludio Ago - Continua al paragrafo 121]</strong></p>`,
+        choices: [
+            {
+                text: "➡️[Ritorna a Trejano]",
+                nextParagraph: 121,
+                stats: null
+            }
+        ],
+        flags: {
+            set: { 'ago_salvato_quilian': true, 'ago_separato': true }
+        }
     }
 }
 
